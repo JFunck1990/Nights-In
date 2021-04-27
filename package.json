@@ -62,7 +62,6 @@
     "if-env": "^1.0.4"
   },
   "devDependencies": {
-    "eslint": "^7.9.0",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-node": "11.1.0",

@@ -10,8 +10,6 @@ function App() {
     incorrect: []
   });
 
-  // const [testState, setTestState] = useState();
-
   const handleNewQuestion = () => {
     API.newQuestion()
       .then(res => {

@@ -1,0 +1,74 @@
+body {
+  color: white;
+  background-size: cover;
+  height:100%
+}
+
+.jumbotron {
+  background: rgba(0,0,0,0);
+}
+
+.modal {
+  color: black;
+}
+
+.btn {
+  color:white;
+  background:#cadde1;
+  border: 1px solid white;
+}
+
+#user-form, .header-wrap, #create-form, .create-user-wrap {
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+}
+
+#update-err-msg,
+#login-err-msg,
+#create-err-msg {
+  color: red !important;
+}
+
+#go-home {
+ width: auto;
+ height: 65px;
+}
+
+.container {
+  padding-bottom: 2%;
+  margin-top: 10%;
+  background: rgba(86, 101, 115,.6);
+  height:100%;
+  border-radius: .25rem;
+  margin-bottom: 2%;
+  width: 600px;
+}
+
+[data-useremail="true"] {
+  color: white !important;
+}
+[data-register="true"] {
+  color: white !important;
+}
+
+.lead {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.userId h2, .header-wrap h1 {
+  text-transform: capitalize;
+}
+
+hr {
+  background-color: #fff !important;
+}
+
+.list-group-item {
+  line-height: 2.5;
+}
+
+.card-body {
+  color: #444;
+}

@@ -1,2 +1,2 @@
-drop database if exists project2_dev;
-create database project2_dev;
+drop database if exists nights_in_users;
+create database nights_in_users;

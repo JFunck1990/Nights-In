@@ -8,7 +8,7 @@ const moment = require('moment');
 const helmet = require('helmet');
 const PORT = process.env.PORT || 3333;
 const app = express();
-const db = require('./models');
+const db = require('./server/models');
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
@@ -22,10 +22,10 @@ if (app.get('env') !== 'test') {
 
 app.use(express.static('public'));
 
-require('./config/passport')(db, app, passport); // pass passport for configuration
+require('./server/config/passport')(db, app, passport); // pass passport for configuration
 
 // Define our routes
-app.use('/api', require('./routes/apiRoutes')(passport, db));
+app.use('/api', require('./server/routes/apiRoutes')(passport, db));
 
 // Secure express app
 app.use(helmet.hsts({
@@ -51,7 +51,7 @@ if (app.get('env') === 'test') {
 
 db.sequelize.sync(syncOptions).then(() => {
   if (app.get('env') !== 'test' && syncOptions.force) {
-    require('./db/seed')(db);
+    require('./server/db/seed')(db);
   }
 
   app.listen(PORT, () => {

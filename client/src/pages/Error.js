@@ -1,0 +1,16 @@
+import React from "react";
+
+function Error() {
+  return (
+    <div class="container">
+        <div class="jumbotron mt-4">
+            <h1 class="display-4 text-center">404 Not Found
+                <span role="img" aria-label="Face with rolling eyes">🙄</span>
+            </h1>
+            <a href="/">← Back To Home</a>
+        </div>
+    </div>
+  );
+}
+
+export default Error;

@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Trivia from "./pages/Trivia";
+import Error from "./pages/Error";
 
 function App() {
   return (
@@ -9,6 +10,9 @@ function App() {
         <Switch>
           <Route exact path={"/"}>
             <Trivia />
+          </Route>
+          <Route path={"*"}>
+            <Error />
           </Route>
         </Switch>
       </div>

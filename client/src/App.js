@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Profile from "./pages/Profile";
@@ -11,11 +12,12 @@ function App() {
   return (
     <Router>
       <div>
+        <Navbar />
         <Switch>
           <Route exact path={"/"}>
             <Dashboard />
           </Route>
-          
+
           <Route path={"/register"}>
             <Register />
           </Route>

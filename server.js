@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const passport = require('passport');
@@ -13,8 +12,6 @@ const db = require('./server/models');
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
 
 if (app.get('env') !== 'test') {
   app.use(morgan('dev')); // Hook up the HTTP logger

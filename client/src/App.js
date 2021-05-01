@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
+import Calender from "./pages/Calender"
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -39,6 +40,10 @@ function App() {
 
           <Route path={"/scores"}>
             <Scores />
+          </Route>
+
+          <Route path={"/calender"}>
+            <Calender/>
           </Route>
 
           <Route path={"*"}>

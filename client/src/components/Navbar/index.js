@@ -9,7 +9,7 @@ function Navbar({ toggle }) {
     <img src={icon} alt='icon' height={90} width={100}/>
 
     <FaBars onClick={toggle} className='bars' size="35px"/>
-    
+
     <ul className="nav ml-auto">
         {/* {{#if isloggedin}} */}
         <li className="nav-item">
@@ -20,6 +20,9 @@ function Navbar({ toggle }) {
         </li>
         <li className="nav-item">
             <a className="nav-link" href="/profile">My Profile</a>
+        </li>
+        <li className="nav-item">
+            <a className="nav-link" href="/calender">Calender</a>
         </li>
         <li className="nav-item">
             <a className="nav-link" href="/logout">Logout</a>

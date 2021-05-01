@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
+import background from "./images/black-brick.webp";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -16,6 +17,13 @@ function App() {
     setIsOpen(!isOpen)
   }
   return (
+    <div style={{ 
+      backgroundImage: `url(${background})`,
+      height: '1000px',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover'
+      }}>
     <Router>
       <div>
         <MobileMenu isOpen={isOpen} toggle={toggle} />
@@ -47,6 +55,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </div>
   );
 }
 

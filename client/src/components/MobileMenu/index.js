@@ -12,7 +12,7 @@ function MobileMenu ({ isOpen, toggle }) {
             </div>
             <div className="wrapper">
                 <div className="mmenu">
-                    <a className="pages" href='/dashboard' onClick={toggle}>Home</a>
+                    <a className="pages" href='/' onClick={toggle}>Home</a>
                     <a className="pages" href='/scores' onClick={toggle}>Scores</a>
                     <a className="pages" href='/profile' onClick={toggle}>Profile</a>
                     <a className="pages" href='/logout' onClick={toggle}>Logout</a>                    

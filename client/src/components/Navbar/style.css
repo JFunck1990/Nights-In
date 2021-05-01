@@ -1,0 +1,54 @@
+
+
+nav, .bg-dark{
+    background-color: #555555;
+    height: 100px;
+}
+
+img{
+    margin-left: 100px;
+}
+
+a{
+    color: lightgrey !important;;
+
+}
+
+nav-link:hover{
+    color: yellow !important;;
+    transition: 0.2s ease-in-out !important;;
+}
+
+ul{
+    margin-left: 100px; 
+}
+
+.navbar-nav{
+    margin-left: 100px;
+}
+
+.bars{
+    margin-left: 50%;
+
+}
+
+@media screen and (max-width: 768px) {
+    ul, nav-link{
+        display: none !important;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .bars{
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .bars{
+        margin-left: 20%;
+    }
+    img{
+        margin-left: 10%;
+    }
+}

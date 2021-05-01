@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import MobileMenu from "./components/MobileMenu";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
@@ -9,10 +10,16 @@ import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => {
+    setIsOpen(!isOpen)
+  }
   return (
     <Router>
       <div>
-        <Navbar />
+        <MobileMenu isOpen={isOpen} toggle={toggle} />
+        <Navbar toggle={toggle}/>
         <Switch>
           <Route exact path={"/"}>
             <Dashboard />

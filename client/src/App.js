@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import MobileMenu from "./components/MobileMenu";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
@@ -7,12 +8,26 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
+import background from "./images/black-brick.webp";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => {
+    setIsOpen(!isOpen)
+  }
   return (
+    <div style={{ 
+      backgroundImage: `url(${background})`,
+      height: '1000px',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover'
+      }}>
     <Router>
       <div>
-        <Navbar />
+        <MobileMenu isOpen={isOpen} toggle={toggle} />
+        <Navbar toggle={toggle}/>
         <Switch>
           <Route exact path={"/"}>
             <Dashboard />
@@ -40,6 +55,7 @@ function App() {
         </Switch>
       </div>
     </Router>
+    </div>
   );
 }
 

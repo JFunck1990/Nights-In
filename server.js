@@ -8,7 +8,7 @@ const helmet = require('helmet');
 const PORT = process.env.PORT || 3333;
 const app = express();
 const db = require('./server/models');
-const routes = require('./routes')
+
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));

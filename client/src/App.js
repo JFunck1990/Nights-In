@@ -8,6 +8,7 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
+import Calender from "./pages/Calender"
 import background from "./images/black-brick.webp";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     setIsOpen(!isOpen)
   }
   return (
-    <div style={{ 
+    <div style={{
       backgroundImage: `url(${background})`,
       height: '1000px',
       backgroundPosition: 'center',
@@ -47,6 +48,10 @@ function App() {
 
           <Route path={"/scores"}>
             <Scores />
+          </Route>
+
+          <Route path={"/calender"}>
+            <Calender/>
           </Route>
 
           <Route path={"*"}>

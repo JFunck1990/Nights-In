@@ -1,6 +1,5 @@
 require('dotenv').config();
 const express = require('express');
-const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const passport = require('passport');
@@ -9,18 +8,21 @@ const helmet = require('helmet');
 const PORT = process.env.PORT || 3333;
 const app = express();
 const db = require('./server/models');
+const routes = require('./routes')
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+
 
 if (app.get('env') !== 'test') {
   app.use(morgan('dev')); // Hook up the HTTP logger
 }
 
 app.use(express.static('public'));
+
+
+
 
 require('./server/config/passport')(db, app, passport); // pass passport for configuration
 

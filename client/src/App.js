@@ -8,11 +8,8 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
-<<<<<<< HEAD
 import Calender from "./pages/Calender"
-=======
 import background from "./images/black-brick.webp";
->>>>>>> 101c9f10d1514d4d96bc35a0d052e55f614fd55c
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -21,7 +18,7 @@ function App() {
     setIsOpen(!isOpen)
   }
   return (
-    <div style={{ 
+    <div style={{
       backgroundImage: `url(${background})`,
       height: '1000px',
       backgroundPosition: 'center',

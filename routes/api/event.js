@@ -21,7 +21,7 @@ const event = nylas.events.build({
 
   // Participants are stored as an array of participant subobjects
   participants: [{ email: "jackfunck15@gmail.com", name: "My Awesome Friend" }],
-  location: "My House!",
+  location: "Nights In",
 });
 
 // Event notification emails are not sent by default

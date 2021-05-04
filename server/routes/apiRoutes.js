@@ -14,7 +14,7 @@ module.exports = (passport, db) => {
   router.post('/user/confirm', AuthController.confirmAuth);
 
   // App
-  router.post('/invite', AppController.sendInvite);
+  router.get('/invite', AppController.sendInvite);
 
   return router;
 };

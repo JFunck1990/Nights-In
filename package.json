@@ -44,7 +44,6 @@
   "homepage": "https://github.com/JFunck1990/Nights-In.git#readme",
   "dependencies": {
     "@nylas/components-agenda": "^0.0.35",
-    "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "bootstrap": "^4.6.0",
     "connect-session-sequelize": "^7.0.3",

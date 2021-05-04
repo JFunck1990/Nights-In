@@ -1,18 +1,17 @@
 import React from "react";
-// import style from "../components/Navbar/style.css";
-
+// import style from './style.css';
 
 function Scores() {
   return (
-
+  
     <div class="container p-5">
       <div className="row">
 
       {/* HIGHT SCORE LIST */}
         <div class="col-md-6 col-xs-12">
-          <div className="card">
+          <div className="card border border-dark">
 
-            <div className="cardheader bg-light">
+            <div className="cardheader bg-warning">
               <h1 className="text-center">HIGH SCORES</h1>
             </div>
 
@@ -53,7 +52,7 @@ function Scores() {
                   <div className="col-md-6 d-flex justify-content-end">100</div>
                   </div>
                 </li>
-
+            
               </ol>
             </div>
 
@@ -63,9 +62,9 @@ function Scores() {
 
       {/* LOSER SCORE LIST */}
         <div class="col-md-6 col-xs-12">
-          <div className="card">
+          <div className="card border border-dark">
 
-            <div className="cardheader bg-light">
+            <div className="cardheader bg-warning">
               <h1 className="text-center">LOW SCORES</h1>
             </div>
 
@@ -115,13 +114,13 @@ function Scores() {
         </div>
 
       </div>
-
+    
     </div>
   )
-
-
-
-
+   
+              
+          
+                
 }
 
 export default Scores;

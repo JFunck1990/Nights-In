@@ -17,6 +17,7 @@ function App() {
   const toggle = () => {
     setIsOpen(!isOpen)
   }
+  
   return (
     <div style={{
       backgroundImage: `url(${background})`,

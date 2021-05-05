@@ -1,24 +1,23 @@
 
-
 nav, .bg-dark {
     background-color: #555555;
     height: 100px;
 }
 
-img {
+#navicon {
     margin-left: 100px;
 }
 
-a {
+.barlink {
     color: lightgrey !important;
 }
 
-nav-link:hover {
+.barlink:hover {
     color: yellow !important;
     transition: 0.2s ease-in-out !important;
 }
 
-ul {
+#barlist {
     margin-left: 100px; 
 }
 
@@ -32,7 +31,7 @@ ul {
 }
 
 @media screen and (max-width: 768px) {
-    ul, nav-link {
+    #barlist, .barlink {
         display: none !important;
     }
 }
@@ -47,7 +46,7 @@ ul {
     .bars {
         margin-left: 20%;
     }
-    img {
+    #navicon {
         margin-left: 10%;
     }
 }

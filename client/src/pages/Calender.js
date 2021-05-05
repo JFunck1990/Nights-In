@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useState, useEffect} from "react"
 //import API from "../utils/calApi";
 
@@ -26,6 +27,16 @@ return (
 
 )
 
+=======
+import React from "react"
+
+function Calender () {
+    return (
+        <div>
+            <p>Calender</p>
+        </div>
+    )
+>>>>>>> bbea60c03efa78b0569ec1aedea892f5ff68c732
 }
 
 export default Calender;

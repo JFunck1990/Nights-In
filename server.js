@@ -9,7 +9,7 @@ const helmet = require('helmet');
 
 const PORT = process.env.PORT || 3333;
 const app = express();
-const db = require('./server/models');
+//const db = require('./server/models');
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
@@ -19,10 +19,10 @@ if (app.get('env') !== 'test') {
   app.use(morgan('dev')); // Hook up the HTTP logger
 }
 
-require('./server/config/passport')(db, app, passport); // pass passport for configuration
+require('./server/config/passport')( app, passport); // pass passport for configuration
 
 // Define our routes
-app.use('/api', require('./server/routes/apiRoutes')(passport, db));
+app.use('/api', require('./server/routes/apiRoutes')(passport));
 
 // Secure express app
 app.use(helmet.hsts({
@@ -44,6 +44,10 @@ const syncOptions = {
 
 if (app.get('env') === 'test') {
   syncOptions.force = true;
+}
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 }
 
 db.sequelize.sync(syncOptions).then(() => {

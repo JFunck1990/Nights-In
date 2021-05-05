@@ -35,30 +35,46 @@ function App() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col-lg-12">
-          <Question question={questionState.question} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-lg-6">
-          <Answer choice={questionState.correct} />
-        </div>
-        <div className="col-lg-6">
-          <Answer choice={questionState.incorrect[0]} />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-lg-6">
-          <Answer choice={questionState.incorrect[1]} />
-        </div>
-        <div className="col-lg-6">
-          <Answer choice={questionState.incorrect[2]} />
-        </div>
-      </div>
 
-      <button className="btn btn-success" onClick={handleNewQuestion}>New Question</button>
+    <div className="container pt-5">
+
+      {/* Card */}
+      <div className="card border border-dark">
+
+        {/* Trivia Question */}         
+        <div className="card-header text-center bg-warning">
+          <h3><Question question={questionState.question} /></h3>
+        </div>
+
+            {/* Answers */}
+          <div className="card-body">
+              
+              <div className="col-lg-12 text-center pt-1 pb-1">
+                <Answer choice={questionState.correct} />
+              </div>
+              
+              <div className="col-lg-12 text-center pt-1 pb-1">
+                <Answer choice={questionState.incorrect[0]} />
+              </div>
+
+              <div className="col-lg-12 text-center pt-1 pb-1">
+                <Answer choice={questionState.incorrect[1]} />
+              </div>
+
+              <div className="col-lg-12 text-center pt-1 pb-1">
+               <Answer choice={questionState.incorrect[2]} />
+              </div>
+           
+              <div className="col-lg-12 text-center">
+                <button className="btn btn-success" onClick={handleNewQuestion}>Next Question</button>
+              </div>
+          
+          </div>
+          
+        </div>
+
+      
+
     </div>
   );
 }

@@ -1,10 +1,10 @@
 const Nylas = require('nylas');
 
 Nylas.config({
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
+    clientId: process.env.NYLAS_CLIENT_ID,
+    clientSecret: process.env.NYLAS_CLIENT_SECRET,
 });
   
-const nylas = Nylas.with(process.env.ACCESS_TOKEN);
+const nylas = Nylas.with(process.env.NYLAS_ACCESS_TOKEN);
 
 module.exports = nylas;

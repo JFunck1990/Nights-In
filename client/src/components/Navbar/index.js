@@ -1,7 +1,7 @@
 import React from "react";
 import icon from '../../images/image.png';
 import {FaBars} from 'react-icons/fa';
-import style from './style.css';
+import './style.css';
 
 function Navbar({ toggle }) {
   return (
@@ -27,14 +27,9 @@ function Navbar({ toggle }) {
         <li className="nav-item">
             <a className="nav-link" href="/logout">Logout</a>
         </li>
-        {/* {{else}} */}
-        <li className="nav-item">
-            <a className="nav-link" href="#" id="login-modal">Login</a>
-        </li>
         <li className="nav-item">
             <a className="nav-link" href="/register">Register</a>
         </li>
-        {/* {{/if}} */}
     </ul>
     </nav>
   );

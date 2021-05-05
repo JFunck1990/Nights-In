@@ -1,6 +1,6 @@
 import React from 'react';
 import {FaTimes} from 'react-icons/fa'
-import style from './style.css'
+import './style.css'
 
 
 function MobileMenu ({ isOpen, toggle }) {

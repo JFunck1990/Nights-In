@@ -1,22 +1,16 @@
+const nylas = require("../config/nylas");
+
 module.exports = function (db) {
   return {
-    // Get all examples
-    getExamples: function (req, res) {
-      db.Example.findAll({ where: { UserId: req.session.passport.user.id } }).then(function (dbExamples) {
-        res.json(dbExamples);
+    sendInvite: function (req, res) {
+      const draft = nylas.drafts.build({
+        subject: 'Testing Nylas',
+        to: [{ name: 'John Paul Grace', email: 'gracejohnpaul200@gmail.com' }],
+        body: 'Lorem Ipsum Dolor'
       });
-    },
-    // Create a new example
-    createExample: function (req, res) {
-      db.Example.create(req.body).then(function (dbExample) {
-        res.json(dbExample);
-      });
-    },
-    // Delete an example by id
-    deleteExample: function (req, res) {
-      db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-        res.json(dbExample);
-      });
+
+      draft.send()
+        .then(message => console.log(`${message.id} was sent`));
     }
   };
 };

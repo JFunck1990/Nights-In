@@ -57,6 +57,7 @@
     "mongoose": "^5.12.7",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",
+    "node-sass": "^5.0.0",
     "nylas": "^5.3.3",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

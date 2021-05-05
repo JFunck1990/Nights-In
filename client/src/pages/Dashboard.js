@@ -6,7 +6,7 @@ function Dashboard() {
     const data = {
       subject: "Testing Query",
       name: "JPG",
-      email: "gracejohnpaul200@gmail.com",
+      email: "jackfunck15@gmail.com",
       body: "This should pass all the necessary email info from front-end to back-end."
     }
 

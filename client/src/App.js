@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
-import Calender from "./pages/Calender"
+import Invite from "./pages/Invite"
 import background from "./images/black-brick.webp";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   const toggle = () => {
     setIsOpen(!isOpen)
   }
-  
+
   return (
     <div style={{
       backgroundImage: `url(${background})`,
@@ -51,8 +51,8 @@ function App() {
             <Scores />
           </Route>
 
-          <Route path={"/calender"}>
-            <Calender/>
+          <Route path={"/Invite"}>
+            <Invite/>
           </Route>
 
           <Route path={"*"}>

@@ -2,11 +2,11 @@ const nylas = require("../config/nylas");
 
 module.exports = function (db) {
   return {
-    sendInvite: function (req, res) {
+    sendInvite: function ({ query }, res) {
       const draft = nylas.drafts.build({
-        subject: 'Testing Nylas',
-        to: [{ name: 'John Paul Grace', email: 'gracejohnpaul200@gmail.com' }],
-        body: 'Lorem Ipsum Dolor'
+        subject: query.subject,
+        to: [{ name: query.name, email: query.email }],
+        body: query.body
       });
 
       draft.send()

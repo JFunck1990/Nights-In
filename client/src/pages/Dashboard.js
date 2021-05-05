@@ -3,7 +3,14 @@ import API from "../utils/API";
 
 function Dashboard() {
   const handleInvite = () => {
-    API.sendInvite();
+    const data = {
+      subject: "Testing Query",
+      name: "JPG",
+      email: "gracejohnpaul200@gmail.com",
+      body: "This should pass all the necessary email info from front-end to back-end."
+    }
+
+    API.sendInvite(data);
   };
 
   return (

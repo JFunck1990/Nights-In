@@ -1,4 +1,4 @@
-const event = require("../routes/event")
+const event = require("../Api/invent")
 const router = require("express").Router();
 const api = require("./Api")
 

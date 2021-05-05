@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react"
-import API from "../utils/calApi";
+//import API from "../utils/calApi";
 
 
 
@@ -12,9 +12,7 @@ function Calender (){
 
 
 useEffect(() => {
-    API.search().then((res)=> {
-        console.log("I Hope the Api data pops up: " + res);
-    });
+  
 
 
   }, []);

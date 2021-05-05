@@ -4,6 +4,7 @@ const CLIENT_SECRET = "6hvllah1kkatjsuae1taqdcjn";
 const ACCESS_TOKEN = "6v0vISjHpME6OpopvCe1KK4wMJVQ1l";
 const CALENDAR_ID = "547tvtxjszi4a7xhlk9qht8gh";
 
+
 Nylas.config({
   clientId: CLIENT_ID,
   clientSecret: CLIENT_SECRET,
@@ -29,3 +30,5 @@ const event = nylas.events.build({
 event.save({ notify_participants: true }).then((event) => {
   console.log(event);
 });
+
+module.exports (nylas);

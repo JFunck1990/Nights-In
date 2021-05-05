@@ -10,6 +10,7 @@ import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
 import Invite from "./pages/Invite"
 import background from "./images/black-brick.webp";
+import Login from "./pages/Login"
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
@@ -34,6 +35,9 @@ function App() {
           <Route exact path={"/"}>
             <Dashboard />
           </Route>
+          <Route exact path={"/login"}>
+            <Login/>
+          </Route>
 
           <Route path={"/register"}>
             <Register />
@@ -51,7 +55,7 @@ function App() {
             <Scores />
           </Route>
 
-          <Route path={"/Invite"}>
+          <Route path={"/invite"}>
             <Invite/>
           </Route>
 

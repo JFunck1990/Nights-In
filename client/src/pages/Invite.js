@@ -16,7 +16,7 @@ function Invite() {
   return (
 
       <div>
-
+         <button className="btn btn-success" onClick={handleInvite}>Invite</button>
       </div>
 
     );

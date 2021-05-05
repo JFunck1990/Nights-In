@@ -12,7 +12,7 @@ function Login() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(handleSubmit);
-    
+
   }
 
   return (
@@ -35,10 +35,12 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
-        <Button block size="lg" type="submit" disabled={!validateForm()}>
-          Login
-        </Button>
+
+       <button block size="lg" type="submit" disabled={!validateForm()}></button>
+
       </Form>
     </div>
   );
 }
+
+export default Login;

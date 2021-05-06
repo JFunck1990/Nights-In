@@ -1,5 +1,5 @@
 import React from "react";
-import icon from '../../images/image.png';
+import icon from '../../images/icon.png';
 import {FaBars} from 'react-icons/fa';
 import './style.css';
 
@@ -11,9 +11,11 @@ function Navbar({ toggle }) {
     <FaBars onClick={toggle} className='bars' size="35px"/>
 
     <ul id="barlist" className="nav ml-auto">
-        {/* {{#if isloggedin}} */}
         <li className="nav-item">
-            <a className="nav-link barlink" href="/dashboard">Dashboard</a>
+            <a className="nav-link barlink" href="/">Dashboard</a>
+        </li>
+        <li className="nav-item">
+            <a className="nav-link barlink" href="/trivia">Trivia</a>
         </li>
         <li className="nav-item">
             <a className="nav-link barlink" href="/scores">Scores</a>

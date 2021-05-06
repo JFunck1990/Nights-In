@@ -45,7 +45,6 @@
   "dependencies": {
     "@nylas/components-agenda": "^0.0.35",
     "bcrypt": "^5.0.0",
-    "bootstrap": "^4.6.0",
     "connect-session-sequelize": "^7.0.3",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",

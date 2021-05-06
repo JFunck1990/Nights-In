@@ -13,7 +13,10 @@ function Navbar({ toggle }) {
     <ul id="barlist" className="nav ml-auto">
         {/* {{#if isloggedin}} */}
         <li className="nav-item">
-            <a className="nav-link barlink" href="/dashboard">Dashboard</a>
+            <a className="nav-link barlink" href="/">Dashboard</a>
+        </li>
+        <li className="nav-item">
+            <a className="nav-link barlink" href="/trivia">Trivia</a>
         </li>
         <li className="nav-item">
             <a className="nav-link barlink" href="/scores">Scores</a>

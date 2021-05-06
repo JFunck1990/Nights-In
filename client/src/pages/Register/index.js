@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import "./style.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
+import FormInput from "../../components/FormInput";
 
 function Register() {
   const [infoState, setInfoState] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    password: "",
+    password: ""
   });
 
   const [errorState, setErrorState] = useState("");
@@ -44,6 +45,12 @@ function Register() {
     if (infoState.firstName.length > 0 && infoState.lastName.length > 0 && infoState.email.length > 0 && infoState.password.length > 0) {
       setErrorState("");
       API.createUser(infoState);
+      setInfoState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
+      });
     }
     else {
       setErrorState("*Please fill out all fields*");
@@ -61,65 +68,43 @@ function Register() {
             </header>
 
             <form id= "create-form">
-              <div className="form-row">
-              <div className="form-group col-md-12">
-                <label htmlFor="inputFirst">First Name</label>
-                <input
-                  id="inputFirst"
-                  type="text"
-                  className="form-control"
-                  placeholder="John"
-                  name="firstName"
-                  value={infoState.firstName}
-                  onChange={handleInputChange}
-                />
-              </div>
-              </div>
+              <FormInput
+                id="inputFirst"
+                placeholder="John"
+                label="First Name"
+                name="firstName"
+                value={infoState.firstName}
+                handler={handleInputChange}
+              />
 
-              <div className="form-row">
-              <div className="form-group col-md-12">
-                <label htmlFor="inputLast">Last Name</label>
-                <input
-                  id="inputLast"
-                  type="text"
-                  className="form-control"
-                  placeholder="Doe"
-                  name="lastName"
-                  value={infoState.lastName}
-                  onChange={handleInputChange}
-                />
-              </div>
-              </div>
+              <FormInput
+                id="inputLast"
+                placeholder="Doe"
+                label="Last Name"
+                name="lastName"
+                value={infoState.lastName}
+                handler={handleInputChange}
+              />
 
-              <div className="form-row">
-              <div className="form-group col-md-12">
-                <label htmlFor="inputEmail">Email</label>
-                <input
-                  id="inputEmail"
-                  type="text"
-                  className="form-control"
-                  placeholder="Email"
-                  name="email"
-                  value={infoState.email}
-                  onChange={handleInputChange}
-                />
-              </div>
-              </div>
+              <FormInput
+                id="inputEmail"
+                type="email"
+                placeholder="example@email.com"
+                label="Email"
+                name="email"
+                value={infoState.email}
+                handler={handleInputChange}
+              />
 
-              <div className="form-row">
-              <div className="form-group col-md-12">
-                <label htmlFor="inputPassword">Password</label>
-                <input
-                  id="inputPassword"
-                  type="text"
-                  className="form-control"
-                  placeholder="Password"
-                  name="password"
-                  value={infoState.password}
-                  onChange={handleInputChange}
-                />
-              </div>
-              </div>
+              <FormInput
+                id="inputPassword"
+                type="password"
+                placeholder="password123"
+                label="Password"
+                name="password"
+                value={infoState.password}
+                handler={handleInputChange}
+              />
 
               <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
             </form>

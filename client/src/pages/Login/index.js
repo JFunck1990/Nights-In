@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import "./style.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
+import FormInput from "../../components/FormInput";
 
 function Login() {
   const [infoState, setInfoState] = useState({
     email: "",
-    password: "",
+    password: ""
   });
 
   const [errorState, setErrorState] = useState("");
@@ -35,6 +36,10 @@ function Login() {
       setErrorState("");
       console.log("now do api call");
       // API.createUser(infoState);
+      setInfoState({
+        email: "",
+        password: ""
+      });
     }
     else {
       setErrorState("*Please fill out all fields*");
@@ -52,35 +57,25 @@ function Login() {
             </header>
 
             <form id= "create-form">
-              <div className="form-row">
-              <div className="form-group col-md-12">
-                <label htmlFor="inputEmail">Email</label>
-                <input
-                  id="inputEmail"
-                  type="text"
-                  className="form-control"
-                  placeholder="Email"
-                  name="email"
-                  value={infoState.email}
-                  onChange={handleInputChange}
-                />
-              </div>
-              </div>
+              <FormInput
+                id="inputEmail"
+                type="email"
+                placeholder="example@email.com"
+                label="Email"
+                name="email"
+                value={infoState.email}
+                handler={handleInputChange}
+              />
 
-              <div className="form-row">
-              <div className="form-group col-md-12">
-                <label htmlFor="inputPassword">Password</label>
-                <input
-                  id="inputPassword"
-                  type="text"
-                  className="form-control"
-                  placeholder="Password"
-                  name="password"
-                  value={infoState.password}
-                  onChange={handleInputChange}
-                />
-              </div>
-              </div>
+              <FormInput
+                id="inputPassword"
+                type="password"
+                placeholder="password123"
+                label="Password"
+                name="password"
+                value={infoState.password}
+                handler={handleInputChange}
+              />
 
               <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
             </form>

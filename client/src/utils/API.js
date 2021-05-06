@@ -14,6 +14,9 @@ const API = {
         }
       }
     );
+  },
+  createUser: function(data) {
+    console.log(data);
   }
 };
 

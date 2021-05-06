@@ -28,7 +28,6 @@ function App() {
       backgroundSize: 'cover'
       }}>
     <Router>
-      <div>
         <MobileMenu isOpen={isOpen} toggle={toggle} />
         <Navbar toggle={toggle}/>
         <Switch>
@@ -63,7 +62,6 @@ function App() {
             <Error />
           </Route>
         </Switch>
-      </div>
     </Router>
     </div>
   );

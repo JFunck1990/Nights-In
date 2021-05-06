@@ -9,7 +9,7 @@ import Register from "./pages/Register";
 import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
 import Invite from "./pages/Invite"
-import background from "./images/black-brick.webp";
+import background from "./images/black-brick.png";
 import Login from "./pages/Login"
 
 function App() {
@@ -26,8 +26,8 @@ function App() {
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover'
-      }}>
-    <Router>
+    }}>
+      <Router>
         <MobileMenu isOpen={isOpen} toggle={toggle} />
         <Navbar toggle={toggle}/>
         <Switch>
@@ -62,7 +62,7 @@ function App() {
             <Error />
           </Route>
         </Switch>
-    </Router>
+      </Router>
     </div>
   );
 }

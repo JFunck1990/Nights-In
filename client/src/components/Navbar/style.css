@@ -17,6 +17,12 @@ nav, .bg-dark {
     transition: 0.2s ease-in-out !important;
 }
 
+/* This styling is just to remove the button looks from the logout button. */
+#logout-button {
+    background-color: transparent;
+    border: unset;
+}
+
 #barlist {
     margin-left: 100px; 
 }
@@ -27,7 +33,6 @@ nav, .bg-dark {
 
 .bars {
     margin-left: 50%;
-
 }
 
 @media screen and (max-width: 768px) {

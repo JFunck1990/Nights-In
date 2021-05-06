@@ -4,38 +4,42 @@ import {FaBars} from 'react-icons/fa';
 import './style.css';
 
 function Navbar({ toggle }) {
+  const handleLogout = () => {
+    console.log("logout");
+  }
+
   return (
     <nav className="navbar navbar-expand-sm" >
-    <img id="navicon" src={icon} alt='icon' height={90} width={100}/>
+      <img id="navicon" src={icon} alt='icon' height={90} width={100}/>
 
-    <FaBars onClick={toggle} className='bars' size="35px"/>
+      <FaBars onClick={toggle} className='bars' size="35px"/>
 
-    <ul id="barlist" className="nav ml-auto">
+      <ul id="barlist" className="nav ml-auto">
         <li className="nav-item">
-            <a className="nav-link barlink" href="/">Dashboard</a>
+          <a className="nav-link barlink" href="/">Dashboard</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link barlink" href="/trivia">Trivia</a>
+          <a className="nav-link barlink" href="/trivia">Trivia</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link barlink" href="/scores">Scores</a>
+          <a className="nav-link barlink" href="/scores">Scores</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link barlink" href="/profile">My Profile</a>
+          <a className="nav-link barlink" href="/profile">My Profile</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link barlink" href="/invite">Invite</a>
+          <a className="nav-link barlink" href="/invite">Invite</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link barlink" href="/logout">Logout</a>
+          <button className="nav-link barlink" id="logout-button" onClick={handleLogout}>Logout</button>
         </li>
         <li className="nav-item">
-            <a className="nav-link barlink" href="/login">Login</a>
+          <a className="nav-link barlink" href="/login">Login</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link barlink" href="/register">Register</a>
+          <a className="nav-link barlink" href="/register">Register</a>
         </li>
-    </ul>
+      </ul>
     </nav>
   );
 }

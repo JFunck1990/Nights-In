@@ -11,6 +11,8 @@ function Register() {
     password: "",
   });
 
+  const [errorState, setErrorState] = useState("");
+
   const handleInputChange = (event) => {
     // Destructure the name and value properties off of event.target
     // Update the appropriate state
@@ -39,7 +41,13 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    API.createUser(infoState);
+    if (infoState.firstName.length > 0 && infoState.lastName.length > 0 && infoState.email.length > 0 && infoState.password.length > 0) {
+      setErrorState("");
+      API.createUser(infoState);
+    }
+    else {
+      setErrorState("*Please fill out all fields*");
+    }
   };
 
   return (
@@ -49,7 +57,7 @@ function Register() {
           <div id="register-form">
             <header className="create-user-wrap header-wrap" align="center">
               <h1>Create Your Account</h1>
-              <h3 id="create-err-msg"></h3>
+              <h3 id="err-msg">{errorState}</h3>
             </header>
 
             <form id= "create-form">

@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3333;
 const app = express();
 const db = require("./server/models");
 
-app.use(cookieParser("secret"));
+app.use(cookieParser(process.env.AUTH_SECRET));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 

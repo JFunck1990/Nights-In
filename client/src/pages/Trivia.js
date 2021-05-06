@@ -14,13 +14,7 @@ function App() {
   const [choicesState, setChoicesState] = useState([]);
 
   const decodeHTMLEntities = (string) => {
-    let shouldRun = true;
-
-    if (string.indexOf("&") === -1) {
-      shouldRun = false;
-    }
-
-    while (shouldRun) {
+    while (string.indexOf("&") > -1) {
       const indexAmpersand = string.indexOf("&");
 
       const indexSemiColon = string.indexOf(";", indexAmpersand);
@@ -28,10 +22,6 @@ function App() {
       const entity = string.substring(indexAmpersand, indexSemiColon + 1);
 
       string = string.replace(entity, decode(entity));
-
-      if (string.indexOf("&") === -1) {
-        shouldRun = false;
-      }
     }
 
     return string;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { decode } from "html-entities";
 import Question from "../components/Question";
 import Answer from "../components/Answer";
 import API from "../utils/API";
@@ -12,14 +13,43 @@ function App() {
 
   const [choicesState, setChoicesState] = useState([]);
 
+  const decodeHTMLEntities = (string) => {
+    let shouldRun = true;
+
+    if (string.indexOf("&") === -1) {
+      shouldRun = false;
+    }
+
+    while (shouldRun) {
+      const indexAmpersand = string.indexOf("&");
+
+      const indexSemiColon = string.indexOf(";", indexAmpersand);
+
+      const entity = string.substring(indexAmpersand, indexSemiColon + 1);
+
+      string = string.replace(entity, decode(entity));
+
+      if (string.indexOf("&") === -1) {
+        shouldRun = false;
+      }
+    }
+
+    return string;
+  };
+
   const handleNewQuestion = () => {
     API.newQuestion()
       .then(res => {
         const questionObj = res.data.results[0];
+
+        const incorrect = questionObj.incorrect_answers;
+
+        const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
+
         setQuestionState({
-          question: questionObj.question,
-          correct: questionObj.correct_answer,
-          incorrect: questionObj.incorrect_answers
+          question: decodeHTMLEntities(questionObj.question),
+          correct: decodeHTMLEntities(questionObj.correct_answer),
+          incorrect: answers
         });
       });
   };

@@ -16,7 +16,7 @@ const API = {
     );
   },
   createUser: function(data) {
-    console.log(data);
+    return axios.post("/api/register", data);
   }
 };
 

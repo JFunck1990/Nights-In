@@ -14,9 +14,9 @@ function Register() {
   const handleInputChange = (event) => {
     // Destructure the name and value properties off of event.target
     // Update the appropriate state
-    const { value, id } = event.target;
+    const { value, name } = event.target;
 
-    switch (id) {
+    switch (name) {
       case "firstName":
         setInfoState({...infoState, firstName: value});
         break;
@@ -53,7 +53,6 @@ function Register() {
             </header>
 
             <form id= "create-form">
-
               <div className="form-row">
               <div className="form-group col-md-12">
                 <label>First Name</label>
@@ -61,7 +60,7 @@ function Register() {
                   type="text"
                   className="form-control"
                   placeholder="John"
-                  id="firstName"
+                  name="firstName"
                   value={infoState.firstName}
                   onChange={handleInputChange}
                 />
@@ -75,7 +74,7 @@ function Register() {
                   type="text"
                   className="form-control"
                   placeholder="Doe"
-                  id="lastName"
+                  name="lastName"
                   value={infoState.lastName}
                   onChange={handleInputChange}
                 />
@@ -89,7 +88,7 @@ function Register() {
                   type="text"
                   className="form-control"
                   placeholder="Email"
-                  id="email"
+                  name="email"
                   value={infoState.email}
                   onChange={handleInputChange}
                 />
@@ -103,7 +102,7 @@ function Register() {
                   type="text"
                   className="form-control"
                   placeholder="Password"
-                  id="password"
+                  name="password"
                   value={infoState.password}
                   onChange={handleInputChange}
                 />

@@ -6,32 +6,32 @@ import './style.css';
 function Navbar({ toggle }) {
   return (
     <nav className="navbar navbar-expand-sm" >
-    <img src={icon} alt='icon' height={90} width={100}/>
+    <img id="navicon" src={icon} alt='icon' height={90} width={100}/>
 
     <FaBars onClick={toggle} className='bars' size="35px"/>
 
-    <ul className="nav ml-auto">
+    <ul id="barlist" className="nav ml-auto">
         {/* {{#if isloggedin}} */}
         <li className="nav-item">
-            <a className="nav-link" href="/dashboard">Dashboard</a>
+            <a className="nav-link barlink" href="/dashboard">Dashboard</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/scores">Scores</a>
+            <a className="nav-link barlink" href="/scores">Scores</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/profile">My Profile</a>
+            <a className="nav-link barlink" href="/profile">My Profile</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/invite">Invite</a>
+            <a className="nav-link barlink" href="/invite">Invite</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/logout">Logout</a>
+            <a className="nav-link barlink" href="/logout">Logout</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/login">Login</a>
+            <a className="nav-link barlink" href="/login">Login</a>
         </li>
         <li className="nav-item">
-            <a className="nav-link" href="/register">Register</a>
+            <a className="nav-link barlink" href="/register">Register</a>
         </li>
     </ul>
     </nav>

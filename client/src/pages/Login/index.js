@@ -34,7 +34,8 @@ function Login() {
     event.preventDefault();
     if (infoState.email.length > 0 && infoState.password.length > 0) {
       setErrorState("");
-      API.login(infoState);
+      API.login(infoState)
+        .then(res => console.log(res));
       setInfoState({
         email: "",
         password: ""

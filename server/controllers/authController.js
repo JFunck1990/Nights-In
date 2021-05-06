@@ -21,6 +21,14 @@ module.exports = (passport, db) => {
         res.status(403).json({ error: 'Email already exists!' });
       });
     },
+    checkAuthentication: async (req, res) => {
+      if (req.isAuthenticated()) {
+        res.json(true);
+      }
+      else {
+        res.json(false);
+      }
+    },
     login: (req, res, next) => {
       passport.authenticate('local', (err, user) => {
         if (err) {

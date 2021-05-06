@@ -13,6 +13,11 @@ function Dashboard() {
     API.sendInvite(data);
   };
 
+  const checkAuth = () => {
+    API.checkAuthentication()
+      .then(res => console.log(res));
+  };
+
   return (
     <div id="main-container" className="container">
       <div className="jumbotron text-center header-wrap" align="center">
@@ -20,6 +25,7 @@ function Dashboard() {
         <hr className="my-4" />
         <div>
           <button className="btn btn-success" onClick={handleInvite}>Invite</button>
+          <button className="btn btn-danger" onClick={checkAuth}>Check Authentication</button>
         </div>
       </div>
     </div>

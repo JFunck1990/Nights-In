@@ -7,6 +7,7 @@ module.exports = (passport, db) => {
 
   // Authentication
   router.post('/register', AuthController.register);
+  router.get("/check-auth", AuthController.checkAuthentication);
   router.post('/login', AuthController.login);
   router.get('/logout', AuthController.logout);
   router.put('/user/:id', ensureAuthenticated, AuthController.updateUser);

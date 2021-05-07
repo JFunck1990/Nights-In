@@ -35,7 +35,17 @@ function Login() {
     if (infoState.email.length > 0 && infoState.password.length > 0) {
       setErrorState("");
       API.login(infoState)
-        .then(res => console.log(res));
+        .then(res => {
+          if (res.data.loggedIn) {
+            localStorage.setItem("user", JSON.stringify(res.data));
+            window.location.reload();
+          }
+          else {
+            setErrorState("*The password or email was incorrect*");
+          }
+        })
+        .catch(err => console.log("Error: ", err));
+
       setInfoState({
         email: "",
         password: ""

@@ -18,6 +18,11 @@ function Dashboard() {
       .then(res => console.log(res));
   };
 
+  const checkLocalStorage = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    console.log(user);
+  };
+
   return (
     <div id="main-container" className="container">
       <div className="jumbotron text-center header-wrap" align="center">
@@ -26,6 +31,7 @@ function Dashboard() {
         <div>
           <button className="btn btn-success" onClick={handleInvite}>Invite</button>
           <button className="btn btn-danger" onClick={checkAuth}>Check Authentication</button>
+          <button className="btn btn-primary" onClick={checkLocalStorage}>Check Local Storage</button>
         </div>
       </div>
     </div>

@@ -13,6 +13,9 @@ module.exports = function (sequelize, DataTypes) {
     lastName: {
       type: DataTypes.STRING
     },
+    username: {
+      type: DataTypes.STRING
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,

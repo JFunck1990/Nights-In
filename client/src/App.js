@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MobileMenu from "./components/MobileMenu";
 import Navbar from "./components/Navbar";
@@ -13,7 +13,7 @@ import background from "./images/black-brick.png";
 import Login from "./pages/Login"
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
     setIsOpen(!isOpen)
@@ -29,13 +29,13 @@ function App() {
     }}>
       <Router>
         <MobileMenu isOpen={isOpen} toggle={toggle} />
-        <Navbar toggle={toggle}/>
+        <Navbar toggle={toggle} />
         <Switch>
           <Route exact path={"/"}>
             <Dashboard />
           </Route>
           <Route exact path={"/login"}>
-            <Login/>
+            <Login />
           </Route>
 
           <Route path={"/register"}>
@@ -55,7 +55,7 @@ function App() {
           </Route>
 
           <Route path={"/invite"}>
-            <Invite/>
+            <Invite />
           </Route>
 
           <Route path={"*"}>

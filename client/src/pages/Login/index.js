@@ -37,7 +37,7 @@ function Login() {
       API.login(infoState)
         .then(res => {
           if (res.data.loggedIn) {
-            localStorage.setItem("user", res.data);
+            localStorage.setItem("user", JSON.stringify(res.data));
             window.location.reload();
           }
           else {

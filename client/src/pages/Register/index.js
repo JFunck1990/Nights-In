@@ -8,6 +8,7 @@ function Register() {
   const [infoState, setInfoState] = useState({
     firstName: "",
     lastName: "",
+    username: "",
     email: "",
     password: ""
   });
@@ -26,6 +27,10 @@ function Register() {
 
       case "lastName":
         setInfoState({...infoState, lastName: value});
+        break;
+
+      case "username":
+        setInfoState({...infoState, username: value});
         break;
 
       case "email":
@@ -48,6 +53,7 @@ function Register() {
       setInfoState({
         firstName: "",
         lastName: "",
+        username: "",
         email: "",
         password: ""
       });
@@ -83,6 +89,15 @@ function Register() {
                 label="Last Name"
                 name="lastName"
                 value={infoState.lastName}
+                handler={handleInputChange}
+              />
+
+              <FormInput
+                id="inputUsername"
+                placeholder="Username"
+                label="Username"
+                name="username"
+                value={infoState.username}
                 handler={handleInputChange}
               />
 

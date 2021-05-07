@@ -7,10 +7,11 @@ module.exports = (passport, db) => {
 
       db.User.sync().then(() => {
         const newUser = {
-          email: req.body.email,
-          password: req.body.password,
           firstName: req.body.firstName,
-          lastName: req.body.lastName
+          lastName: req.body.lastName,
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password
         };
 
         return db.User.create(newUser).then(() => {
@@ -39,7 +40,7 @@ module.exports = (passport, db) => {
             if (err) {
               return next(err);
             }
-            return res.status(200).json({ loggedIn: true, username: user.dataValues.firstName });
+            return res.status(200).json({ loggedIn: true, username: user.dataValues.username });
           });
         } else {
           res.json({ loggedIn: false, error: 'Can not log in, check your user name and password!' });
@@ -59,9 +60,10 @@ module.exports = (passport, db) => {
     updateUser: (req, res) => {
       // console.log('req.body:', req.body);
       db.User.update({
-        email: req.body.email,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        username: req.body.username,
+        email: req.body.email,
         password: req.body.password
       }, {
         where: { id: req.params.id }

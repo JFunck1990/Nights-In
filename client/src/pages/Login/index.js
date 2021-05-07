@@ -41,7 +41,7 @@ function Login() {
             window.location.reload();
           }
           else {
-            setErrorState("*That password is incorrect*");
+            setErrorState("*The password or email was incorrect*");
           }
         })
         .catch(err => console.log("Error: ", err));

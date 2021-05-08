@@ -7,7 +7,7 @@ const passport = require("passport");
 const moment = require("moment");
 const helmet = require("helmet");
 
-const PORT = process.env.PORT || 3333;
+const PORT = process.env.PORT || 3001;
 const app = express();
 const db = require("./server/models");
 
@@ -21,12 +21,21 @@ if (app.get("env") !== "test") {
 
 require("./server/config/passport")(db, app, passport); // pass passport for configuration
 
+if (process.env.NODE_ENV === 'production') {
+	const path = require('path');
+	// console.log('YOU ARE IN THE PRODUCTION ENV');
+	app.use('/static', express.static(path.join(__dirname, './client/build/static')));
+	app.get('/', (req, res) => {
+		res.sendFile(path.join(__dirname, './client/build/'))
+	});
+}
+
+
+
 // Define our routes
 app.use("/api", require("./server/routes/apiRoutes")(passport, db));
 
-app.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "../client/build/index.html"));
-});
+
 // Secure express app
 app.use(
   helmet.hsts({

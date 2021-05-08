@@ -1,57 +1,60 @@
-
-nav, .bg-dark {
-    background-color: #555555;
-    height: 100px;
+nav,
+.bg-dark {
+  background-color: #555555;
+  height: 100px;
 }
 
 #navicon {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
 .barlink {
-    color: lightgrey !important;
+  color: lightgrey !important;
+  font-style: italic;
+  font-size: x-large;
 }
 
 .barlink:hover {
-    color: yellow !important;
-    transition: 0.2s ease-in-out !important;
+  color: yellow !important;
+  transition: 0.2s ease-in-out !important;
 }
 
 /* This styling is just to remove the button looks from the logout button. */
 #logout-button {
-    background-color: transparent;
-    border: unset;
+  background-color: transparent;
+  border: unset;
 }
 
 #barlist {
-    margin-left: 100px; 
+  margin-left: 100px;
 }
 
 .navbar-nav {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
 .bars {
-    margin-left: 50%;
+  margin-left: 50%;
 }
 
 @media screen and (max-width: 768px) {
-    #barlist, .barlink {
-        display: none !important;
-    }
+  #barlist,
+  .barlink {
+    display: none !important;
+  }
 }
 
 @media screen and (min-width: 769px) {
-    .bars {
-        display: none !important;
-    }
+  .bars {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 520px) {
-    .bars {
-        margin-left: 20%;
-    }
-    #navicon {
-        margin-left: 10%;
-    }
+  .bars {
+    margin-left: 20%;
+  }
+  #navicon {
+    margin-left: 10%;
+  }
 }

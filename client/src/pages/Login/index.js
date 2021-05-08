@@ -7,7 +7,7 @@ import FormInput from "../../components/FormInput";
 function Login() {
   const [infoState, setInfoState] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const [errorState, setErrorState] = useState("");
@@ -19,11 +19,11 @@ function Login() {
 
     switch (name) {
       case "email":
-        setInfoState({...infoState, email: value});
+        setInfoState({ ...infoState, email: value });
         break;
 
       case "password":
-        setInfoState({...infoState, password: value});
+        setInfoState({ ...infoState, password: value });
         break;
 
       default:
@@ -35,23 +35,21 @@ function Login() {
     if (infoState.email.length > 0 && infoState.password.length > 0) {
       setErrorState("");
       API.login(infoState)
-        .then(res => {
+        .then((res) => {
           if (res.data.loggedIn) {
             localStorage.setItem("user", JSON.stringify(res.data));
             window.location.reload();
-          }
-          else {
+          } else {
             setErrorState("*The password or email was incorrect*");
           }
         })
-        .catch(err => console.log("Error: ", err));
+        .catch((err) => console.log("Error: ", err));
 
       setInfoState({
         email: "",
-        password: ""
+        password: "",
       });
-    }
-    else {
+    } else {
       setErrorState("*Please fill out all fields*");
     }
   };
@@ -66,7 +64,7 @@ function Login() {
               <h3 id="err-msg">{errorState}</h3>
             </header>
 
-            <form id= "create-form">
+            <form id="create-form">
               <FormInput
                 id="inputEmail"
                 type="email"
@@ -87,7 +85,13 @@ function Login() {
                 handler={handleInputChange}
               />
 
-              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
             </form>
           </div>
         </Col>

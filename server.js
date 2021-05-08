@@ -24,6 +24,9 @@ require("./server/config/passport")(db, app, passport); // pass passport for con
 // Define our routes
 app.use("/api", require("./server/routes/apiRoutes")(passport, db));
 
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
 // Secure express app
 app.use(
   helmet.hsts({

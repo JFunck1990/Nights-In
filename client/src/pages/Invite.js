@@ -13,6 +13,11 @@ function Invite() {
     API.sendInvite(data);
   };
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    
+  }
+
   return (
 
       <div>

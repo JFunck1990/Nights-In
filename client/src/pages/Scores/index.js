@@ -11,7 +11,7 @@ function Scores() {
         <div class="col-md-6 col-xs-12">
           <div className="card border" id="radius">
 
-            <div className="cardheader bg-head border-warning border-3" id="radiushead">
+            <div className="cardheader bg-head" id="radiushead">
               <p className="text-center">HIGH SCORES</p>
             </div>
 

@@ -1,5 +1,9 @@
 import React from "react";
 import API from "../utils/API";
+import YourEvents from '../components/YourEvents';
+import YourInvitations from '../components/YourInvitations';
+import HomeHeader from "../components/HomeHeader";
+
 
 function Dashboard() {
   const handleInvite = () => {
@@ -24,16 +28,26 @@ function Dashboard() {
   };
 
   return (
-    <div id="main-container" className="container">
-      <div className="jumbotron text-center header-wrap" align="center">
-        <p className="lead">Welcome to <strong>Sample App</strong></p>
-        <hr className="my-4" />
-        <div>
+
+    <div className="container">
+      <div className='row'>
+        <HomeHeader />
+      </div>
+      <div className='row'>
+        <div className="col-lg-1"></div>
+          <YourInvitations/>
+          <YourEvents/>
+      </div>
+      <br></br>
+      <div className='row'>
+        <div className="col-lg-4"></div>
+  
           <button className="btn btn-success" onClick={handleInvite}>Invite</button>
           <button className="btn btn-danger" onClick={checkAuth}>Check Authentication</button>
           <button className="btn btn-primary" onClick={checkLocalStorage}>Check Local Storage</button>
-        </div>
+
       </div>
+      
     </div>
   );
 }

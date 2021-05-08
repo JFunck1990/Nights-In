@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import icon from '../../images/icon.png';
 import {FaBars} from 'react-icons/fa';
 import './style.css';
@@ -24,31 +25,31 @@ function Navbar({ toggle }) {
 
       <ul id="barlist" className="nav ml-auto">
         <li className="nav-item">
-          <a className="nav-link barlink" href="/">Dashboard</a>
+          <Link className="nav-link barlink" to="/">Dashboard</Link>
         </li>
         {
           localStorage.getItem("user") ?
             [<li className="nav-item" key={0}>
-              <a className="nav-link barlink" href="/trivia">Trivia</a>
+              <Link className="nav-link barlink" to="/trivia">Trivia</Link>
             </li>,
             <li className="nav-item" key={1}>
-              <a className="nav-link barlink" href="/scores">Scores</a>
+              <Link className="nav-link barlink" to="/scores">Scores</Link>
             </li>,
             <li className="nav-item" key={2}>
-              <a className="nav-link barlink" href="/profile">My Profile</a>
+              <Link className="nav-link barlink" to="/profile">My Profile</Link>
             </li>,
             <li className="nav-item" key={3}>
-              <a className="nav-link barlink" href="/invite">Invite</a>
+              <Link className="nav-link barlink" to="/invite">Invite</Link>
             </li>,
             <li className="nav-item" key={4}>
               <button className="nav-link barlink" id="logout-button" onClick={handleLogout}>Logout</button>
             </li>]
             :
             [<li className="nav-item" key={0}>
-              <a className="nav-link barlink" href="/login">Login</a>
+              <Link className="nav-link barlink" to="/login">Login</Link>
             </li>,
             <li className="nav-item" key={1}>
-              <a className="nav-link barlink" href="/register">Register</a>
+              <Link className="nav-link barlink" to="/register">Register</Link>
             </li>]
         }
       </ul>

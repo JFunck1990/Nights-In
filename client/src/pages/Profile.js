@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import API from "../utils/API";
 
 function Profile() {
+
+
+const handleProfile = () => {
+  API.checkAuthentication()
+  .then(res => {
+    console.log("This should be user", res)
+  });
+
+
+}
+
+useEffect(() => {
+  handleProfile();
+})
+
+
   return (
     <div class="container pt-5">
 
@@ -12,16 +29,16 @@ function Profile() {
 
       {/* Welcome */}
         <div className="userId text-center">
-          <h3>Welcome, 
+          <h3>Welcome,
             {/* {{userInfo.firstName}} */}
             </h3>
-          <h5 id="user-number" data-useremail="{{userInfo.email}}">Email: 
+          <h5 id="user-number" data-useremail="{{userInfo.email}}">Email:
           {/* {{userInfo.email}} */}
           </h5>
         </div>
 
         <h3 id="update-err-msg"></h3>
-     
+
       <form id="user-form">
 
       {/* First & Last Name */}
@@ -37,7 +54,7 @@ function Profile() {
             <input type="text" class="form-control" id="inputLast" value="{{userInfo.lastName}}" placeholder="Doe"></input>
           </div>
         </div>
-  
+
       {/* Email & Password */}
         <div className="form-row p-2">
           <div className="form-group col-md-6">
@@ -53,7 +70,7 @@ function Profile() {
       {/* Buttons */}
         <div className="text-center pb-4">
           <button type="submit" id="update-user" data-id="{{userInfo.id}}" className="btn btn-primary mr-3">Update</button>
-          <button type="submit" id="delete-user" className="btn btn-primary mr-3">Delete</button>     
+          <button type="submit" id="delete-user" className="btn btn-primary mr-3">Delete</button>
           <button type="submit" id="view-user" data-id="{{userInfo.id}}" className="btn btn-primary">Refresh</button>
         </div>
 

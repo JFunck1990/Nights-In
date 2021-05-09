@@ -1,5 +1,5 @@
 import React from "react";
-// import style from './style.css';
+import "./style.css";
 
 function Scores() {
   return (
@@ -9,44 +9,44 @@ function Scores() {
 
       {/* HIGHT SCORE LIST */}
         <div class="col-md-6 col-xs-12">
-          <div className="card border border-dark">
+          <div className="card border" id="radius">
 
-            <div className="cardheader bg-warning">
-              <h1 className="text-center">HIGH SCORES</h1>
+            <div className="cardheader bg-head" id="radiushead">
+              <p className="text-center">HIGH SCORES</p>
             </div>
 
             <div class="card-body">
-              <ol className="list-group pl-2">
+              <ol className="list-group list-group-flush pl-2 scorefont">
 
-                <li>
+                <li className="list-group-item">
                   <div className="d-flex flex-row">
                   <div className="col-md-6 d-flex justify-content-start">Zach</div>
                   <div className="col-md-6 d-flex justify-content-end">100</div>
                   </div>
                 </li>
 
-                <li>
+                <li className="list-group-item">
                   <div className="d-flex flex-row">
                   <div className="col-md-6 d-flex justify-content-start">Jack</div>
                   <div className="col-md-6 d-flex justify-content-end">100</div>
                   </div>
                 </li>
 
-                <li>
+                <li className="list-group-item">
                   <div className="d-flex flex-row">
                   <div className="col-md-6 d-flex justify-content-start">Kate</div>
                   <div className="col-md-6 d-flex justify-content-end">100</div>
                   </div>
                 </li>
 
-                <li>
+                <li className="list-group-item">
                   <div className="d-flex flex-row">
                   <div className="col-md-6 d-flex justify-content-start">JP</div>
                   <div className="col-md-6 d-flex justify-content-end">100</div>
                   </div>
                 </li>
 
-                <li>
+                <li className="list-group-item">
                   <div className="d-flex flex-row">
                   <div className="col-md-6 d-flex justify-content-start">Matt</div>
                   <div className="col-md-6 d-flex justify-content-end">100</div>
@@ -62,44 +62,44 @@ function Scores() {
 
       {/* LOSER SCORE LIST */}
         <div class="col-md-6 col-xs-12">
-          <div className="card border border-dark">
+          <div className="card border" id="radius">
 
-            <div className="cardheader bg-warning">
-              <h1 className="text-center">LOW SCORES</h1>
+            <div className="cardheader bg-head" id="radiushead">
+              <p className="text-center">LOW SCORES</p>
             </div>
 
-            <div class="card-body">
-              <ol className="list-group pl-2">
+            <div class="card-body ">
+              <ol className="list-group list-group-flush pl-2 scorefont">
 
-                <li>
+              <li className="list-group-item">
                     <div className="d-flex flex-row">
                     <div className="col-md-6 d-flex justify-content-start">Zach</div>
                     <div className="col-md-6 d-flex justify-content-end">100</div>
                     </div>
                   </li>
 
-                  <li>
+                  <li className="list-group-item">
                     <div className="d-flex flex-row">
                     <div className="col-md-6 d-flex justify-content-start">Jack</div>
                     <div className="col-md-6 d-flex justify-content-end">100</div>
                     </div>
                   </li>
 
-                  <li>
+                  <li className="list-group-item">
                     <div className="d-flex flex-row">
                     <div className="col-md-6 d-flex justify-content-start">Kate</div>
                     <div className="col-md-6 d-flex justify-content-end">100</div>
                     </div>
                   </li>
 
-                  <li>
+                  <li className="list-group-item">
                     <div className="d-flex flex-row">
                     <div className="col-md-6 d-flex justify-content-start">JP</div>
                     <div className="col-md-6 d-flex justify-content-end">100</div>
                     </div>
                   </li>
 
-                  <li>
+                  <li className="list-group-item">
                     <div className="d-flex flex-row">
                     <div className="col-md-6 d-flex justify-content-start">Matt</div>
                     <div className="col-md-6 d-flex justify-content-end">100</div>

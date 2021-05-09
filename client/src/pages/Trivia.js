@@ -2,19 +2,20 @@ import React, { useState, useEffect } from "react";
 import { decode } from "html-entities";
 import Question from "../components/Question";
 import Answer from "../components/Answer";
+import Timer from "../components/Timer"
 import API from "../utils/API";
-import "./styles/trivia.css"
+import "./styles/trivia.css";
 
 function App() {
   const [questionState, setQuestionState] = useState({
     question: "",
     correct: "",
     incorrect: [],
-    category:"",
-    timer:""
+    category:""
   });
 
   const [choicesState, setChoicesState] = useState([]);
+
 
   const decodeHTMLEntities = (string) => {
     while (string.indexOf("&") > -1) {
@@ -70,9 +71,11 @@ function App() {
     setChoicesState(choices);
   }, [questionState]);
 
+
+
   return (
     <div className="container pt-5">
-      <div class="timer">Time: <span id="time">0</span></div>
+      <div class="timer">Time: <span id="time"><Timer></Timer></span></div>
 
       {/* Card */}
       <div className="card border border-dark">

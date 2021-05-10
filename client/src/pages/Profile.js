@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import API from "../utils/API";
 
 function Profile() {
+
+
+const handleProfile = () => {
+  API.checkAuthentication()
+  .then(res => {
+    console.log("This should be user", res)
+  });
+
+
+}
+
+useEffect(() => {
+  handleProfile();
+})
+
+
   return (
     <div class="container pt-5">
       {/* Card Header */}

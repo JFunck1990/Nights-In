@@ -14,8 +14,9 @@ function Invite() {
   };
 
   const handleFormSubmit = (event) => {
-    event.preventDefault();
+    Invite();
     
+
   }
 
   return (

@@ -1,0 +1,8 @@
+#modal {
+    z-index: 1;
+    position: fixed;
+    color: white;
+    background-color: red;
+    /* margin-top: 30%;
+    margin-left: 20%; */
+}

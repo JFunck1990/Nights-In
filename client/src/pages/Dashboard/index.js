@@ -1,8 +1,8 @@
 import React from "react";
-import API from "../utils/API";
-import YourEvents from '../components/YourEvents';
-import YourInvitations from '../components/YourInvitations';
-import HomeHeader from "../components/HomeHeader";
+import API from "../../utils/API";
+import "./style.css";
+import YourEvents from '../../components/YourEvents';
+import YourInvitations from '../../components/YourInvitations';
 
 
 function Dashboard() {
@@ -31,7 +31,10 @@ function Dashboard() {
 
     <div className="container">
       <div className='row'>
-        <HomeHeader />
+        <div className="col-lg-12 header-column">
+          <h2 className="welcome-header">Welcome to</h2>
+          <h1 className="brand-header">Nights-In</h1>
+        </div>
       </div>
       <div className='row'>
         <div className="col-lg-1"></div>

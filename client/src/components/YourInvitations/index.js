@@ -1,5 +1,5 @@
 import React from "react";
-import './style.css';
+import './YourInvitations.css'
 
 function YourInvitations() {
   return (

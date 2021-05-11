@@ -1,6 +1,5 @@
 
 import React, {useState, useRef, useEffect} from 'react';
-import Scores from "../../pages/Scores/index"
 import { useHistory } from "react-router-dom";
 
 const Timer = (props) => {
@@ -18,10 +17,7 @@ const Timer = (props) => {
       clearTimeout(timeout);
       // look up react router redirect
       if(secondsPassed.current <= 0){
-
-        history.push("/scores")
-
-
+        history.push("/scores");
       }
     }
 

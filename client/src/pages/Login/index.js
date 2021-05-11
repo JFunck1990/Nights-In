@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./Login.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
 import FormInput from "../../components/FormInput";
-import { useHistory } from "react-router-dom";
 
-function Login() {
+function Login({ loggedInState, setLoggedInState }) {
   const history = useHistory();
 
   const [infoState, setInfoState] = useState({
@@ -35,12 +35,13 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if (infoState.email.length > 0 && infoState.password.length > 0) {
       setErrorState("");
       API.login(infoState)
         .then((res) => {
           if (res.data.loggedIn) {
-            localStorage.setItem("user", JSON.stringify(res.data));
+            setLoggedInState({...loggedInState, loggedIn: true});
             history.push("/");
           } else {
             setErrorState("*The password or email was incorrect*");

@@ -64,7 +64,6 @@ function Profile() {
                 value={userState.firstName}
                 placeholder="John"
               ></input>
-              <button className="btn btn-success" onClick={handleProfile} >user info</button>
             </div>
 
             <div className="form-group col-md-6">

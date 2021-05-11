@@ -11,18 +11,17 @@ function App() {
   const [questionState, setQuestionState] = useState({
     question: "",
     correct: "",
-    incorrect: [],
-    category:"",
-    answer: "",
-    score: 0
+    incorrect: []
   });
 
   const [choicesState, setChoicesState] = useState([]);
 
+  const [pageState, setPageState] = useState({
+    score: 0,
+    answer: ""
+  });
 
   const debouncedSearchTerm = useDebounce(5000);
-
-
 
   const decodeHTMLEntities = (string) => {
     while (string.indexOf("&") > -1) {
@@ -41,7 +40,6 @@ function App() {
   const handleNewQuestion = () => {
     API.newQuestion()
       .then(res => {
-        console.log("This is the API", res);
         const questionObj = res.data.results[0];
 
         const incorrect = questionObj.incorrect_answers;
@@ -54,20 +52,16 @@ function App() {
           incorrect: answers
         });
       });
-
   };
-
-
 
   useEffect(() => {
     if(debouncedSearchTerm){
-    handleNewQuestion();
+      handleNewQuestion();
     }
   }, [debouncedSearchTerm]);
 
   useEffect(() => {
     let choices = [questionState.correct];
-    console.log(choices);
 
     for (let index = 0; index < 3; index ++) {
       const random = Math.floor(Math.random() * 2);
@@ -83,44 +77,25 @@ function App() {
     setChoicesState(choices);
   }, [questionState]);
 
-
-
-
-    const handleFormSubmit = (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
+
     const value = event.target.id
-   console.log("this is the value: ",value);
-   if(value !== questionState.correct){
-     console.log("Wrong!");
+    console.log("Value: ",value);
 
+    if(value !== questionState.correct){
+      console.log("Wrong!");
 
-    setQuestionState({...questionState, answer: "Wrong!"})
-    handleDecrement();
-    handleNewQuestion();
+      setPageState({ score: - 1, answer: "Wrong!"});
+      handleNewQuestion();
+    }
+    else {
+      console.log("Correct!");
 
-
-   } else {
-     console.log("Correct!");
-     setQuestionState({...questionState, answer: "Correct!"});
-     handleIncrement();
-     handleNewQuestion();
-
-   }
-
-   function  handleIncrement () {
-    setQuestionState({...questionState, score: + 1});
-
-   }
-
-   function  handleDecrement () {
-    setQuestionState({...questionState, score: - 1});
-   }
-
-
-
-}
-
-
+      setPageState({ score: + 1, answer: "Correct!"});
+      handleNewQuestion();
+    }
+  }
 
   return (
     <div className="container pt-5">
@@ -129,9 +104,7 @@ function App() {
       {/* Card */}
       <div className="card border border-dark">
         {/* Trivia Question */}
-        <div className="card-header text-center bg-warning">
-          <h3><Question question={questionState.question} /></h3>
-        </div>
+        <Question question={questionState.question} />
         {/* Answers */}
         <div className="card-body">
           <div className="col-lg-12 text-center pt-1 pb-1" onClick={handleFormSubmit}>
@@ -150,7 +123,7 @@ function App() {
             <Answer choice={choicesState[3]}  />
           </div>
           <div>
-            <h1>{questionState.answer}</h1>
+            <h1>{pageState.answer}</h1>
           </div>
 
           <div className="col-lg-12 text-center">

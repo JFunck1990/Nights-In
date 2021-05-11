@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import API from "../../utils/API";
+import LoggedInContext from "../../utils/LoggedInContext";
 import "./Dashboard.css";
 import YourEvents from '../../components/YourEvents';
 import YourInvitations from '../../components/YourInvitations';
@@ -7,6 +8,8 @@ import LogInBox from "../../components/LogInBox";
 
 
 function Dashboard() {
+  const userInfo = useContext(LoggedInContext);
+
   const handleInvite = () => {
     const data = {
       subject: "Testing Query",
@@ -27,7 +30,8 @@ function Dashboard() {
         </div>
       </div>
       {
-        localStorage.getItem("user") ?
+        userInfo.loggedIn
+        ?
           <div className='row'>
             <div className="col-lg-1"></div>
             <YourInvitations />

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import "./Login.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
@@ -15,7 +14,7 @@ function Login({ setLoggedInState }) {
     password: "",
   });
 
-  let history = useHistory();
+  
 
   const [errorState, setErrorState] = useState("");
 

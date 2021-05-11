@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
+import useDebounce from "../../utils/debounceHook"
 
 function App() {
   const [questionState, setQuestionState] = useState({
@@ -12,11 +13,14 @@ function App() {
     correct: "",
     incorrect: [],
     category:"",
-    answer: ""
+    answer: "",
+    score: 0
   });
 
   const [choicesState, setChoicesState] = useState([]);
-  let score = 0;
+
+
+  const debouncedSearchTerm = useDebounce(5000);
 
 
 
@@ -50,13 +54,16 @@ function App() {
           incorrect: answers
         });
       });
+
   };
 
 
 
   useEffect(() => {
+    if(debouncedSearchTerm){
     handleNewQuestion();
-  }, []);
+    }
+  }, [debouncedSearchTerm]);
 
   useEffect(() => {
     let choices = [questionState.correct];
@@ -79,31 +86,34 @@ function App() {
 
 
 
-    function handleFormSubmit (event) {
+    const handleFormSubmit = (event) => {
     event.preventDefault();
-    // if(choicesState !== questionState.correct ){
-    //   console.log("wrong");
-    // } else {
-    //   console.log("Correct")
-    // }
-    // choicesState.map(results => {
-
-    // });
-
-
     const value = event.target.id
-
    console.log("this is the value: ",value);
    if(value !== questionState.correct){
      console.log("Wrong!");
-     score -= 1;
-     console.log("your score is", score);
+
+
     setQuestionState({...questionState, answer: "Wrong!"})
+    handleDecrement();
+    handleNewQuestion();
+
+
    } else {
      console.log("Correct!");
-     score += 1;
-     console.log("your srote is", score);
-     setQuestionState({...questionState, answer: "Correct!"})
+     setQuestionState({...questionState, answer: "Correct!"});
+     handleIncrement();
+     handleNewQuestion();
+
+   }
+
+   function  handleIncrement () {
+    setQuestionState({...questionState, score: + 1});
+
+   }
+
+   function  handleDecrement () {
+    setQuestionState({...questionState, score: - 1});
    }
 
 
@@ -114,7 +124,7 @@ function App() {
 
   return (
     <div className="container pt-5">
-      {/* <div class="timer">Time: <span id="time"><Timer></Timer></span></div> */}
+      <div class="timer"><span id="time"><Timer score={questionState.score}></Timer></span></div>
 
       {/* Card */}
       <div className="card border border-dark">

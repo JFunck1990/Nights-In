@@ -1,27 +1,32 @@
-import React from "react"
+import React,{useState} from "react"
 import API from "../utils/API";
 
 function Invite() {
+  const [formObject, setFormObject] = useState({})
+
   const handleInvite = () => {
     const data = {
-      subject: "Testing Query",
-      name: "JPG",
-      email: "jackfunck15@gmail.com",
-      body: "This should pass all the necessary email info from front-end to back-end."
+      subject: "Invited to Nights In!",
+      name: formObject.name,
+      email: formObject.email,
+      body: "You are invited to Nights In"
     }
 
     API.sendInvite(data);
+    alert("message sent!");
   };
 
-  const handleFormSubmit = (event) => {
-    Invite();
-    
+  function handleInputChange(event) {
+    const { name, value } = event.target;
+    setFormObject({...formObject, [name]: value})
+  };
 
-  }
 
   return (
 
       <div>
+        <input placeholder="Name" name="name" onChange={handleInputChange}></input>
+        <input placeholder="Email" name="email" onChange={handleInputChange}></input>
          <button className="btn btn-success" onClick={handleInvite}>Invite</button>
       </div>
 

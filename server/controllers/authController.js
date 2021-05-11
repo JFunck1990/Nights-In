@@ -22,13 +22,18 @@ module.exports = (passport, db) => {
         res.status(403).json({ error: 'Email already exists!' });
       });
     },
-    checkAuthentication: async (req, res) => {
-      if (req.isAuthenticated()) {
-        res.json(true);
-      }
-      else {
-        res.json(false);
-      }
+    getUser: (req, res) => {
+      db.User.findOne({
+        where: { id: req.query.id }
+      }).then((user) => {
+        // if (!user) {
+        //   return res.json(false);
+        // }
+        // if (!user.validPassword(pwd)) {
+        //   return res.json(false);
+        // }
+        return res.json(user);
+      });
     },
     login: (req, res, next) => {
       passport.authenticate('local', (err, user) => {
@@ -40,7 +45,11 @@ module.exports = (passport, db) => {
             if (err) {
               return next(err);
             }
-            return res.status(200).json({ loggedIn: true, username: user.dataValues.username });
+            return res.status(200).json({
+              loggedIn: true,
+              id: user.dataValues.id,
+              username: user.dataValues.username
+            });
           });
         } else {
           res.json({ loggedIn: false, error: 'Can not log in, check your user name and password!' });

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function LogInBox() {
   return (
@@ -7,7 +8,7 @@ function LogInBox() {
       <div className="col-lg-4">
         <div className="orange-border">
           <div className="message-bg">
-            Please<a href="/login"> log in </a>to continue using this app.
+            Please<Link to="/login"> log in </Link>to continue using this app.
           </div>
         </div>
       </div>

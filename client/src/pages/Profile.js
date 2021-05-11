@@ -10,18 +10,20 @@ function Profile() {
     password: ""
   });
 
-  const handleProfile = (event) => {
-    API.getUser(2)
-    .then(({ data }) => {
-      console.log(data);
-      setUserState({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        username: data.username,
-        email: data.email,
-        password: data.id
+  const handleProfile = () => {
+    const id = JSON.parse(localStorage.getItem("user")).id;
+
+    API.getUser(id)
+      .then(({ data }) => {
+        console.log(data);
+        setUserState({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          username: data.username,
+          email: data.email,
+          password: data.id
+        });
       });
-    });
   };
 
   useEffect(() => {
@@ -40,12 +42,10 @@ function Profile() {
         {/* Welcome */}
         <div className="userId text-center">
           <h3>
-            Welcome,
-            {/* {{userInfo.firstName}} */}
+            Welcome, {userState.firstName}
           </h3>
           <h5 id="user-number" data-useremail={userState.email}>
-            Email:
-            {userState.email}
+            Email: {userState.email}
           </h5>
         </div>
 

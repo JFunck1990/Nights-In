@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import "./style.css";
+import { useHistory } from "react-router-dom";
+import "./Register.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
 import FormInput from "../../components/FormInput";
 
 function Register() {
+  const history = useHistory();
+
   const [infoState, setInfoState] = useState({
     firstName: "",
     lastName: "",
@@ -47,9 +50,16 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (infoState.firstName.length > 0 && infoState.lastName.length > 0 && infoState.email.length > 0 && infoState.password.length > 0) {
+    if (infoState.firstName.length > 0
+        && infoState.lastName.length > 0
+        && infoState.username.length > 0
+        && infoState.email.length > 0
+        && infoState.password.length > 0)
+    {
       setErrorState("");
+
       API.createUser(infoState);
+
       setInfoState({
         firstName: "",
         lastName: "",
@@ -57,6 +67,8 @@ function Register() {
         email: "",
         password: ""
       });
+
+      history.push("/login");
     }
     else {
       setErrorState("*Please fill out all fields*");

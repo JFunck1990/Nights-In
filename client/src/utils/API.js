@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = {
   newQuestion: function() {
-    return axios.get("https://opentdb.com/api.php?amount=10&type=multiple");
+    return axios.get("https://opentdb.com/api.php?amount=1&type=multiple");
   },
   sendInvite: function(data) {
     return axios.get("/api/invite", {
@@ -18,8 +18,12 @@ const API = {
   createUser: function(data) {
     return axios.post("/api/register", data);
   },
-  checkAuthentication: function() {
-    return axios.get("/api/check-auth");
+  getUser: function(id) {
+    return axios.get("/api/get-user", {
+      params: {
+        id: id
+      }
+    });
   },
   login: function(data) {
     return axios.post("/api/login", data);

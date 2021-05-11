@@ -1,20 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import icon from "../../images/icon.png";
+import React, { useContext } from "react";
+import { useHistory, Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
-import "./style.css";
+import "./Navbar.css";
+import LoggedInContext from "../../utils/LoggedInContext";
 import API from "../../utils/API";
+import icon from "../../images/icon.png";
 
-function Navbar({ toggle }) {
+function Navbar({ toggle, setLoggedInState }) {
+  const history = useHistory();
+  const userInfo = useContext(LoggedInContext);
+
   const handleLogout = () => {
     API.logout()
       .then((res) => {
         if (res.status === 200) {
-          localStorage.removeItem("user");
-          window.location.reload();
+          setLoggedInState({ loggedIn: false, id: -1, username: "" });
+          history.push("/");
         }
       })
-      .catch((err) => console.log("Error: ", err));
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -31,8 +35,10 @@ function Navbar({ toggle }) {
             Dashboard
           </Link>
         </li>
-        {localStorage.getItem("user")
-          ? [
+        {
+          userInfo.loggedIn
+          ? 
+            [
               <li className="nav-item" key={0}>
                 <Link className="nav-link barlink" to="/trivia">
                   Trivia
@@ -63,7 +69,8 @@ function Navbar({ toggle }) {
                 </button>
               </li>,
             ]
-          : [
+          :
+            [
               <li className="nav-item" key={0}>
                 <Link className="nav-link barlink" to="/login">
                   Login
@@ -74,7 +81,8 @@ function Navbar({ toggle }) {
                   Register
                 </Link>
               </li>,
-            ]}
+            ]
+        }
       </ul>
     </nav>
   );

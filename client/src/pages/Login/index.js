@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import "./style.css";
+import { useHistory } from "react-router-dom";
+import "./Login.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
 import FormInput from "../../components/FormInput";
 import {Redirect ,useHistory, useLocation } from "react-router-dom";
 
 
-function Login() {
+function Login({ setLoggedInState }) {
+  const history = useHistory();
+
   const [infoState, setInfoState] = useState({
     email: "",
     password: "",
@@ -36,16 +39,14 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     if (infoState.email.length > 0 && infoState.password.length > 0) {
       setErrorState("");
       API.login(infoState)
         .then((res) => {
           if (res.data.loggedIn) {
-            localStorage.setItem("user", JSON.stringify(res.data));
-            // router.push("/") ? // look at react router documentation for rederects
-           history.push("/");
-
-
+            setLoggedInState({ loggedIn: true, id: res.data.id, username: res.data.username});
+            history.push("/");
           } else {
             setErrorState("*The password or email was incorrect*");
 

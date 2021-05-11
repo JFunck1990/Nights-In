@@ -35,6 +35,9 @@ if (process.env.NODE_ENV === 'production') {
 // Define our routes=
 app.use("/api", require("./server/routes/apiRoutes")(passport, db));
 
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 
 // Secure express app
 app.use(

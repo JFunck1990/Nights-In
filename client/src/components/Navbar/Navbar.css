@@ -15,7 +15,7 @@ nav,
 }
 
 .barlink:hover {
-  color: yellow !important;
+  color: #F9BA48 !important;
   transition: 0.2s ease-in-out !important;
 }
 

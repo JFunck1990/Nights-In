@@ -1,27 +1,35 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import LoggedInContext from "../utils/LoggedInContext";
 import API from "../utils/API";
 
 function Profile() {
+  const userInfo = useContext(LoggedInContext);
 
-
-const handleProfile = () => {
-  API.checkAuthentication()
-  .then(res => {
-    console.log("This should be user", res)
+  const [userState, setUserState] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: ""
   });
 
+  const handleProfile = () => {
+    API.getUser(userInfo.id)
+      .then(({ data }) => {
+        console.log(data);
+        setUserState({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          username: data.username,
+          email: data.email,
+          password: data.id
+        });
+      });
+  };
 
-}
-
-
-const checkLocalStorage = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
-};
-
-useEffect(() => {
-  checkLocalStorage();
-},[])
+  useEffect(() => {
+    handleProfile();
+  }, []);
 
 
   return (
@@ -35,12 +43,10 @@ useEffect(() => {
         {/* Welcome */}
         <div className="userId text-center">
           <h3>
-            Welcome,
-            {}
+            Welcome, {userState.firstName}
           </h3>
-          <h5 id="user-number" data-useremail="{{userInfo.email}}">
-            Email:
-            {/* {{userInfo.email}} */}
+          <h5 id="user-number" data-useremail={userState.email}>
+            Email: {userState.email}
           </h5>
         </div>
 
@@ -55,7 +61,7 @@ useEffect(() => {
                 type="text"
                 class="form-control"
                 id="inputFirst"
-                value="{{userInfo.firstName}}"
+                value={userState.firstName}
                 placeholder="John"
               ></input>
               <button className="btn btn-success" onClick={handleProfile} >user info</button>
@@ -67,7 +73,7 @@ useEffect(() => {
                 type="text"
                 class="form-control"
                 id="inputLast"
-                value="{{userInfo.lastName}}"
+                value={userState.lastName}
                 placeholder="Doe"
               ></input>
             </div>
@@ -81,7 +87,7 @@ useEffect(() => {
                 type="text"
                 class="form-control"
                 id="inputEmail"
-                value="{{userInfo.email}}"
+                value={userState.email}
               ></input>
             </div>
             <div className="form-group col-md-6">
@@ -90,7 +96,7 @@ useEffect(() => {
                 type="password"
                 class="form-control"
                 id="inputPassword"
-                value="{{userInfo.password}}"
+                value={userState.password}
               ></input>
             </div>
           </div>
@@ -126,7 +132,7 @@ useEffect(() => {
         <div
           className="modal"
           id="delete-user-modal"
-          tabindex="-1"
+          tabIndex="-1"
           role="dialog"
         >
           <div className="modal-dialog" role="document">

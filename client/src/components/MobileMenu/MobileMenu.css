@@ -50,11 +50,13 @@
     list-style: none;
     transition: 0.2s ease-in-out;
     text-decoration: none;
-    color: white;
+    color: lightgrey !important;
+    font-style: italic;
+    font-size: x-large;
 }
 
-a:hover{
-    color: yellow;
+.pages:hover{
+    color: #F9BA48 !important;
     transition: 0.2s ease-in-out;
 }
 

@@ -6,7 +6,7 @@ import LoggedInContext from "../../utils/LoggedInContext";
 import API from "../../utils/API";
 import icon from "../../images/icon.png";
 
-function Navbar({ toggle, loggedInState, setLoggedInState }) {
+function Navbar({ toggle, setLoggedInState }) {
   const history = useHistory();
   const userInfo = useContext(LoggedInContext);
 
@@ -14,7 +14,7 @@ function Navbar({ toggle, loggedInState, setLoggedInState }) {
     API.logout()
       .then((res) => {
         if (res.status === 200) {
-          setLoggedInState({...loggedInState, loggedIn: false});
+          setLoggedInState({ loggedIn: false, id: -1, username: "" });
           history.push("/");
         }
       })

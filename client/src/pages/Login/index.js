@@ -5,7 +5,7 @@ import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
 import FormInput from "../../components/FormInput";
 
-function Login({ loggedInState, setLoggedInState }) {
+function Login({ setLoggedInState }) {
   const history = useHistory();
 
   const [infoState, setInfoState] = useState({

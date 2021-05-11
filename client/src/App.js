@@ -40,13 +40,13 @@ function App() {
       <Router>
         <LoggedInContext.Provider value={loggedInState}>
           <MobileMenu isOpen={isOpen} toggle={toggle} />
-          <Navbar toggle={toggle} loggedInState={loggedInState} setLoggedInState={setLoggedInState} />
+          <Navbar toggle={toggle} setLoggedInState={setLoggedInState} />
           <Switch>
             <Route exact path={"/"}>
               <Dashboard />
             </Route>
             <Route exact path={"/login"}>
-              <Login loggedInState={loggedInState} setLoggedInState={setLoggedInState} />
+              <Login setLoggedInState={setLoggedInState} />
             </Route>
 
             <Route path={"/register"}>

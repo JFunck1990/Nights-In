@@ -3,7 +3,6 @@ import "./Scores.css";
 
 function Scores() {
   return (
-  
     <div class="container p-5">
       <div className="row">
         {/* HIGH SCORE LIST */}

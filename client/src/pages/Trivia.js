@@ -11,10 +11,13 @@ function App() {
     question: "",
     correct: "",
     incorrect: [],
-    category:""
+    category:"",
+    answer: ""
   });
 
   const [choicesState, setChoicesState] = useState([]);
+  let score = 0;
+
 
 
   const decodeHTMLEntities = (string) => {
@@ -42,7 +45,6 @@ function App() {
         const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
 
         setQuestionState({
-          timer: setInterval(1000),
           question: decodeHTMLEntities(questionObj.question),
           correct: decodeHTMLEntities(questionObj.correct_answer),
           incorrect: answers
@@ -50,12 +52,15 @@ function App() {
       });
   };
 
+
+
   useEffect(() => {
     handleNewQuestion();
   }, []);
 
   useEffect(() => {
     let choices = [questionState.correct];
+    console.log(choices);
 
     for (let index = 0; index < 3; index ++) {
       const random = Math.floor(Math.random() * 2);
@@ -73,9 +78,43 @@ function App() {
 
 
 
+
+    function handleFormSubmit (event) {
+    event.preventDefault();
+    // if(choicesState !== questionState.correct ){
+    //   console.log("wrong");
+    // } else {
+    //   console.log("Correct")
+    // }
+    // choicesState.map(results => {
+
+    // });
+
+
+    const value = event.target.id
+
+   console.log("this is the value: ",value);
+   if(value !== questionState.correct){
+     console.log("Wrong!");
+     score -= 1;
+     console.log("your score is", score);
+    setQuestionState({...questionState, answer: "Wrong!"})
+   } else {
+     console.log("Correct!");
+     score += 1;
+     console.log("your srote is", score);
+     setQuestionState({...questionState, answer: "Correct!"})
+   }
+
+
+
+}
+
+
+
   return (
     <div className="container pt-5">
-      <div class="timer">Time: <span id="time"><Timer></Timer></span></div>
+      {/* <div class="timer">Time: <span id="time"><Timer></Timer></span></div> */}
 
       {/* Card */}
       <div className="card border border-dark">
@@ -85,20 +124,23 @@ function App() {
         </div>
         {/* Answers */}
         <div className="card-body">
-          <div className="col-lg-12 text-center pt-1 pb-1">
-            <Answer choice={choicesState[0]} />
+          <div className="col-lg-12 text-center pt-1 pb-1" onClick={handleFormSubmit}>
+            <Answer  choice={choicesState[0]}  />
           </div>
 
-          <div className="col-lg-12 text-center pt-1 pb-1">
-            <Answer choice={choicesState[1]} />
+          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
+            <Answer choice={choicesState[1]}  />
           </div>
 
-          <div className="col-lg-12 text-center pt-1 pb-1">
-            <Answer choice={choicesState[2]} />
+          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
+            <Answer choice={choicesState[2]}  />
           </div>
 
-          <div className="col-lg-12 text-center pt-1 pb-1">
-            <Answer choice={choicesState[3]} />
+          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
+            <Answer choice={choicesState[3]}  />
+          </div>
+          <div>
+            <h1>{questionState.answer}</h1>
           </div>
 
           <div className="col-lg-12 text-center">
@@ -107,6 +149,7 @@ function App() {
         </div>
       </div>
     </div>
+
   );
 }
 

@@ -13,9 +13,15 @@ const handleProfile = () => {
 
 }
 
+
+const checkLocalStorage = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+};
+
 useEffect(() => {
-  handleProfile();
-})
+  checkLocalStorage();
+},[])
 
 
   return (
@@ -30,7 +36,7 @@ useEffect(() => {
         <div className="userId text-center">
           <h3>
             Welcome,
-            {/* {{userInfo.firstName}} */}
+            {}
           </h3>
           <h5 id="user-number" data-useremail="{{userInfo.email}}">
             Email:
@@ -52,6 +58,7 @@ useEffect(() => {
                 value="{{userInfo.firstName}}"
                 placeholder="John"
               ></input>
+              <button className="btn btn-success" onClick={handleProfile} >user info</button>
             </div>
 
             <div className="form-group col-md-6">

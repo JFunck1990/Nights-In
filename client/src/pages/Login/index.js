@@ -3,12 +3,16 @@ import "./style.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
 import FormInput from "../../components/FormInput";
+import {Redirect ,useHistory, useLocation } from "react-router-dom";
+
 
 function Login() {
   const [infoState, setInfoState] = useState({
     email: "",
     password: "",
   });
+
+  let history = useHistory();
 
   const [errorState, setErrorState] = useState("");
 
@@ -38,9 +42,13 @@ function Login() {
         .then((res) => {
           if (res.data.loggedIn) {
             localStorage.setItem("user", JSON.stringify(res.data));
-            window.location.reload();
+            // router.push("/") ? // look at react router documentation for rederects
+           history.push("/");
+
+
           } else {
             setErrorState("*The password or email was incorrect*");
+
           }
         })
         .catch((err) => console.log("Error: ", err));

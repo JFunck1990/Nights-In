@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import YourEvents from '../components/YourEvents';
 import YourInvitations from '../components/YourInvitations';
 import HomeHeader from "../components/HomeHeader";
-
+import { Redirect, useHistory } from "react-router-dom";
 
 function Dashboard() {
+  let history = useHistory();
+
+  const redirect = () => {
+    history.push('/scores')
+  }
+
   const handleInvite = () => {
     const data = {
       subject: "Testing Query",
@@ -27,6 +33,9 @@ function Dashboard() {
     console.log(user);
   };
 
+
+
+
   return (
 
     <div className="container">
@@ -41,13 +50,13 @@ function Dashboard() {
       <br></br>
       <div className='row'>
         <div className="col-lg-4"></div>
-  
+
           <button className="btn btn-success" onClick={handleInvite}>Invite</button>
           <button className="btn btn-danger" onClick={checkAuth}>Check Authentication</button>
           <button className="btn btn-primary" onClick={checkLocalStorage}>Check Local Storage</button>
-
+          <button className="btn btn-primary" onClick={redirect}>redirect</button>
       </div>
-      
+
     </div>
   );
 }

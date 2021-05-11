@@ -41,7 +41,7 @@ function Login({ loggedInState, setLoggedInState }) {
       API.login(infoState)
         .then((res) => {
           if (res.data.loggedIn) {
-            setLoggedInState({...loggedInState, loggedIn: true});
+            setLoggedInState({ loggedIn: true, id: res.data.id, username: res.data.username});
             history.push("/");
           } else {
             setErrorState("*The password or email was incorrect*");

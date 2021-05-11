@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import LoggedInContext from "../utils/LoggedInContext";
 import API from "../utils/API";
 
 function Profile() {
+  const userInfo = useContext(LoggedInContext);
+
   const [userState, setUserState] = useState({
     firstName: "",
     lastName: "",
@@ -11,9 +14,7 @@ function Profile() {
   });
 
   const handleProfile = () => {
-    const id = JSON.parse(localStorage.getItem("user")).id;
-
-    API.getUser(id)
+    API.getUser(userInfo.id)
       .then(({ data }) => {
         console.log(data);
         setUserState({

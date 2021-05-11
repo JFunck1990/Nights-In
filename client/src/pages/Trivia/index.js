@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import "./Trivia.css";
 import { decode } from "html-entities";
-import Question from "../components/Question";
-import Answer from "../components/Answer";
-import Timer from "../components/Timer"
-import API from "../utils/API";
-import "./styles/trivia.css";
+import API from "../../utils/API";
+import Question from "../../components/Question";
+import Answer from "../../components/Answer";
+import Timer from "../../components/Timer";
 
 function App() {
   const [questionState, setQuestionState] = useState({

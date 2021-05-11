@@ -1,8 +1,9 @@
 import React from "react";
 import API from "../../utils/API";
-import "./style.css";
+import "./Dashboard.css";
 import YourEvents from '../../components/YourEvents';
 import YourInvitations from '../../components/YourInvitations';
+import LogInBox from "../../components/LogInBox";
 
 
 function Dashboard() {
@@ -28,7 +29,6 @@ function Dashboard() {
   };
 
   return (
-
     <div className="container">
       <div className='row'>
         <div className="col-lg-12 header-column">
@@ -36,21 +36,23 @@ function Dashboard() {
           <h1 className="brand-header">Nights-In</h1>
         </div>
       </div>
-      <div className='row'>
-        <div className="col-lg-1"></div>
-          <YourInvitations/>
-          <YourEvents/>
-      </div>
+      {
+        localStorage.getItem("user") ?
+          <div className='row'>
+            <div className="col-lg-1"></div>
+            <YourInvitations />
+            <YourEvents />
+          </div>
+        :
+          <LogInBox />
+      }
       <br></br>
       <div className='row'>
         <div className="col-lg-4"></div>
-  
-          <button className="btn btn-success" onClick={handleInvite}>Invite</button>
-          <button className="btn btn-danger" onClick={checkAuth}>Check Authentication</button>
-          <button className="btn btn-primary" onClick={checkLocalStorage}>Check Local Storage</button>
-
+        <button className="btn btn-success" onClick={handleInvite}>Invite</button>
+        <button className="btn btn-danger" onClick={checkAuth}>Check Authentication</button>
+        <button className="btn btn-primary" onClick={checkLocalStorage}>Check Local Storage</button>
       </div>
-      
     </div>
   );
 }

@@ -1,16 +1,12 @@
 import React from "react";
-import './YourEvents.css';
 
 function YourEvents() {
   return (
-    <div className="col-lg-5" id="youreventbox">
-        <div className="glowbox">
-
-        </div>
+    <div className="col-lg-5 orange-border">
+      <h3>Your Upcoming Events</h3>
+      <div className="eventlist">
         
-        <h3>Your Upcoming Events</h3>
-        <div className="eventlist">
-        </div>
+      </div>
     </div>
     
   );

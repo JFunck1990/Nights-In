@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 const Timer = (props) => {
   let history = useHistory();
   const [time, setTime] = useState(new Date().toLocaleTimeString());
-  const secondsPassed = useRef(5);
+  const secondsPassed = useRef(5000);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -29,8 +29,9 @@ const Timer = (props) => {
 
   return (
     <div>
-      <div>{time}</div>
-      <div>{secondsPassed.current}</div>
+      <div>Time: {time}</div>
+      <div>Timer: {secondsPassed.current}</div>
+      <div>Score: {props.score}</div>
     </div>
   )
 }

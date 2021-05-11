@@ -1,5 +1,5 @@
 .timer {
-  position: absolute;
+  float: right;
   top: 100px;
   right: 10px;
   color: rgb(4, 204, 37);

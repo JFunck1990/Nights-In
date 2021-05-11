@@ -5,16 +5,23 @@ import API from "../../utils/API";
 import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
+import useDebounce from "../../utils/debounceHook"
 
 function App() {
   const [questionState, setQuestionState] = useState({
     question: "",
     correct: "",
     incorrect: [],
-    category:""
+    category:"",
+    answer: "",
+    score: 0
   });
 
   const [choicesState, setChoicesState] = useState([]);
+
+
+  const debouncedSearchTerm = useDebounce(5000);
+
 
 
   const decodeHTMLEntities = (string) => {
@@ -42,20 +49,25 @@ function App() {
         const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
 
         setQuestionState({
-          timer: setInterval(1000),
           question: decodeHTMLEntities(questionObj.question),
           correct: decodeHTMLEntities(questionObj.correct_answer),
           incorrect: answers
         });
       });
+
   };
 
+
+
   useEffect(() => {
+    if(debouncedSearchTerm){
     handleNewQuestion();
-  }, []);
+    }
+  }, [debouncedSearchTerm]);
 
   useEffect(() => {
     let choices = [questionState.correct];
+    console.log(choices);
 
     for (let index = 0; index < 3; index ++) {
       const random = Math.floor(Math.random() * 2);
@@ -73,9 +85,46 @@ function App() {
 
 
 
+
+    const handleFormSubmit = (event) => {
+    event.preventDefault();
+    const value = event.target.id
+   console.log("this is the value: ",value);
+   if(value !== questionState.correct){
+     console.log("Wrong!");
+
+
+    setQuestionState({...questionState, answer: "Wrong!"})
+    handleDecrement();
+    handleNewQuestion();
+
+
+   } else {
+     console.log("Correct!");
+     setQuestionState({...questionState, answer: "Correct!"});
+     handleIncrement();
+     handleNewQuestion();
+
+   }
+
+   function  handleIncrement () {
+    setQuestionState({...questionState, score: + 1});
+
+   }
+
+   function  handleDecrement () {
+    setQuestionState({...questionState, score: - 1});
+   }
+
+
+
+}
+
+
+
   return (
     <div className="container pt-5">
-      <div class="timer">Time: <span id="time"><Timer></Timer></span></div>
+      <div class="timer"><span id="time"><Timer score={questionState.score}></Timer></span></div>
 
       {/* Card */}
       <div className="card border border-dark">
@@ -85,20 +134,23 @@ function App() {
         </div>
         {/* Answers */}
         <div className="card-body">
-          <div className="col-lg-12 text-center pt-1 pb-1">
-            <Answer choice={choicesState[0]} />
+          <div className="col-lg-12 text-center pt-1 pb-1" onClick={handleFormSubmit}>
+            <Answer  choice={choicesState[0]}  />
           </div>
 
-          <div className="col-lg-12 text-center pt-1 pb-1">
-            <Answer choice={choicesState[1]} />
+          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
+            <Answer choice={choicesState[1]}  />
           </div>
 
-          <div className="col-lg-12 text-center pt-1 pb-1">
-            <Answer choice={choicesState[2]} />
+          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
+            <Answer choice={choicesState[2]}  />
           </div>
 
-          <div className="col-lg-12 text-center pt-1 pb-1">
-            <Answer choice={choicesState[3]} />
+          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
+            <Answer choice={choicesState[3]}  />
+          </div>
+          <div>
+            <h1>{questionState.answer}</h1>
           </div>
 
           <div className="col-lg-12 text-center">
@@ -107,6 +159,7 @@ function App() {
         </div>
       </div>
     </div>
+
   );
 }
 

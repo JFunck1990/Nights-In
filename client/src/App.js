@@ -11,6 +11,7 @@ import Trivia from "./pages/Trivia";
 import Invite from "./pages/Invite";
 import background from "./images/black-brick.png";
 import Login from "./pages/Login";
+import Footer from "./components/Footer";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,6 +66,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
+      <Footer></Footer>
     </div>
   );
 }

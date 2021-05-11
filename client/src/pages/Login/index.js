@@ -3,8 +3,11 @@ import "./Login.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
 import FormInput from "../../components/FormInput";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+  const history = useHistory();
+
   const [infoState, setInfoState] = useState({
     email: "",
     password: "",
@@ -38,7 +41,7 @@ function Login() {
         .then((res) => {
           if (res.data.loggedIn) {
             localStorage.setItem("user", JSON.stringify(res.data));
-            window.location.reload();
+            history.push("/");
           } else {
             setErrorState("*The password or email was incorrect*");
           }

@@ -3,8 +3,7 @@ import "./Login.css";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
 import FormInput from "../../components/FormInput";
-import {Redirect ,useHistory, useLocation } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
 
 function Login({ setLoggedInState }) {
   const history = useHistory();
@@ -13,8 +12,6 @@ function Login({ setLoggedInState }) {
     email: "",
     password: "",
   });
-
-  
 
   const [errorState, setErrorState] = useState("");
 
@@ -42,9 +39,9 @@ function Login({ setLoggedInState }) {
     if (infoState.email.length > 0 && infoState.password.length > 0) {
       setErrorState("");
       API.login(infoState)
-        .then((res) => {
-          if (res.data.loggedIn) {
-            setLoggedInState({ loggedIn: true, id: res.data.id, username: res.data.username});
+        .then(({ data }) => {
+          if (data.loggedIn) {
+            setLoggedInState({ loggedIn: true, id: data.id, username: data.username});
             history.push("/");
           } else {
             setErrorState("*The password or email was incorrect*");

@@ -20,7 +20,7 @@ function App() {
   const [choicesState, setChoicesState] = useState([]);
 
 
-  const debouncedSearchTerm = useDebounce(5000);
+  const debouncedSearchTerm = useDebounce(50000);
 
 
 
@@ -43,15 +43,16 @@ function App() {
       .then(res => {
         console.log("This is the API", res);
         const questionObj = res.data.results[0];
-
         const incorrect = questionObj.incorrect_answers;
-
+        const category = questionObj.category
+        console.log("this is category", category);
         const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
 
         setQuestionState({
           question: decodeHTMLEntities(questionObj.question),
           correct: decodeHTMLEntities(questionObj.correct_answer),
-          incorrect: answers
+          incorrect: answers,
+          category: decodeHTMLEntities(questionObj.category)
         });
       });
 
@@ -90,6 +91,7 @@ function App() {
     event.preventDefault();
     const value = event.target.id
    console.log("this is the value: ",value);
+   console.log("This is event", )
    if(value !== questionState.correct){
      console.log("Wrong!");
 
@@ -129,7 +131,9 @@ function App() {
       {/* Card */}
       <div className="card border border-dark">
         {/* Trivia Question */}
+
         <div className="card-header text-center bg-warning">
+          <h5>{questionState.category}  </h5>
           <h3><Question question={questionState.question} /></h3>
         </div>
         {/* Answers */}

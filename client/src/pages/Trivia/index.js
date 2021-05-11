@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./style.css";
+import "./Trivia.css";
 import { decode } from "html-entities";
 import API from "../../utils/API";
 import Question from "../../components/Question";

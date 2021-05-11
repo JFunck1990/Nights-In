@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import icon from "../../images/icon.png";
 import { FaBars } from "react-icons/fa";
-import "./style.css";
+import "./Navbar.css";
 import API from "../../utils/API";
 
 function Navbar({ toggle }) {

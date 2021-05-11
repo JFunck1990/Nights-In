@@ -1,6 +1,6 @@
 import React from "react";
 import API from "../../utils/API";
-import "./style.css";
+import "./Dashboard.css";
 import YourEvents from '../../components/YourEvents';
 import YourInvitations from '../../components/YourInvitations';
 import LogInBox from "../../components/LogInBox";

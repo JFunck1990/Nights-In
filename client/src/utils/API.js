@@ -18,8 +18,12 @@ const API = {
   createUser: function(data) {
     return axios.post("/api/register", data);
   },
-  checkAuthentication: function() {
-    return axios.get("/api/check-auth");
+  getUser: function(id) {
+    return axios.get("/api/get-user", {
+      params: {
+        id: id
+      }
+    });
   },
   login: function(data) {
     return axios.post("/api/login", data);

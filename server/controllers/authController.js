@@ -22,13 +22,18 @@ module.exports = (passport, db) => {
         res.status(403).json({ error: 'Email already exists!' });
       });
     },
-    checkAuthentication: async (req, res) => {
-      if (req.isAuthenticated()) {
-        res.json(true);
-      }
-      else {
-        res.json(false);
-      }
+    getUser: (req, res) => {
+      db.User.findOne({
+        where: { id: req.query.id }
+      }).then((user) => {
+        // if (!user) {
+        //   return res.json(false);
+        // }
+        // if (!user.validPassword(pwd)) {
+        //   return res.json(false);
+        // }
+        return res.json(user);
+      });
     },
     login: (req, res, next) => {
       passport.authenticate('local', (err, user) => {

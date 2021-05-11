@@ -18,11 +18,6 @@ function Dashboard() {
     API.sendInvite(data);
   };
 
-  const checkAuth = () => {
-    API.checkAuthentication()
-      .then(res => console.log(res));
-  };
-
   const checkLocalStorage = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     console.log(user);
@@ -50,7 +45,6 @@ function Dashboard() {
       <div className='row'>
         <div className="col-lg-4"></div>
         <button className="btn btn-success" onClick={handleInvite}>Invite</button>
-        <button className="btn btn-danger" onClick={checkAuth}>Check Authentication</button>
         <button className="btn btn-primary" onClick={checkLocalStorage}>Check Local Storage</button>
       </div>
     </div>

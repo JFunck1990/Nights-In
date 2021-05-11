@@ -9,7 +9,7 @@ function Invite() {
       subject: "Invited to Nights In!",
       name: formObject.name,
       email: formObject.email,
-      body: "You are invited to Nights In"
+      body: "You are invited to Nights In: https://nights-in.herokuapp.com/"
     }
 
     API.sendInvite(data);

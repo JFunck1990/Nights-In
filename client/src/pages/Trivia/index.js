@@ -96,24 +96,24 @@ function App() {
 
     setQuestionState({...questionState, answer: "Wrong!"})
     handleDecrement();
-    handleNewQuestion();
+    // handleNewQuestion();
 
 
    } else {
      console.log("Correct!");
      setQuestionState({...questionState, answer: "Correct!"});
      handleIncrement();
-     handleNewQuestion();
+    //  handleNewQuestion();
 
    }
 
    function  handleIncrement () {
-    setQuestionState({...questionState, score: + 1});
+    setQuestionState({...questionState, score: +1 });
 
    }
 
    function  handleDecrement () {
-    setQuestionState({...questionState, score: - 1});
+    setQuestionState({...questionState, score: -1});
    }
 
 

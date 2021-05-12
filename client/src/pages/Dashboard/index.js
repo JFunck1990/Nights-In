@@ -43,11 +43,6 @@ function Dashboard() {
         :
           <LogInBox />
       }
-      <br></br>
-      <div className='row'>
-        <div className="col-lg-4"></div>
-        <button className="btn btn-success" onClick={handleInvite}>Invite</button>
-      </div>
     </div>
   );
 }

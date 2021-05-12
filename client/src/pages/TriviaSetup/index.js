@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
+import TriviaContext from "../../utils/TriviaContext";
 import DropdownInput from "../../components/DropdownInput";
 
 
 function TriviaSetup() {
   const history = useHistory();
 
+  const triviaInfo = useContext(TriviaContext);
+
   const [setupState, setSetupState] = useState({
-    questions: 0,
+    numberQuestions: 0,
     category: 0,
     difficulty: "",
     type: ""
@@ -24,7 +27,7 @@ function TriviaSetup() {
     if (name === "difficulty") {
       value = value.toLowerCase();
     }
-    else if (name === "questions") {
+    else if (name === "numberQuestions") {
       value = parseInt(value);
     }
     else if (name === "type") {
@@ -149,7 +152,7 @@ function TriviaSetup() {
         <DropdownInput 
           title="Number of Questions"
           handler={handleInputChange}
-          name="questions"
+          name="numberQuestions"
           actions={["5", "10", "15", "20", "25", "30"]}
         />
 

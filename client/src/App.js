@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoggedInContext from "./utils/LoggedInContext";
+import TriviaContext from "./utils/TriviaContext";
 import MobileMenu from "./components/MobileMenu";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
@@ -56,13 +57,15 @@ function App() {
               <Profile />
             </Route>
 
-            <Route path={"/trivia"}>
-              <Trivia />
-            </Route>
+            <TriviaContext.Provider>
+              <Route path={"/trivia"}>
+                <Trivia />
+              </Route>
 
-            <Route path={"/trivia-setup"}>
-              <TriviaSetup />
-            </Route>
+              <Route path={"/trivia-setup"}>
+                <TriviaSetup />
+              </Route>
+            </TriviaContext.Provider>
 
             <Route path={"/scores"}>
               <Scores />

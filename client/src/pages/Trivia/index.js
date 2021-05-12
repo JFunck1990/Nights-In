@@ -56,6 +56,21 @@ function App() {
       });
   };
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    const value = event.target.id
+
+    if(value !== questionState.correct){
+      setPageState({ score: pageState.score - 1, answer: "Wrong!"});
+    }
+    else {
+      setPageState({ score: pageState.score + 1, answer: "Correct!"});
+    }
+
+    handleNewQuestion();
+  }
+
   useEffect(() => {
     if(debouncedSearchTerm){
       handleNewQuestion();
@@ -78,21 +93,6 @@ function App() {
 
     setChoicesState(choices);
   }, [questionState]);
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-
-    const value = event.target.id
-
-    if(value !== questionState.correct){
-      setPageState({ score: pageState.score - 1, answer: "Wrong!"});
-    }
-    else {
-      setPageState({ score: pageState.score + 1, answer: "Correct!"});
-    }
-
-    handleNewQuestion();
-  }
 
   return (
     <div className="container pt-5">

@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
+import TriviaSetup from "./pages/TriviaSetup";
 import Invite from "./pages/Invite"
 import background from "./images/black-brick.png";
 import Login from "./pages/Login";
@@ -57,6 +58,10 @@ function App() {
 
             <Route path={"/trivia"}>
               <Trivia />
+            </Route>
+
+            <Route path={"/trivia-setup"}>
+              <TriviaSetup />
             </Route>
 
             <Route path={"/scores"}>

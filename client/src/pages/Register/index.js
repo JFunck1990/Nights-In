@@ -23,29 +23,7 @@ function Register() {
     // Update the appropriate state
     const { value, name } = event.target;
 
-    switch (name) {
-      case "firstName":
-        setInfoState({...infoState, firstName: value});
-        break;
-
-      case "lastName":
-        setInfoState({...infoState, lastName: value});
-        break;
-
-      case "username":
-        setInfoState({...infoState, username: value});
-        break;
-
-      case "email":
-        setInfoState({...infoState, email: value});
-        break;
-
-      case "password":
-        setInfoState({...infoState, password: value});
-        break;
-
-      default:
-    }
+    setInfoState({ ...infoState, [name]: value });
   };
 
   const handleSubmit = (event) => {

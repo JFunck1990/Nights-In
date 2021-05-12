@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useState, useContext } from "react";
 import API from "../../utils/API";
 import LoggedInContext from "../../utils/LoggedInContext";
 import "./Dashboard.css";
@@ -9,6 +9,9 @@ import LogInBox from "../../components/LogInBox";
 
 function Dashboard() {
   const userInfo = useContext(LoggedInContext);
+  const [invites, setInvites] = useState([])
+  const [formObject, setFormObject] = useState({})
+
 
   const handleInvite = () => {
     const data = {

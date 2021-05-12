@@ -21,7 +21,7 @@ function App() {
     answer: ""
   });
 
-  const debouncedSearchTerm = useDebounce(5000);
+  const debouncedSearchTerm = useDebounce(50000);
 
   const decodeHTMLEntities = (string) => {
     let indexAmpersand = -1;
@@ -43,9 +43,7 @@ function App() {
     API.newQuestion()
       .then(res => {
         const questionObj = res.data.results[0];
-
         const incorrect = questionObj.incorrect_answers;
-
         const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
 
         setQuestionState({
@@ -96,7 +94,7 @@ function App() {
 
   return (
     <div className="container pt-5">
-      <Timer score={pageState.score} />dcxcxd
+      <Timer score={pageState.score} />
 
       {/* Card */}
       <div className="card border border-dark">

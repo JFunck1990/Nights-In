@@ -11,7 +11,8 @@ function App() {
   const [questionState, setQuestionState] = useState({
     question: "",
     correct: "",
-    incorrect: []
+    incorrect: [],
+    category: "",
   });
 
   const [choicesState, setChoicesState] = useState([]);
@@ -42,8 +43,6 @@ function App() {
       .then(res => {
         const questionObj = res.data.results[0];
         const incorrect = questionObj.incorrect_answers;
-        const category = questionObj.category
-        console.log("this is category", category);
         const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
 
         setQuestionState({
@@ -83,29 +82,31 @@ function App() {
 
     const value = event.target.id
     console.log("Value: ",value);
+    console.log(pageState.score + 5)
 
     if(value !== questionState.correct){
       console.log("Wrong!");
 
-      setPageState({ score: - 1, answer: "Wrong!"});
+      setPageState({score: pageState.score - 1, answer: "Wrong!"});
       handleNewQuestion();
     }
     else {
       console.log("Correct!");
 
-      setPageState({ score: + 1, answer: "Correct!"});
+      setPageState({ score: pageState.score + 1, answer: "Correct!"});
       handleNewQuestion();
     }
   }
 
   return (
     <div className="container pt-5">
-      <div class="timer"><span id="time"><Timer score={questionState.score}></Timer></span></div>
+      <div class="timer"><span id="time"><Timer score={pageState.score}></Timer></span></div>
 
       {/* Card */}
       <div className="card border border-dark">
         {/* Trivia Question */}
-        <Question question={questionState.question} />
+
+        <Question category={questionState.category} question={questionState.question} />
         {/* Answers */}
         <div className="card-body">
           <div className="col-lg-12 text-center pt-1 pb-1" onClick={handleFormSubmit}>

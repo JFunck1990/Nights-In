@@ -24,8 +24,10 @@ function App() {
   const debouncedSearchTerm = useDebounce(5000);
 
   const decodeHTMLEntities = (string) => {
-    while (string.indexOf("&") > -1) {
-      const indexAmpersand = string.indexOf("&");
+    let indexAmpersand = -1;
+
+    while (string.indexOf("&", indexAmpersand + 1) > -1) {
+      indexAmpersand = string.indexOf("&", indexAmpersand + 1);
 
       const indexSemiColon = string.indexOf(";", indexAmpersand);
 
@@ -81,25 +83,20 @@ function App() {
     event.preventDefault();
 
     const value = event.target.id
-    console.log("Value: ",value);
 
     if(value !== questionState.correct){
-      console.log("Wrong!");
-
-      setPageState({ score: - 1, answer: "Wrong!"});
-      handleNewQuestion();
+      setPageState({ score: pageState.score - 1, answer: "Wrong!"});
     }
     else {
-      console.log("Correct!");
-
-      setPageState({ score: + 1, answer: "Correct!"});
-      handleNewQuestion();
+      setPageState({ score: pageState.score + 1, answer: "Correct!"});
     }
+
+    handleNewQuestion();
   }
 
   return (
     <div className="container pt-5">
-      <div class="timer"><span id="time"><Timer score={questionState.score}></Timer></span></div>
+      <Timer score={pageState.score} />dcxcxd
 
       {/* Card */}
       <div className="card border border-dark">
@@ -107,32 +104,19 @@ function App() {
         <Question question={questionState.question} />
         {/* Answers */}
         <div className="card-body">
-          <div className="col-lg-12 text-center pt-1 pb-1" onClick={handleFormSubmit}>
-            <Answer  choice={choicesState[0]}  />
-          </div>
+          <Answer handler={handleFormSubmit} choice={choicesState[0]} />
 
-          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
-            <Answer choice={choicesState[1]}  />
-          </div>
+          <Answer handler={handleFormSubmit} choice={choicesState[1]} />
 
-          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
-            <Answer choice={choicesState[2]}  />
-          </div>
+          <Answer handler={handleFormSubmit} choice={choicesState[2]} />
 
-          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
-            <Answer choice={choicesState[3]}  />
-          </div>
+          <Answer handler={handleFormSubmit} choice={choicesState[3]} />
           <div>
-            <h1>{pageState.answer}</h1>
-          </div>
-
-          <div className="col-lg-12 text-center">
-            <button className="btn btn-success" onClick={handleNewQuestion}>Next Question</button>
+            <h1 className="text-center">{pageState.answer}</h1>
           </div>
         </div>
       </div>
     </div>
-
   );
 }
 

@@ -1,9 +1,11 @@
 import React from "react";
 
 const TriviaContext = React.createContext({
-  loggedIn: false,
-  id: -1,
-  username: ""
+  numberQuestions: 0,
+  category: 0,
+  difficulty: "",
+  type: "",
+  changeContext: () => undefined
 });
 
 export default TriviaContext;

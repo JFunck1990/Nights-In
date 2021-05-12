@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LoggedInContext from "./utils/LoggedInContext";
 import TriviaContext from "./utils/TriviaContext";
@@ -11,7 +11,7 @@ import Register from "./pages/Register";
 import Scores from "./pages/Scores";
 import Trivia from "./pages/Trivia";
 import TriviaSetup from "./pages/TriviaSetup";
-import Invite from "./pages/Invite"
+import Invite from "./pages/Invite";
 import background from "./images/black-brick.png";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
@@ -22,21 +22,39 @@ function App() {
   const [loggedInState, setLoggedInState] = useState({
     loggedIn: false,
     id: -1,
-    username: ""
+    username: "",
+  });
+
+  const [triviaState, setTriviaState] = useState({
+    numberQuestions: 0,
+    category: 0,
+    difficulty: "",
+    type: "",
+    changeContext: (newData) => {
+      setTriviaState({
+        ...triviaState,
+        numberQuestions: newData.numberQuestions,
+        category: newData.category,
+        difficulty: newData.difficulty,
+        type: newData.type
+      });
+    }
   });
 
   const toggle = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   return (
-    <div style={{
-      backgroundImage: `url(${background})`,
-      height: '1000px',
-      backgroundPosition: 'center',
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover'
-    }}>
+    <div
+      style={{
+        backgroundImage: `url(${background})`,
+        height: "1100px",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
       <Router>
         <LoggedInContext.Provider value={loggedInState}>
           <MobileMenu isOpen={isOpen} toggle={toggle} />
@@ -57,7 +75,7 @@ function App() {
               <Profile />
             </Route>
 
-            <TriviaContext.Provider>
+            <TriviaContext.Provider value={triviaState}>
               <Route path={"/trivia"}>
                 <Trivia />
               </Route>

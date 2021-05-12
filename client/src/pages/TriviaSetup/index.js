@@ -17,6 +17,7 @@ function TriviaSetup() {
   });
 
   const handleSubmit = () => {
+    triviaInfo.changeContext(setupState);
     history.push("/trivia");
   };
 
@@ -181,7 +182,7 @@ function TriviaSetup() {
         />
         <button onClick={() => {console.log(setupState)}}>Console</button>
         <button className="btn btn-secondary" onClick={handleSubmit}>
-          Submit
+          Start
         </button>
       </div>
     </div>

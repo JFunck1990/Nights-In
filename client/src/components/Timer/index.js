@@ -1,7 +1,6 @@
-
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
+import "./Timer.css";
 const Timer = (props) => {
   let history = useHistory();
 
@@ -21,19 +20,18 @@ const Timer = (props) => {
     return () => {
       clearTimeout(timeout);
 
-      if(secondsPassed.current <= 0){
+      if (secondsPassed.current <= 0) {
         history.push("/scores");
       }
-    }
+    };
   }, [time]);
 
   return (
-    <div className="timer">
-      <div>Time: {time}</div>
-      <div>Timer: {secondsPassed.current}</div>
-      <div>Score: {props.score}</div>
+    <div className="card-body bg-warning">
+      <div className="time">Time: {secondsPassed.current}</div>
+      <div className="score">Score: {props.score}</div>
     </div>
-  )
-}
+  );
+};
 
 export default Timer;

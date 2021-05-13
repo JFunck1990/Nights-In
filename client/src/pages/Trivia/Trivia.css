@@ -2,5 +2,6 @@
   float: right;
   top: 100px;
   right: 10px;
-  color: rgb(4, 204, 37);
+  font-weight: bold;
+  font-size: larger;
 }

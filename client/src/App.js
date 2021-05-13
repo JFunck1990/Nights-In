@@ -57,25 +57,25 @@ function App() {
     >
       <Router>
         <LoggedInContext.Provider value={loggedInState}>
-          <MobileMenu isOpen={isOpen} toggle={toggle} />
-          <Navbar toggle={toggle} setLoggedInState={setLoggedInState} />
-          <Switch>
-            <Route exact path={"/"}>
-              <Dashboard />
-            </Route>
-            <Route exact path={"/login"}>
-              <Login setLoggedInState={setLoggedInState} />
-            </Route>
+          <TriviaContext.Provider value={triviaState}>
+            <MobileMenu isOpen={isOpen} toggle={toggle} />
+            <Navbar toggle={toggle} setLoggedInState={setLoggedInState} />
+            <Switch>
+              <Route exact path={"/"}>
+                <Dashboard />
+              </Route>
+              <Route exact path={"/login"}>
+                <Login setLoggedInState={setLoggedInState} />
+              </Route>
 
-            <Route path={"/register"}>
-              <Register />
-            </Route>
+              <Route path={"/register"}>
+                <Register />
+              </Route>
 
-            <Route path={"/profile"}>
-              <Profile />
-            </Route>
+              <Route path={"/profile"}>
+                <Profile />
+              </Route>
 
-            <TriviaContext.Provider value={triviaState}>
               <Route path={"/trivia"}>
                 <Trivia />
               </Route>
@@ -83,20 +83,20 @@ function App() {
               <Route path={"/trivia-setup"}>
                 <TriviaSetup />
               </Route>
-            </TriviaContext.Provider>
 
-            <Route path={"/scores"}>
-              <Scores />
-            </Route>
+              <Route path={"/scores"}>
+                <Scores />
+              </Route>
 
-            <Route path={"/invite"}>
-              <Invite />
-            </Route>
+              <Route path={"/invite"}>
+                <Invite />
+              </Route>
 
-            <Route path={"*"}>
-              <Error />
-            </Route>
-          </Switch>
+              <Route path={"*"}>
+                <Error />
+              </Route>
+            </Switch>
+          </TriviaContext.Provider>
         </LoggedInContext.Provider>
       </Router>
       <Footer></Footer>

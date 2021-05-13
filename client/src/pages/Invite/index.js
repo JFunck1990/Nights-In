@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
+
 import "./Invite.css";
 
 function Invite() {
@@ -32,9 +33,8 @@ function Invite() {
   //   const { time, value } = event.target;
   //   setFormObject({ ...formObject, [time]: value });
   // }
-
-
   return (
+
     <div className="container margintop">
       <div className="card border border-dark radius">
 
@@ -63,7 +63,28 @@ function Invite() {
             onChange={handleInputChange}
           ></input>
         </div>
-<<<<<<< HEAD
+
+        <div className="form-row mt-2 formMargin">
+        <label className="labelFont" for="inputDate">Date</label>
+          <input
+            className="form-control"
+            type="date"
+            id="inputDate"
+            name="date"
+            onChange={handleInputChange}
+          ></input>
+        </div>
+
+        <div className="form-row mt-2 formMargin">
+        <label className="labelFont" for="inputTime">Time</label>
+           <input
+            className="form-control"
+            type="time"
+            id="inputTime"
+            name="time"
+            onChange={handleInputChange}
+          ></input>
+        </div>
 
         <div className="text-center p-4">
           <button className="btn btn-primary btn-xl" onClick={handleInvite}>
@@ -71,27 +92,9 @@ function Invite() {
           </button>
         </div>
 
-=======
-        <div className="form-row p-2">
-          <input
-            className="form-control"
-            type="date"
-            name="date"
-            onChange={handleInputChange}
-          ></input>
-           <input
-            className="form-control"
-            type="time"
-            name="time"
-            onChange={handleInputChange}
-          ></input>
-        </div>
-        <button className="btn btn-secondary" onClick={handleInvite}>
-          Invite
-        </button>
->>>>>>> cb9181b0328d8fc119c856df5942cf005ee90b47
       </div>
     </div>
+    
   );
 }
 

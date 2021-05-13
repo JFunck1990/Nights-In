@@ -4,17 +4,16 @@ import API from "../../utils/API";
 function Invite() {
   const [formObject, setFormObject] = useState({});
 
-
   const handleInvite = () => {
     const data = {
-      subject: "Invited to Nights In!",
+      subject: "You've Been Invited to Nights In!",
       name: formObject.name,
       email: formObject.email,
-      body: ` You are invite to nights-In on  ${formObject.date} at ${formObject.time} locatet at: https://nights-in.herokuapp.com/`,
+      body: ` You're invited to trivia at Nights-In! On  ${formObject.date} at ${formObject.time}! Follow this link: https://nights-in.herokuapp.com/`,
     };
 
     API.sendInvite(data);
-    alert("message sent!");
+    alert("Invitation Sent!");
   };
 
   function handleInputChange(event) {
@@ -31,7 +30,6 @@ function Invite() {
   //   const { time, value } = event.target;
   //   setFormObject({ ...formObject, [time]: value });
   // }
-
 
   return (
     <div className="container pt-5">
@@ -62,7 +60,7 @@ function Invite() {
             name="date"
             onChange={handleInputChange}
           ></input>
-           <input
+          <input
             className="form-control"
             type="time"
             name="time"

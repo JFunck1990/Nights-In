@@ -8,7 +8,7 @@ import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
 
-function App() {
+function Trivia() {
   const history = useHistory();
 
   const triviaInfo = useContext(TriviaContext);
@@ -171,4 +171,4 @@ function App() {
   );
 }
 
-export default App;
+export default Trivia;

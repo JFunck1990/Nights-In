@@ -1,5 +1,6 @@
 import React from "react";
 import "./Scores.css";
+import ScoreEntry from "../../components/ScoreEntry";
 
 function Scores() {
   return (
@@ -14,40 +15,15 @@ function Scores() {
 
             <div class="card-body">
               <ol className="list-group list-group-flush pl-2 scorefont">
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                  <div className="col-md-6 d-flex justify-content-start">Zach</div>
-                  <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="90" />
 
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                  <div className="col-md-6 d-flex justify-content-start">Jack</div>
-                  <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="80" />
 
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                  <div className="col-md-6 d-flex justify-content-start">Kate</div>
-                  <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="70" />
 
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                  <div className="col-md-6 d-flex justify-content-start">JP</div>
-                  <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="60" />
 
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                  <div className="col-md-6 d-flex justify-content-start">Matt</div>
-                  <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="50" />
               </ol>
             </div>
           </div>
@@ -63,40 +39,15 @@ function Scores() {
 
             <div class="card-body ">
               <ol className="list-group list-group-flush pl-2 scorefont">
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                    <div className="col-md-6 d-flex justify-content-start">Zach</div>
-                    <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="0" />
 
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                    <div className="col-md-6 d-flex justify-content-start">Jack</div>
-                    <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="10" />
 
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                    <div className="col-md-6 d-flex justify-content-start">Kate</div>
-                    <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="20" />
 
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                    <div className="col-md-6 d-flex justify-content-start">JP</div>
-                    <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="30" />
 
-                <li className="list-group-item">
-                  <div className="d-flex flex-row">
-                    <div className="col-md-6 d-flex justify-content-start">Matt</div>
-                    <div className="col-md-6 d-flex justify-content-end">100</div>
-                  </div>
-                </li>
+                <ScoreEntry username="Zac" score="40" />
               </ol>
             </div>
           </div>

@@ -7,10 +7,6 @@ import TriviaContext from "../../utils/TriviaContext";
 import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
-<<<<<<< HEAD
-import useDebounce from "../../utils/debounceHook";
-=======
->>>>>>> fde3d1df864d0803c1b1234f0b396bde5ca30bf5
 
 function App() {
   const history = useHistory();
@@ -23,10 +19,7 @@ function App() {
     question: "",
     correct: "",
     incorrect: [],
-<<<<<<< HEAD
-=======
     index: -1
->>>>>>> fde3d1df864d0803c1b1234f0b396bde5ca30bf5
   });
 
   const [choicesState, setChoicesState] = useState([]);
@@ -53,30 +46,6 @@ function App() {
   };
 
   const handleNewQuestion = () => {
-<<<<<<< HEAD
-    API.newQuestion().then((res) => {
-      const questionObj = res.data.results[0];
-      const incorrect = questionObj.incorrect_answers;
-      const answers = [
-        decode(incorrect[0]),
-        decode(incorrect[1]),
-        decode(incorrect[2]),
-      ];
-
-      setQuestionState({
-        question: decodeHTMLEntities(questionObj.question),
-        correct: decodeHTMLEntities(questionObj.correct_answer),
-        incorrect: answers,
-        category: decodeHTMLEntities(questionObj.category),
-      });
-    });
-  };
-  useEffect(() => {
-    if (debouncedSearchTerm) {
-      handleNewQuestion();
-    }
-  }, [debouncedSearchTerm]);
-=======
     const nextQuestion = allQuestions[questionState.index + 1];
 
     if (nextQuestion) {
@@ -125,7 +94,6 @@ function App() {
   useEffect(() => {
     handleNewQuestion();
   }, [allQuestions]);
->>>>>>> fde3d1df864d0803c1b1234f0b396bde5ca30bf5
 
   useEffect(() => {
     let choices = [questionState.correct];
@@ -142,26 +110,6 @@ function App() {
 
     setChoicesState(choices);
   }, [questionState]);
-
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-
-    const value = event.target.id;
-    console.log("Value: ", value);
-    console.log(pageState.score + 5);
-
-    if (value !== questionState.correct) {
-      console.log("Wrong!");
-
-      setPageState({ score: pageState.score - 1, answer: "Wrong!" });
-      handleNewQuestion();
-    } else {
-      console.log("Correct!");
-
-      setPageState({ score: pageState.score + 1, answer: "Correct!" });
-      handleNewQuestion();
-    }
-  };
 
   return (
     <div className="container pt-5">

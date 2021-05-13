@@ -9,8 +9,21 @@ function Scores() {
 
   useEffect(() => {
     API.getScores()
-      .then(res => {
-        console.log(res);
+      .then(({ data }) => {
+        const tempHigh = [];
+        const tempLow = [];
+
+        data.forEach((object) => {
+          if (object.isHigh) {
+            tempHigh.push(object);
+          }
+          else {
+            tempLow.unshift(object);
+          }
+        });
+
+        setHighScores(tempHigh);
+        setLowScores(tempLow);
       });
   }, []);
 
@@ -26,20 +39,15 @@ function Scores() {
 
             <div className="card-body">
               <ol className="list-group list-group-flush pl-2 scorefont">
-                <ScoreEntry username="Zac" score="90" />
-
-                <ScoreEntry username="Zac" score="80" />
-
-                <ScoreEntry username="Zac" score="70" />
-
-                <ScoreEntry username="Zac" score="60" />
-
-                <ScoreEntry username="Zac" score="50" />
+                {
+                  highScores.map((entry, index) => {
+                    return <ScoreEntry key={index} entry={entry}/>
+                  })
+                }
               </ol>
             </div>
           </div>
         </div>
-        <button onClick={() => {API.postScore()}}>Add Score</button>
         {/* LOSER SCORE LIST */}
         <div className="col-md-6 col-xs-12">
           <div className="card border" id="radius">
@@ -50,15 +58,11 @@ function Scores() {
 
             <div className="card-body ">
               <ol className="list-group list-group-flush pl-2 scorefont">
-                <ScoreEntry username="Zac" score="0" />
-
-                <ScoreEntry username="Zac" score="10" />
-
-                <ScoreEntry username="Zac" score="20" />
-
-                <ScoreEntry username="Zac" score="30" />
-
-                <ScoreEntry username="Zac" score="40" />
+                {
+                  lowScores.map((entry, index) => {
+                    return <ScoreEntry key={index} entry={entry}/>
+                  })
+                }
               </ol>
             </div>
           </div>

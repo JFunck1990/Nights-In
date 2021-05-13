@@ -12,8 +12,12 @@ module.exports = function (db) {
         .then(message => console.log(`${message.id} was sent`));
     },
     getScores: (req, res) => {
-      db.Score.findAll()
-        .then(data => {res.json(data)});
+      db.Score.findAll({
+        order: [
+          ["score", "DESC"]
+        ]
+      })
+        .then(data => res.json(data));
     },
     postScore: (req, res) => {
       db.Score.create(req.body)

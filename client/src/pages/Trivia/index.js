@@ -4,6 +4,7 @@ import "./Trivia.css";
 import { decode } from "html-entities";
 import API from "../../utils/API";
 import TriviaContext from "../../utils/TriviaContext";
+import LoggedInContext from "../../utils/LoggedInContext";
 import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
@@ -12,6 +13,7 @@ function Trivia() {
   const history = useHistory();
 
   const triviaInfo = useContext(TriviaContext);
+  const userInfo = useContext(LoggedInContext);
 
   const [allQuestions, setAllQuestions] = useState([]);
 
@@ -76,12 +78,14 @@ function Trivia() {
     else {
       setPageState({ score: pageState.score + 1, answer: "Correct!"});
     }
-
-    handleNewQuestion();
   }
 
   const gameover = () => {
-    history.push("/scores");
+    API.postScore({
+      username: userInfo.username,
+      score: pageState.score
+    })
+      .then(() => history.push("/scores"));
   }
 
   useEffect(() => {
@@ -94,6 +98,10 @@ function Trivia() {
   useEffect(() => {
     handleNewQuestion();
   }, [allQuestions]);
+
+  useEffect(() => {
+    handleNewQuestion();
+  }, [pageState]);
 
   useEffect(() => {
     let choices = [questionState.correct];
@@ -113,7 +121,7 @@ function Trivia() {
 
   return (
     <div className="container pt-5">
-      <div class="timer">
+      <div className="timer">
         <span id="time">
           <Timer score={pageState.score}></Timer>
         </span>

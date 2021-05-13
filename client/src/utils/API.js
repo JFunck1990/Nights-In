@@ -25,11 +25,11 @@ const API = {
   getScores: function() {
     return axios.get("/api/scores");
   },
-  postScore: function(data) {
+  postScore: function({ username, score }) {
     return axios.post("/api/scores", {
-      username: "JP",
-      score: 10,
-      isHigh: true
+      username: username,
+      score: score,
+      id: -1
     });
   },
   sendInvite: function(data) {

@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Trivia.css";
 import { decode } from "html-entities";
 import API from "../../utils/API";
+import TriviaContext from "../../utils/TriviaContext";
 import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
 import useDebounce from "../../utils/debounceHook"
 
 function App() {
+  const triviaInfo = useContext(TriviaContext);
+
   const [questionState, setQuestionState] = useState({
     question: "",
     correct: "",
@@ -38,6 +41,11 @@ function App() {
 
     return string;
   };
+
+  const getQuestions = () => {
+    API.getQuestions(triviaInfo)
+      .then(res => {console.log(res.data.results)});
+  }
 
   const handleNewQuestion = () => {
     API.newQuestion()
@@ -70,10 +78,8 @@ function App() {
   }
 
   useEffect(() => {
-    if(debouncedSearchTerm){
-      handleNewQuestion();
-    }
-  }, [debouncedSearchTerm]);
+    getQuestions();
+  }, []);
 
   useEffect(() => {
     let choices = [questionState.correct];

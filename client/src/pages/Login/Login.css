@@ -1,9 +1,13 @@
 #register-form {
   background-color: #e9ecef;
   padding: 10px;
-  border-radius: .3rem;
+  border-radius: 0.3rem;
 }
-  
+
 #err-msg {
   color: red;
+}
+
+.container {
+  margin-top: 50px;
 }

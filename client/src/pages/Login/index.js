@@ -41,11 +41,14 @@ function Login({ setLoggedInState }) {
       API.login(infoState)
         .then(({ data }) => {
           if (data.loggedIn) {
-            setLoggedInState({ loggedIn: true, id: data.id, username: data.username});
+            setLoggedInState({
+              loggedIn: true,
+              id: data.id,
+              username: data.username,
+            });
             history.push("/");
           } else {
             setErrorState("*The password or email was incorrect*");
-
           }
         })
         .catch((err) => console.log("Error: ", err));
@@ -60,7 +63,7 @@ function Login({ setLoggedInState }) {
   };
 
   return (
-    <Container>
+    <Container className="login">
       <Row>
         <Col size="md-12">
           <div id="register-form">

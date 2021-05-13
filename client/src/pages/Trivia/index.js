@@ -7,6 +7,10 @@ import TriviaContext from "../../utils/TriviaContext";
 import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
+<<<<<<< HEAD
+import useDebounce from "../../utils/debounceHook";
+=======
+>>>>>>> fde3d1df864d0803c1b1234f0b396bde5ca30bf5
 
 function App() {
   const history = useHistory();
@@ -19,14 +23,17 @@ function App() {
     question: "",
     correct: "",
     incorrect: [],
+<<<<<<< HEAD
+=======
     index: -1
+>>>>>>> fde3d1df864d0803c1b1234f0b396bde5ca30bf5
   });
 
   const [choicesState, setChoicesState] = useState([]);
 
   const [pageState, setPageState] = useState({
     score: 0,
-    answer: ""
+    answer: "",
   });
 
   const decodeHTMLEntities = (string) => {
@@ -46,6 +53,30 @@ function App() {
   };
 
   const handleNewQuestion = () => {
+<<<<<<< HEAD
+    API.newQuestion().then((res) => {
+      const questionObj = res.data.results[0];
+      const incorrect = questionObj.incorrect_answers;
+      const answers = [
+        decode(incorrect[0]),
+        decode(incorrect[1]),
+        decode(incorrect[2]),
+      ];
+
+      setQuestionState({
+        question: decodeHTMLEntities(questionObj.question),
+        correct: decodeHTMLEntities(questionObj.correct_answer),
+        incorrect: answers,
+        category: decodeHTMLEntities(questionObj.category),
+      });
+    });
+  };
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      handleNewQuestion();
+    }
+  }, [debouncedSearchTerm]);
+=======
     const nextQuestion = allQuestions[questionState.index + 1];
 
     if (nextQuestion) {
@@ -94,17 +125,17 @@ function App() {
   useEffect(() => {
     handleNewQuestion();
   }, [allQuestions]);
+>>>>>>> fde3d1df864d0803c1b1234f0b396bde5ca30bf5
 
   useEffect(() => {
     let choices = [questionState.correct];
 
-    for (let index = 0; index < 3; index ++) {
+    for (let index = 0; index < 3; index++) {
       const random = Math.floor(Math.random() * 2);
 
       if (random === 0) {
         choices.unshift(questionState.incorrect[index]);
-      }
-      else {
+      } else {
         choices.push(questionState.incorrect[index]);
       }
     }
@@ -112,25 +143,79 @@ function App() {
     setChoicesState(choices);
   }, [questionState]);
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    const value = event.target.id;
+    console.log("Value: ", value);
+    console.log(pageState.score + 5);
+
+    if (value !== questionState.correct) {
+      console.log("Wrong!");
+
+      setPageState({ score: pageState.score - 1, answer: "Wrong!" });
+      handleNewQuestion();
+    } else {
+      console.log("Correct!");
+
+      setPageState({ score: pageState.score + 1, answer: "Correct!" });
+      handleNewQuestion();
+    }
+  };
+
   return (
     <div className="container pt-5">
-      <Timer score={pageState.score} />
+      <div class="timer">
+        <span id="time">
+          <Timer score={pageState.score}></Timer>
+        </span>
+      </div>
 
       {/* Card */}
       <div className="card border border-dark">
         {/* Trivia Question */}
-        <Question question={questionState.question} />
+
+        <Question
+          category={questionState.category}
+          question={questionState.question}
+        />
         {/* Answers */}
         <div className="card-body">
-          <Answer handler={handleFormSubmit} choice={choicesState[0]} />
+          <div
+            className="col-lg-12 text-center pt-1 pb-1"
+            onClick={handleFormSubmit}
+          >
+            <Answer choice={choicesState[0]} />
+          </div>
 
-          <Answer handler={handleFormSubmit} choice={choicesState[1]} />
+          <div
+            className="col-lg-12 text-center pt-1 pb-1"
+            onClick={handleFormSubmit}
+          >
+            <Answer choice={choicesState[1]} />
+          </div>
 
-          <Answer handler={handleFormSubmit} choice={choicesState[2]} />
+          <div
+            className="col-lg-12 text-center pt-1 pb-1"
+            onClick={handleFormSubmit}
+          >
+            <Answer choice={choicesState[2]} />
+          </div>
 
-          <Answer handler={handleFormSubmit} choice={choicesState[3]} />
+          <div
+            className="col-lg-12 text-center pt-1 pb-1"
+            onClick={handleFormSubmit}
+          >
+            <Answer choice={choicesState[3]} />
+          </div>
           <div>
-            <h1 className="text-center">{pageState.answer}</h1>
+            <h1>{pageState.answer}</h1>
+          </div>
+
+          <div className="col-lg-12 text-center">
+            <button className="btn btn-success" onClick={handleNewQuestion}>
+              Next Question
+            </button>
           </div>
         </div>
       </div>

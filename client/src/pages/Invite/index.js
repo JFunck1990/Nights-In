@@ -1,22 +1,20 @@
+import "./Invite.css";
 import React, { useState } from "react";
 import API from "../../utils/API";
-
-import "./Invite.css";
 
 function Invite() {
   const [formObject, setFormObject] = useState({});
 
-
   const handleInvite = () => {
     const data = {
-      subject: "Invited to Nights In!",
+      subject: "You've Been Invited to Nights In!",
       name: formObject.name,
       email: formObject.email,
-      body: ` You are invite to nights-In on  ${formObject.date} at ${formObject.time} locatet at: https://nights-in.herokuapp.com/`,
+      body: ` You're invited to trivia at Nights-In! On  ${formObject.date} at ${formObject.time}! Follow this link: https://nights-in.herokuapp.com/`,
     };
 
     API.sendInvite(data);
-    alert("message sent!");
+    alert("Invitation Sent!");
   };
 
   function handleInputChange(event) {
@@ -34,16 +32,16 @@ function Invite() {
   //   setFormObject({ ...formObject, [time]: value });
   // }
   return (
-
     <div className="container margintop">
       <div className="card border border-dark radius">
-
         <div className="card-header text-center bg-header" id="radiushead">
           <p className="headerFont">INVITE YOUR FRIENDS!</p>
         </div>
-        
+
         <div className="form-row mt-3 formMargin">
-          <label className="labelFont" for="inputFriendsName">Friend's Name</label>
+          <label className="labelFont" for="inputFriendsName">
+            Friend's Name
+          </label>
           <input
             className="form-control"
             placeholder="John Doe"
@@ -54,7 +52,9 @@ function Invite() {
         </div>
 
         <div className="form-row mt-2 formMargin">
-        <label className="labelFont" for="inputFriendEmail">Friend's Email</label>
+          <label className="labelFont" for="inputFriendEmail">
+            Friend's Email
+          </label>
           <input
             className="form-control"
             placeholder="example@email.com"
@@ -65,7 +65,9 @@ function Invite() {
         </div>
 
         <div className="form-row mt-2 formMargin">
-        <label className="labelFont" for="inputDate">Date</label>
+          <label className="labelFont" for="inputDate">
+            Date
+          </label>
           <input
             className="form-control"
             type="date"
@@ -76,8 +78,10 @@ function Invite() {
         </div>
 
         <div className="form-row mt-2 formMargin">
-        <label className="labelFont" for="inputTime">Time</label>
-           <input
+          <label className="labelFont" for="inputTime">
+            Time
+          </label>
+          <input
             className="form-control"
             type="time"
             id="inputTime"
@@ -91,10 +95,8 @@ function Invite() {
             Click Here to Send Invite
           </button>
         </div>
-
       </div>
     </div>
-    
   );
 }
 

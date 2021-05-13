@@ -1,39 +1,39 @@
 .margintop {
-    margin-top: 5%;
+  margin-top: 5% !important;
 }
 
 .bg-header {
-    background-color: #ffc107;
+  background-color: #ffc107 !important;
 }
 
 .headerFont {
-    font-size: xx-large;
-    font-weight: bold;
+  font-size: xx-large !important;
+  font-weight: bold !important;
 }
 
 .radius {
-    border-radius: 15px;
+  border-radius: 15px !important;
 }
-  
+
 #radiushead {
-    border-radius: 15px 15px 0px 0px;
+  border-radius: 15px 15px 0px 0px !important;
 }
 
 .labelFont {
-    font-size: x-large;
-    color: black;
-    font-style: italic;
+  font-size: x-large !important;
+  color: black !important;
+  font-style: italic !important;
 }
 
 .formMargin {
-    margin-left: 15%;
-    margin-right: 15%;
+  margin-left: 15% !important;
+  margin-right: 15% !important;
 }
 
 .btn-xl {
-    padding: 10px 20px;
-    border-radius: 10px;
-    background-color: #555555;
-    color: #D6FCE1;
-    font-size: large
+  padding: 10px 20px !important;
+  border-radius: 10px !important;
+  background-color: #555555 !important;
+  color: #d6fce1 !important;
+  font-size: large !important;
 }

@@ -1,0 +1,39 @@
+.margintop {
+    margin-top: 5%;
+}
+
+.bg-header {
+    background-color: #ffc107;
+}
+
+.headerFont {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.radius {
+    border-radius: 15px;
+}
+  
+#radiushead {
+    border-radius: 15px 15px 0px 0px;
+}
+
+.labelFont {
+    font-size: x-large;
+    color: black;
+    font-style: italic;
+}
+
+.formMargin {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.btn-xl {
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #555555;
+    color: #D6FCE1;
+    font-size: large
+}

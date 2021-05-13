@@ -1,10 +1,12 @@
 import React from "react";
 
-function Answer(props) {
+function Answer({ handler, choice }) {
   return (
-    <button className="btn btn-primary btn-lg btn-block" id={props.choice} >
-      {props.choice}
-    </button>
+    <div className="col-lg-12 text-center pt-1 pb-1" onClick={handler}>
+      <button className="btn btn-primary btn-lg btn-block" id={choice} >
+        {choice}
+      </button>
+    </div>
   );
 }
 

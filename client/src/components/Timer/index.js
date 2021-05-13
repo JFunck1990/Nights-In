@@ -28,7 +28,7 @@ const Timer = (props) => {
   }, [time]);
 
   return (
-    <div>
+    <div className="timer">
       <div>Time: {time}</div>
       <div>Timer: {secondsPassed.current}</div>
       <div>Score: {props.score}</div>

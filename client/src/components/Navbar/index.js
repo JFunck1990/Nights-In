@@ -40,7 +40,7 @@ function Navbar({ toggle, setLoggedInState }) {
           ? 
             [
               <li className="nav-item" key={0}>
-                <Link className="nav-link barlink" to="/trivia">
+                <Link className="nav-link barlink" to="/trivia-setup">
                   Trivia
                 </Link>
               </li>,

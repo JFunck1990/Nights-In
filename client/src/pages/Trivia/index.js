@@ -11,8 +11,7 @@ function App() {
   const [questionState, setQuestionState] = useState({
     question: "",
     correct: "",
-    incorrect: [],
-    category: "",
+    incorrect: []
   });
 
   const [choicesState, setChoicesState] = useState([]);
@@ -25,8 +24,10 @@ function App() {
   const debouncedSearchTerm = useDebounce(50000);
 
   const decodeHTMLEntities = (string) => {
-    while (string.indexOf("&") > -1) {
-      const indexAmpersand = string.indexOf("&");
+    let indexAmpersand = -1;
+
+    while (string.indexOf("&", indexAmpersand + 1) > -1) {
+      indexAmpersand = string.indexOf("&", indexAmpersand + 1);
 
       const indexSemiColon = string.indexOf(";", indexAmpersand);
 
@@ -48,11 +49,25 @@ function App() {
         setQuestionState({
           question: decodeHTMLEntities(questionObj.question),
           correct: decodeHTMLEntities(questionObj.correct_answer),
-          incorrect: answers,
-          category: decodeHTMLEntities(questionObj.category)
+          incorrect: answers
         });
       });
   };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    const value = event.target.id
+
+    if(value !== questionState.correct){
+      setPageState({ score: pageState.score - 1, answer: "Wrong!"});
+    }
+    else {
+      setPageState({ score: pageState.score + 1, answer: "Correct!"});
+    }
+
+    handleNewQuestion();
+  }
 
   useEffect(() => {
     if(debouncedSearchTerm){
@@ -77,64 +92,29 @@ function App() {
     setChoicesState(choices);
   }, [questionState]);
 
-  const handleFormSubmit = (event) => {
-    event.preventDefault();
-
-    const value = event.target.id
-    console.log("Value: ",value);
-    console.log(pageState.score + 5)
-
-    if(value !== questionState.correct){
-      console.log("Wrong!");
-
-      setPageState({score: pageState.score - 1, answer: "Wrong!"});
-      handleNewQuestion();
-    }
-    else {
-      console.log("Correct!");
-
-      setPageState({ score: pageState.score + 1, answer: "Correct!"});
-      handleNewQuestion();
-    }
-  }
-
   return (
     <div className="container pt-5">
-      <div class="timer"><span id="time"><Timer score={pageState.score}></Timer></span></div>
+      <Timer score={pageState.score} />
 
       {/* Card */}
       <div className="card border border-dark">
         {/* Trivia Question */}
-
-        <Question category={questionState.category} question={questionState.question} />
+        <Question question={questionState.question} />
         {/* Answers */}
         <div className="card-body">
-          <div className="col-lg-12 text-center pt-1 pb-1" onClick={handleFormSubmit}>
-            <Answer  choice={choicesState[0]}  />
-          </div>
+          <Answer handler={handleFormSubmit} choice={choicesState[0]} />
 
-          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
-            <Answer choice={choicesState[1]}  />
-          </div>
+          <Answer handler={handleFormSubmit} choice={choicesState[1]} />
 
-          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
-            <Answer choice={choicesState[2]}  />
-          </div>
+          <Answer handler={handleFormSubmit} choice={choicesState[2]} />
 
-          <div className="col-lg-12 text-center pt-1 pb-1"  onClick={handleFormSubmit}>
-            <Answer choice={choicesState[3]}  />
-          </div>
+          <Answer handler={handleFormSubmit} choice={choicesState[3]} />
           <div>
-            <h1>{pageState.answer}</h1>
-          </div>
-
-          <div className="col-lg-12 text-center">
-            <button className="btn btn-success" onClick={handleNewQuestion}>Next Question</button>
+            <h1 className="text-center">{pageState.answer}</h1>
           </div>
         </div>
       </div>
     </div>
-
   );
 }
 

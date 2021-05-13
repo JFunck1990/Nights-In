@@ -10,6 +10,7 @@ const helmet = require("helmet");
 const PORT = process.env.PORT || 3001;
 const app = express();
 const db = require("./server/models");
+const scoreSeeds = require("./server/db/scoreSeeds");
 
 app.use(cookieParser(process.env.AUTH_SECRET));
 app.use(express.urlencoded({ extended: false }));
@@ -29,8 +30,6 @@ if (process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname, './client/build/'))
 	});
 }
-
-
 
 // Define our routes=
 app.use("/api", require("./server/routes/apiRoutes")(passport, db));
@@ -65,8 +64,14 @@ if (app.get("env") === "test") {
 
 db.sequelize.sync(syncOptions).then(() => {
   if (app.get("env") !== "test" && syncOptions.force) {
-    require("./server/db/seed")(db);
+    require("./server/db/scoreSeeds")(db);
   }
+
+  db.Score.findAll().then((data) => {
+    if (data.length < 10) {
+      scoreSeeds(db);
+    }
+  });
 
   app.listen(PORT, () => {
     console.log(`App listening on port: ${PORT}`);

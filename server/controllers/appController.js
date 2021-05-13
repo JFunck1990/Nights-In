@@ -1,4 +1,5 @@
 const nylas = require("../config/nylas");
+
 module.exports = function (db) {
   return {
     sendInvite: function ({ query }, res) {
@@ -59,23 +60,7 @@ module.exports = function (db) {
             db.Score.create(objToAdd)
               .then(response => res.json(response));
           }
-
-          // data.forEach(object => {
-          //   if (!object.dataValues) {
-          //     console.log("===================================");
-          //     console.log("===================================");
-          //     console.log("id", object.id);
-          //     console.log("===================================");
-          //     console.log("===================================");
-          //   }
-          // });
-          // res.json(data);
         });
-
-      // db.Score.create(req.body)
-      //   .then((response) => {
-      //     res.json(response);
-      //   });
     },
     getTriviaByScore: (req, res) => {
       db.Trivia.findAll({ where: { score: req.params.score } })

@@ -5,12 +5,13 @@ import "./Invite.css";
 function Invite() {
   const [formObject, setFormObject] = useState({});
 
+
   const handleInvite = () => {
     const data = {
       subject: "Invited to Nights In!",
       name: formObject.name,
       email: formObject.email,
-      body: "You are invited to Nights In",
+      body: ` You are invite to nights-In on  ${formObject.date} at ${formObject.time} locatet at: https://nights-in.herokuapp.com/`,
     };
 
     API.sendInvite(data);
@@ -21,6 +22,17 @@ function Invite() {
     const { name, value } = event.target;
     setFormObject({ ...formObject, [name]: value });
   }
+
+  // function handleDateChage (event) {
+  //   const { date, value } = event.target;
+  //   setFormObject({ ...formObject, [date]: value });
+  // }
+
+  // function handleTimeChange (event) {
+  //   const { time, value } = event.target;
+  //   setFormObject({ ...formObject, [time]: value });
+  // }
+
 
   return (
     <div className="container margintop">
@@ -51,6 +63,7 @@ function Invite() {
             onChange={handleInputChange}
           ></input>
         </div>
+<<<<<<< HEAD
 
         <div className="text-center p-4">
           <button className="btn btn-primary btn-xl" onClick={handleInvite}>
@@ -58,6 +71,25 @@ function Invite() {
           </button>
         </div>
 
+=======
+        <div className="form-row p-2">
+          <input
+            className="form-control"
+            type="date"
+            name="date"
+            onChange={handleInputChange}
+          ></input>
+           <input
+            className="form-control"
+            type="time"
+            name="time"
+            onChange={handleInputChange}
+          ></input>
+        </div>
+        <button className="btn btn-secondary" onClick={handleInvite}>
+          Invite
+        </button>
+>>>>>>> cb9181b0328d8fc119c856df5942cf005ee90b47
       </div>
     </div>
   );

@@ -32,15 +32,17 @@ function Dashboard() {
           <h1 className="brand-header">Nights-In</h1>
         </div>
       </div>
-      {userInfo.loggedIn ? (
-        <div className="row">
-          <div className="col-lg-1"></div>
-          <YourInvitations />
-          <YourEvents />
-        </div>
-      ) : (
-        <LogInBox />
-      )}
+      {
+        userInfo.loggedIn
+        ?
+          <div className='row'>
+            <div className="col-lg-1"></div>
+            <YourInvitations />
+            <YourEvents />
+          </div>
+        :
+          <LogInBox />
+      }
     </div>
   );
 }

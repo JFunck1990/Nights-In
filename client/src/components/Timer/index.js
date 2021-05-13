@@ -7,7 +7,7 @@ const Timer = (props) => {
 
   const [time, setTime] = useState(new Date().toLocaleTimeString());
 
-  const secondsPassed = useRef(5000);
+  const secondsPassed = useRef(500);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -28,7 +28,7 @@ const Timer = (props) => {
   }, [time]);
 
   return (
-    <div>
+    <div className="timer">
       <div>Time: {time}</div>
       <div>Timer: {secondsPassed.current}</div>
       <div>Score: {props.score}</div>

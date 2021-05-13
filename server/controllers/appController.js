@@ -16,7 +16,6 @@ module.exports = function (db) {
         res.json(dbTrivia);
       });
     },
-
     getTriviaByScore: (req, res) => {
       db.Trivia.findAll({ where: { score: req.params.score } }).then((dbTrivia) => {
         res.json(dbTrivia);
@@ -27,32 +26,25 @@ module.exports = function (db) {
         res.json(dbTrivia);
       });
     },
-
     deleteScore: (req, res) => {
       db.Trivia.destroy({ where: { id: req.params.id } }).then((dbTrivia) => {
         res.json(dbTrivia);
       });
     },
-
     getInvite: (req, res) => {
       db.Invite.findAll({where: {name: req.params.id} }).then((dbInvite) => {
         res.json(dbInvite)
       })
     },
-
     createInvite: (req, res) => {
       db.Invite.create(req.body).then((dbInvite) => {
         res.json(dbInvite);
       });
     },
-
     deleteInvite: (req, res) => {
       db.Invite.destroy({where: {id: req.params.id}}).then((dbInvite) => {
         res.json(dbInvite);
       })
     }
-
-
-
   };
 };

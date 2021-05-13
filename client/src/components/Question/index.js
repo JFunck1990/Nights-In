@@ -5,7 +5,6 @@ function Question(props) {
     <div className="card-header text-center bg-warning">
       <h3>
         <div className="App">
-         <div><h4>{props.category}</h4></div>
           {props.question}
         </div>
       </h3>

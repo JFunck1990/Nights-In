@@ -26,8 +26,8 @@ function App() {
   });
 
   const [triviaState, setTriviaState] = useState({
-    numberQuestions: 0,
-    category: 0,
+    numberQuestions: 5,
+    category: null,
     difficulty: "",
     type: "",
     changeContext: (newData) => {

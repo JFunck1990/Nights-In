@@ -10,10 +10,10 @@ function TriviaSetup() {
   const triviaInfo = useContext(TriviaContext);
 
   const [setupState, setSetupState] = useState({
-    numberQuestions: 0,
-    category: 0,
-    difficulty: "",
-    type: ""
+    numberQuestions: 5,
+    category: 9,
+    difficulty: "easy",
+    type: "multiple"
   });
 
   const handleSubmit = () => {

@@ -11,40 +11,107 @@ module.exports = function (db) {
       draft.send()
         .then(message => console.log(`${message.id} was sent`));
     },
-    createScore: (req, res) => {
-      db.Trivia.create(req.body).then((dbTrivia) => {
-        res.json(dbTrivia);
-      });
+    getScores: (req, res) => {
+      db.Score.findAll({
+        order: [
+          ["score", "DESC"]
+        ]
+      })
+        .then(data => res.json(data));
+    },
+    postScore: (req, res) => {
+      db.Score.findAll({
+        order: [
+          ["score", "DESC"]
+        ]
+      })
+        .then(async (data) => {
+          data.push(req.body);
+
+          data.sort((a, b) => {
+            return b.score - a.score
+          });
+
+          const bodyIndex = data.findIndex((object) => {return object.id === -1});
+          let objToAdd;
+
+          if (bodyIndex === 5) {
+            res.end();
+          }
+          else if (bodyIndex > 5) {
+            objToAdd = {
+              username: req.body.username,
+              score: req.body.score,
+              isHigh: false
+            };
+          }
+          else if (bodyIndex < 5) {
+            objToAdd = {
+              username: req.body.username,
+              score: req.body.score,
+              isHigh: true
+            };
+          }
+
+          if (objToAdd) {
+            await db.Score.destroy({ where: { id: data[5].id } });
+
+            db.Score.create(objToAdd)
+              .then(response => res.json(response));
+          }
+
+          // data.forEach(object => {
+          //   if (!object.dataValues) {
+          //     console.log("===================================");
+          //     console.log("===================================");
+          //     console.log("id", object.id);
+          //     console.log("===================================");
+          //     console.log("===================================");
+          //   }
+          // });
+          // res.json(data);
+        });
+
+      // db.Score.create(req.body)
+      //   .then((response) => {
+      //     res.json(response);
+      //   });
     },
     getTriviaByScore: (req, res) => {
-      db.Trivia.findAll({ where: { score: req.params.score } }).then((dbTrivia) => {
-        res.json(dbTrivia);
-      });
+      db.Trivia.findAll({ where: { score: req.params.score } })
+        .then((dbTrivia) => {
+          res.json(dbTrivia);
+        });
     },
     getName: (req, res) => {
-      db.Trivia.findAll({where: {name: req.params.name}}).then((dbTrivia) => {
-        res.json(dbTrivia);
-      });
+      db.Trivia.findAll({where: {name: req.params.name}})
+        .then((dbTrivia) => {
+          res.json(dbTrivia);
+        });
     },
     deleteScore: (req, res) => {
-      db.Trivia.destroy({ where: { id: req.params.id } }).then((dbTrivia) => {
-        res.json(dbTrivia);
-      });
+      db.Trivia.destroy({ where: { id: req.params.id } })
+        .then((dbTrivia) => {
+          res.json(dbTrivia);
+        });
     },
     getInvite: (req, res) => {
-      db.Invite.findAll({where: {name: req.params.id} }).then((dbInvite) => {
-        res.json(dbInvite)
-      })
+      db.Invite.findAll({where: {name: req.params.id} })
+        .then((dbInvite) => {
+          res.json(dbInvite)
+        });
     },
     createInvite: (req, res) => {
-      db.Invite.create(req.body).then((dbInvite) => {
-        res.json(dbInvite);
-      });
+      db.Invite.create(req.body)
+        .then((dbInvite) => {
+          res.json(dbInvite);
+        });
     },
     deleteInvite: (req, res) => {
-      db.Invite.destroy({where: {id: req.params.id}}).then((dbInvite) => {
-        res.json(dbInvite);
-      })
+      db.Invite.destroy({where: {id: req.params.id}})
+        .then((dbInvite) => {
+          res.json(dbInvite);
+        });
     }
   };
 };

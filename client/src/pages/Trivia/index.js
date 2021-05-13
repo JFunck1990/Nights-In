@@ -1,17 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import "./Trivia.css";
 import { decode } from "html-entities";
 import API from "../../utils/API";
+import TriviaContext from "../../utils/TriviaContext";
 import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
+<<<<<<< HEAD
 import useDebounce from "../../utils/debounceHook";
+=======
+>>>>>>> fde3d1df864d0803c1b1234f0b396bde5ca30bf5
 
 function App() {
+  const history = useHistory();
+
+  const triviaInfo = useContext(TriviaContext);
+
+  const [allQuestions, setAllQuestions] = useState([]);
+
   const [questionState, setQuestionState] = useState({
     question: "",
     correct: "",
     incorrect: [],
+<<<<<<< HEAD
+=======
+    index: -1
+>>>>>>> fde3d1df864d0803c1b1234f0b396bde5ca30bf5
   });
 
   const [choicesState, setChoicesState] = useState([]);
@@ -20,8 +35,6 @@ function App() {
     score: 0,
     answer: "",
   });
-
-  const debouncedSearchTerm = useDebounce(50000);
 
   const decodeHTMLEntities = (string) => {
     let indexAmpersand = -1;
@@ -40,6 +53,7 @@ function App() {
   };
 
   const handleNewQuestion = () => {
+<<<<<<< HEAD
     API.newQuestion().then((res) => {
       const questionObj = res.data.results[0];
       const incorrect = questionObj.incorrect_answers;
@@ -62,6 +76,56 @@ function App() {
       handleNewQuestion();
     }
   }, [debouncedSearchTerm]);
+=======
+    const nextQuestion = allQuestions[questionState.index + 1];
+
+    if (nextQuestion) {
+      const incorrect = nextQuestion.incorrect_answers;
+      const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
+
+      setQuestionState({
+        question: decodeHTMLEntities(nextQuestion.question),
+        correct: decodeHTMLEntities(nextQuestion.correct_answer),
+        incorrect: answers,
+        index: questionState.index + 1
+      });
+    }
+
+    if (questionState.index === allQuestions.length - 1 && questionState.index > -1) {
+      gameover();
+    }
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    const value = event.target.value
+
+    if(value !== questionState.correct){
+      setPageState({ score: pageState.score - 1, answer: "Wrong!"});
+    }
+    else {
+      setPageState({ score: pageState.score + 1, answer: "Correct!"});
+    }
+
+    handleNewQuestion();
+  }
+
+  const gameover = () => {
+    history.push("/scores");
+  }
+
+  useEffect(() => {
+    API.getQuestions(triviaInfo)
+      .then((res) => {
+        setAllQuestions(res.data.results);
+      });
+  }, []);
+
+  useEffect(() => {
+    handleNewQuestion();
+  }, [allQuestions]);
+>>>>>>> fde3d1df864d0803c1b1234f0b396bde5ca30bf5
 
   useEffect(() => {
     let choices = [questionState.correct];

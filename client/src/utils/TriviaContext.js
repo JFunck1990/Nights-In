@@ -1,8 +1,8 @@
 import React from "react";
 
 const TriviaContext = React.createContext({
-  numberQuestions: 0,
-  category: 0,
+  numberQuestions: 5,
+  category: null,
   difficulty: "",
   type: "",
   changeContext: () => undefined

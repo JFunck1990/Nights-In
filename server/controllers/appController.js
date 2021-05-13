@@ -11,40 +11,51 @@ module.exports = function (db) {
       draft.send()
         .then(message => console.log(`${message.id} was sent`));
     },
-    createScore: (req, res) => {
-      db.Trivia.create(req.body).then((dbTrivia) => {
-        res.json(dbTrivia);
-      });
+    getScores: (req, res) => {
+      db.Score.findAll()
+        .then(data => {res.json(data)});
+    },
+    postScore: (req, res) => {
+      db.Score.create(req.body)
+        .then((response) => {
+          res.json(response);
+        });
     },
     getTriviaByScore: (req, res) => {
-      db.Trivia.findAll({ where: { score: req.params.score } }).then((dbTrivia) => {
-        res.json(dbTrivia);
-      });
+      db.Trivia.findAll({ where: { score: req.params.score } })
+        .then((dbTrivia) => {
+          res.json(dbTrivia);
+        });
     },
     getName: (req, res) => {
-      db.Trivia.findAll({where: {name: req.params.name}}).then((dbTrivia) => {
-        res.json(dbTrivia);
-      });
+      db.Trivia.findAll({where: {name: req.params.name}})
+        .then((dbTrivia) => {
+          res.json(dbTrivia);
+        });
     },
     deleteScore: (req, res) => {
-      db.Trivia.destroy({ where: { id: req.params.id } }).then((dbTrivia) => {
-        res.json(dbTrivia);
-      });
+      db.Trivia.destroy({ where: { id: req.params.id } })
+        .then((dbTrivia) => {
+          res.json(dbTrivia);
+        });
     },
     getInvite: (req, res) => {
-      db.Invite.findAll({where: {name: req.params.id} }).then((dbInvite) => {
-        res.json(dbInvite)
-      })
+      db.Invite.findAll({where: {name: req.params.id} })
+        .then((dbInvite) => {
+          res.json(dbInvite)
+        });
     },
     createInvite: (req, res) => {
-      db.Invite.create(req.body).then((dbInvite) => {
-        res.json(dbInvite);
-      });
+      db.Invite.create(req.body)
+        .then((dbInvite) => {
+          res.json(dbInvite);
+        });
     },
     deleteInvite: (req, res) => {
-      db.Invite.destroy({where: {id: req.params.id}}).then((dbInvite) => {
-        res.json(dbInvite);
-      })
+      db.Invite.destroy({where: {id: req.params.id}})
+        .then((dbInvite) => {
+          res.json(dbInvite);
+        });
     }
   };
 };

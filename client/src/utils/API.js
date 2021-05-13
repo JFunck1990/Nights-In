@@ -22,6 +22,16 @@ const API = {
 
     return axios.get(queryURL);
   },
+  getScores: function() {
+    return axios.get("/api/scores");
+  },
+  postScore: function() {
+    return axios.post("/api/scores", {
+      username: "JP",
+      score: 75,
+      isHigh: true
+    });
+  },
   sendInvite: function(data) {
     return axios.get("/api/invite", {
         params: {

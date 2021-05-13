@@ -6,15 +6,17 @@ import TriviaContext from "../../utils/TriviaContext";
 import Question from "../../components/Question";
 import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
-import useDebounce from "../../utils/debounceHook"
 
 function App() {
   const triviaInfo = useContext(TriviaContext);
 
+  const [allQuestions, setAllQuestions] = useState([]);
+
   const [questionState, setQuestionState] = useState({
     question: "",
     correct: "",
-    incorrect: []
+    incorrect: [],
+    index: -1
   });
 
   const [choicesState, setChoicesState] = useState([]);
@@ -23,8 +25,6 @@ function App() {
     score: 0,
     answer: ""
   });
-
-  const debouncedSearchTerm = useDebounce(50000);
 
   const decodeHTMLEntities = (string) => {
     let indexAmpersand = -1;
@@ -42,30 +42,26 @@ function App() {
     return string;
   };
 
-  const getQuestions = () => {
-    API.getQuestions(triviaInfo)
-      .then(res => {console.log(res.data.results)});
-  }
-
   const handleNewQuestion = () => {
-    API.newQuestion()
-      .then(res => {
-        const questionObj = res.data.results[0];
-        const incorrect = questionObj.incorrect_answers;
-        const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
+    const nextQuestion = allQuestions[questionState.index + 1];
 
-        setQuestionState({
-          question: decodeHTMLEntities(questionObj.question),
-          correct: decodeHTMLEntities(questionObj.correct_answer),
-          incorrect: answers
-        });
+    if (nextQuestion) {
+      const incorrect = nextQuestion.incorrect_answers;
+      const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
+
+      setQuestionState({
+        question: decodeHTMLEntities(nextQuestion.question),
+        correct: decodeHTMLEntities(nextQuestion.correct_answer),
+        incorrect: answers,
+        index: questionState.index + 1
       });
+    }
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
 
-    const value = event.target.id
+    const value = event.target.value
 
     if(value !== questionState.correct){
       setPageState({ score: pageState.score - 1, answer: "Wrong!"});
@@ -78,8 +74,16 @@ function App() {
   }
 
   useEffect(() => {
-    getQuestions();
+    API.getQuestions(triviaInfo)
+      .then((res) => {
+        setAllQuestions(res.data.results);
+        console.log("Questions: ", allQuestions);
+      });
   }, []);
+
+  useEffect(() => {
+    handleNewQuestion();
+  }, [allQuestions]);
 
   useEffect(() => {
     let choices = [questionState.correct];

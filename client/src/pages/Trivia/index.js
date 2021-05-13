@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import "./Trivia.css";
 import { decode } from "html-entities";
 import API from "../../utils/API";
@@ -8,6 +9,8 @@ import Answer from "../../components/Answer";
 import Timer from "../../components/Timer";
 
 function App() {
+  const history = useHistory();
+
   const triviaInfo = useContext(TriviaContext);
 
   const [allQuestions, setAllQuestions] = useState([]);
@@ -56,6 +59,10 @@ function App() {
         index: questionState.index + 1
       });
     }
+
+    if (questionState.index === allQuestions.length - 1 && questionState.index > -1) {
+      gameover();
+    }
   };
 
   const handleFormSubmit = (event) => {
@@ -73,11 +80,14 @@ function App() {
     handleNewQuestion();
   }
 
+  const gameover = () => {
+    history.push("/scores");
+  }
+
   useEffect(() => {
     API.getQuestions(triviaInfo)
       .then((res) => {
         setAllQuestions(res.data.results);
-        console.log("Questions: ", allQuestions);
       });
   }, []);
 

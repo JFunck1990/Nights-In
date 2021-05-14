@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import "./Timer.css";
-const Timer = (props) => {
-  let history = useHistory();
 
+const Timer = ({ score, gameover }) => {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
 
   const secondsPassed = useRef(60);
@@ -21,7 +19,7 @@ const Timer = (props) => {
       clearTimeout(timeout);
 
       if (secondsPassed.current <= 0) {
-        history.push("/scores");
+        gameover();
       }
     };
   }, [time]);
@@ -29,7 +27,7 @@ const Timer = (props) => {
   return (
     <div className="card-body bg-warning">
       <div className="time">Time: {secondsPassed.current}</div>
-      <div className="score">Score: {props.score}</div>
+      <div className="score">Score: {score}</div>
     </div>
   );
 };

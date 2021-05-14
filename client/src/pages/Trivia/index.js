@@ -142,7 +142,7 @@ function Trivia() {
     <div className="container pt-5">
       <div className="timer">
         <span id="time">
-          <Timer score={pageState.score} />
+          <Timer score={pageState.score} gameover={gameover} />
         </span>
       </div>
 

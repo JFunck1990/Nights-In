@@ -1,0 +1,124 @@
+
+.triviacontainer{
+    background-color: #ffc107;
+    box-shadow: 5px 5px 10px 10px #ffc107;
+    border-color: #ffc107;
+    box-shadow: 0 0 10px#ffc107;
+    border-radius: 10px;
+    height: 410px;
+    margin-top: 50px;
+    text-align: center;
+    padding-top: 10px;
+    width: 900px !important;
+}
+
+.insidecontainer{
+    align-content: center;
+    padding-top: 30px;
+    height: 310px;
+    color: white;
+    background-color: white;
+    width: 800px;
+    margin-left: 35px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 991px){
+    .triviacontainer{
+        height: 600px;
+    }
+    .insidecontainer{
+       width: 600px !important;
+       height: 500px;
+    }
+    .inputs{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .dropdown-toggle{
+        margin-left: 70%;
+        margin-right: 0; 
+    }
+
+}
+
+@media screen and (max-width: 882px) {
+    .insidecontainer {
+      width: 650px;
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .triviacontainer{
+        height: 600px;
+    }
+    .insidecontainer {
+      width: 450px !important;
+      align-items: center;
+      align-content: center;
+      height: 500px;
+    }
+
+    .dropdown-toggle{
+        margin-left: 42%;
+    }
+    .inputs{
+        margin-left: 3%;
+    }
+   
+}
+
+
+@media screen and (max-width: 576px){
+    .triviacontainer{
+        width: 550px !important;
+    }
+    .inputs{
+        margin-left: -3%;
+    }
+
+}
+
+@media screen and (max-width: 552px){
+    .triviacontainer{
+        width: 500px !important;
+    }
+    .insidecontainer{
+       width: 400px !important;
+    }
+    .inputs{
+        margin-left: 3%;
+    }
+    .dropdown-toggle{
+        margin-left: 32%;
+    }
+
+}
+
+
+.dropdown{
+    margin-top: 15px;;
+    align-content: center;
+    width: 250px;
+}
+
+.dropdown-toggle{
+    width: 250px;
+    background-color: #343a40 !important;
+}
+
+.dropdown-toggle:hover{
+    background-color: #212529 !important;
+}
+
+.inputs{
+    width: 250px;
+    text-align: center;
+}
+
+.start{
+    margin-top: 50px;
+    width: 130px;
+}

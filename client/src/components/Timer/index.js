@@ -1,10 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Timer.css";
 
-const Timer = ({ score, gameover }) => {
+const Timer = ({ secondsPassed, score, gameover }) => {
   const [time, setTime] = useState(new Date().toLocaleTimeString());
-
-  const secondsPassed = useRef(60);
 
   useEffect(() => {
     const timeout = setTimeout(() => {

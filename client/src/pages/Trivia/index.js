@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import "./Trivia.css";
 import { decode } from "html-entities";
@@ -14,6 +14,8 @@ function Trivia() {
 
   const triviaInfo = useContext(TriviaContext);
   const userInfo = useContext(LoggedInContext);
+
+  const secondsPassed = useRef(60);
 
   const [allQuestions, setAllQuestions] = useState([]);
 
@@ -105,7 +107,7 @@ function Trivia() {
   const gameover = () => {
     API.postScore({
       username: userInfo.username,
-      score: pageState.score
+      score: pageState.score + secondsPassed.current
     })
       .then(() => history.push("/scores"));
   }
@@ -142,7 +144,7 @@ function Trivia() {
     <div className="container pt-5">
       <div className="timer">
         <span id="time">
-          <Timer score={pageState.score} gameover={gameover} />
+          <Timer secondsPassed={secondsPassed} score={pageState.score} gameover={gameover} />
         </span>
       </div>
 

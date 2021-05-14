@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import LoggedInContext from "../utils/LoggedInContext";
-import API from "../utils/API";
-import FormInput from "../components/FormInput";
+import LoggedInContext from "../../utils/LoggedInContext";
+import API from "../../utils/API";
+import FormInput from "../../components/FormInput";
+import './Profile.css';
 
 function Profile() {
   const userInfo = useContext(LoggedInContext);
@@ -81,24 +82,25 @@ function Profile() {
   }, [userState]);
 
   return (
-    <div class="container pt-5">
+    <div class="container profilecontain">
+        <h2>Update Profile</h2>
+
       {/* Card Header */}
-      <div className="card border border-dark">
-        <div className="card-header text-center bg-warning">
-          <h2>Update Profile</h2>
-        </div>
+      <div className="insidecontain">
+        {/* <div className="card-header text-center bg-warning"> */}
+        {/* </div> */}
 
         {/* Welcome */}
         <div className="userId text-center">
           <h3>
             Welcome, {userState.firstName + " " + userState.lastName}
           </h3>
-          <h5 id="user-number">
+          {/* <h5 id="user-number">
             Username: {userState.username}
           </h5>
           <h5 id="user-number">
             Email: {userState.email}
-          </h5>
+          </h5> */}
         </div>
 
         <h3 className="text-center" style={{ color: "red" }}>{errorState}</h3>
@@ -155,7 +157,7 @@ function Profile() {
             <button
               type="submit"
               id="update-user"
-              className="btn btn-primary mr-3"
+              className="btn btn-dark mr-3"
               onClick={handleSubmit}
             >
               Update
@@ -163,7 +165,7 @@ function Profile() {
             <button
               type="submit"
               id="delete-user"
-              className="btn btn-primary mr-3"
+              className="btn btn-dark mr-3"
             >
               Delete
             </button>

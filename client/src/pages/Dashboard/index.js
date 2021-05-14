@@ -2,8 +2,6 @@ import React, {useState, useContext } from "react";
 import API from "../../utils/API";
 import LoggedInContext from "../../utils/LoggedInContext";
 import "./Dashboard.css";
-import YourEvents from "../../components/YourEvents";
-import YourInvitations from "../../components/YourInvitations";
 import LogInBox from "../../components/LogInBox";
 
 function Dashboard() {
@@ -40,13 +38,13 @@ function Dashboard() {
             <h3>Your Invitations</h3>
             <div className="eventlist">
             <ul class="list-group">
-              <li class="list-group-item invitelist">Kelly Invited You to a Nights-In on 08/12/21</li>
-              <li class="list-group-item list-group-item-warning invitelist">Mark Invited You to a Nights-In on 08/12/21</li>
+              <li class="list-group-item invitelist">Kelly Invited You to a Nights-In on 05/30/21 at 5:00 PM </li>
+              <li class="list-group-item list-group-item-warning invitelist">Mark Invited You to a Nights-In on 06/24/21 at 10:00 PM</li>
               <li class="list-group-item invitelist">Adam Invited You to a Nights-In on 08/12/21</li>
-              <li class="list-group-item list-group-item-warning invitelist">Sandra Invited You to a Nights-In on 08/12/21</li>
+              <li class="list-group-item list-group-item-warning invitelist">Sandra Invited You to a Nights-In on 10/12/21 at 1:00AM </li>
               <li class="list-group-item invitelist">Hannah Invited You to a Nights-In on 08/12/21</li>
-              <li class="list-group-item list-group-item-warning invitelist">Jake Invited You to a Nights-In on 08/12/21</li>
-              <li class="list-group-item">Lauren Invited You to a Nights-In on 08/12/21</li>
+              <li class="list-group-item list-group-item-warning invitelist">Jake Invited You to a Nights-In on 12/12/21 at 3:00 PM</li>
+              <li class="list-group-item">Lauren Invited You to a Nights-In on 01/12/22 at 4:00 PM</li>
             </ul>
             </div>
           </div>
@@ -55,11 +53,11 @@ function Dashboard() {
             <h3>Events Your Hosting</h3>
             <div className="eventlist">
               <ul class="list-group">
-                <li class="list-group-item list-group-item-warning invitelist">You are hosting a Nights-In on 8/24/21</li>
+                <li class="list-group-item list-group-item-warning invitelist">You are hosting a Nights-In on 8/26/21 at 4:00 PM</li>
                 <li class="list-group-item invitelist">You are hosting a Nights-In on 8/24/21</li>
-                <li class="list-group-item list-group-item-warning invitelist">You are hosting a Nights-In on 8/24/21</li>
+                <li class="list-group-item list-group-item-warning invitelist">You are hosting a Nights-In on 11/24/21 at 7:00 PM</li>
                 <li class="list-group-item invitelist">You are hosting a Nights-In on 8/24/21</li>
-                <li class="list-group-item list-group-item-warning invitelist">You are hosting a Nights-In on 8/24/21</li>
+                <li class="list-group-item list-group-item-warning invitelist">You are hosting a Nights-In on 12/4/21 at 11:00 PM</li>
               </ul>
 
             </div>

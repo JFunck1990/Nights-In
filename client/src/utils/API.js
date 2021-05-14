@@ -53,6 +53,15 @@ const API = {
       }
     });
   },
+  updateUser: function(data) {
+    return axios.put(`/api/user/${data.id}`, {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      username: data.username,
+      email: data.email,
+      password: data.password
+    });
+  },
   login: function(data) {
     return axios.post("/api/login", data);
   },

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import "./Trivia.css";
 import { decode } from "html-entities";
@@ -15,20 +15,23 @@ function Trivia() {
   const triviaInfo = useContext(TriviaContext);
   const userInfo = useContext(LoggedInContext);
 
+  const secondsPassed = useRef(60);
+
   const [allQuestions, setAllQuestions] = useState([]);
 
   const [questionState, setQuestionState] = useState({
     question: "",
     correct: "",
     incorrect: [],
-    index: -1
+    index: -1,
+    difficulty: ""
   });
 
   const [choicesState, setChoicesState] = useState([]);
 
   const [pageState, setPageState] = useState({
     score: 0,
-    answer: "",
+    answer: ""
   });
 
   const decodeHTMLEntities = (string) => {
@@ -58,7 +61,8 @@ function Trivia() {
         question: decodeHTMLEntities(nextQuestion.question),
         correct: decodeHTMLEntities(nextQuestion.correct_answer),
         incorrect: answers,
-        index: questionState.index + 1
+        index: questionState.index + 1,
+        difficulty: nextQuestion.difficulty
       });
     }
 
@@ -72,18 +76,38 @@ function Trivia() {
 
     const value = event.target.value
 
-    if(value !== questionState.correct){
-      setPageState({ score: pageState.score - 1, answer: "Wrong!"});
+    if(value !== questionState.correct) {
+      setPageState({ ...pageState, answer: "Wrong!"});
     }
     else {
-      setPageState({ score: pageState.score + 1, answer: "Correct!"});
+      let addedScore;
+
+      switch (questionState.difficulty) {
+        case "easy":
+          addedScore = 5;
+          break;
+
+        case "medium":
+          addedScore = 10;
+          break;
+
+        case "hard":
+          addedScore = 15;
+          break;
+
+        default:
+          addedScore = 10;
+          console.log("Error: Difficulty was an unexpected result: ", questionState.difficulty);
+      }
+
+      setPageState({ score: pageState.score + addedScore, answer: "Correct!"});
     }
   }
 
   const gameover = () => {
     API.postScore({
       username: userInfo.username,
-      score: pageState.score
+      score: pageState.score + secondsPassed.current
     })
       .then(() => history.push("/scores"));
   }
@@ -92,16 +116,13 @@ function Trivia() {
     API.getQuestions(triviaInfo)
       .then((res) => {
         setAllQuestions(res.data.results);
+        console.log(res.data.results);
       });
   }, []);
 
   useEffect(() => {
     handleNewQuestion();
-  }, [allQuestions]);
-
-  useEffect(() => {
-    handleNewQuestion();
-  }, [pageState]);
+  }, [allQuestions, pageState]);
 
   useEffect(() => {
     let choices = [questionState.correct];
@@ -123,7 +144,7 @@ function Trivia() {
     <div className="container pt-5">
       <div className="timer">
         <span id="time">
-          <Timer score={pageState.score}></Timer>
+          <Timer secondsPassed={secondsPassed} score={pageState.score} gameover={gameover} />
         </span>
       </div>
 

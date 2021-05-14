@@ -21,14 +21,15 @@ function Trivia() {
     question: "",
     correct: "",
     incorrect: [],
-    index: -1
+    index: -1,
+    difficulty: ""
   });
 
   const [choicesState, setChoicesState] = useState([]);
 
   const [pageState, setPageState] = useState({
     score: 0,
-    answer: "",
+    answer: ""
   });
 
   const decodeHTMLEntities = (string) => {
@@ -58,7 +59,8 @@ function Trivia() {
         question: decodeHTMLEntities(nextQuestion.question),
         correct: decodeHTMLEntities(nextQuestion.correct_answer),
         incorrect: answers,
-        index: questionState.index + 1
+        index: questionState.index + 1,
+        difficulty: nextQuestion.difficulty
       });
     }
 
@@ -72,11 +74,31 @@ function Trivia() {
 
     const value = event.target.value
 
-    if(value !== questionState.correct){
-      setPageState({ score: pageState.score - 1, answer: "Wrong!"});
+    if(value !== questionState.correct) {
+      setPageState({ ...pageState, answer: "Wrong!"});
     }
     else {
-      setPageState({ score: pageState.score + 1, answer: "Correct!"});
+      let addedScore;
+
+      switch (questionState.difficulty) {
+        case "easy":
+          addedScore = 5;
+          break;
+
+        case "medium":
+          addedScore = 10;
+          break;
+
+        case "hard":
+          addedScore = 15;
+          break;
+
+        default:
+          addedScore = 10;
+          console.log("Error: Difficulty was an unexpected result: ", questionState.difficulty);
+      }
+
+      setPageState({ score: pageState.score + addedScore, answer: "Correct!"});
     }
   }
 
@@ -92,16 +114,13 @@ function Trivia() {
     API.getQuestions(triviaInfo)
       .then((res) => {
         setAllQuestions(res.data.results);
+        console.log(res.data.results);
       });
   }, []);
 
   useEffect(() => {
     handleNewQuestion();
-  }, [allQuestions]);
-
-  useEffect(() => {
-    handleNewQuestion();
-  }, [pageState]);
+  }, [allQuestions, pageState]);
 
   useEffect(() => {
     let choices = [questionState.correct];
@@ -123,7 +142,7 @@ function Trivia() {
     <div className="container pt-5">
       <div className="timer">
         <span id="time">
-          <Timer score={pageState.score}></Timer>
+          <Timer score={pageState.score} />
         </span>
       </div>
 

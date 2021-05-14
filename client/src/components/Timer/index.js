@@ -6,7 +6,7 @@ const Timer = (props) => {
 
   const [time, setTime] = useState(new Date().toLocaleTimeString());
 
-  const secondsPassed = useRef(500);
+  const secondsPassed = useRef(60);
 
   useEffect(() => {
     const timeout = setTimeout(() => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import LoggedInContext from "../utils/LoggedInContext";
 import API from "../utils/API";
+import FormInput from "../components/FormInput";
 
 function Profile() {
   const userInfo = useContext(LoggedInContext);
@@ -9,9 +10,17 @@ function Profile() {
     firstName: "",
     lastName: "",
     username: "",
-    email: "",
-    password: ""
+    email: ""
   });
+
+  const [newInfoState, setNewInfoState] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: ""
+  });
+
+  const [errorState, setErrorState] = useState("");
 
   const handleProfile = () => {
     API.getUser(userInfo.id)
@@ -21,16 +30,55 @@ function Profile() {
           firstName: data.firstName,
           lastName: data.lastName,
           username: data.username,
-          email: data.email,
-          password: data.id
+          email: data.email
         });
       });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (newInfoState.firstName.length === 0
+      || newInfoState.lastName.length === 0
+      || newInfoState.username.length === 0
+      || newInfoState.email.length === 0)
+    {
+      setErrorState("*Please fill out all fields*");
+    }
+    else if (newInfoState.firstName === userState.firstName
+      && newInfoState.lastName === userState.lastName
+      && newInfoState.username === userState.username
+      && newInfoState.email === userState.email)
+    {
+      setErrorState("*Change at least one field*");
+    }
+    else {
+      setErrorState("");
+
+      API.updateUser({
+        id: userInfo.id,
+        firstName: newInfoState.firstName,
+        lastName: newInfoState.lastName,
+        username: newInfoState.username,
+        email: newInfoState.email
+      })
+        .then(() => handleProfile());
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    setNewInfoState({ ...newInfoState, [name]: value });
   };
 
   useEffect(() => {
     handleProfile();
   }, []);
 
+  useEffect(() => {
+    setNewInfoState(userState);
+  }, [userState]);
 
   return (
     <div class="container pt-5">
@@ -43,61 +91,63 @@ function Profile() {
         {/* Welcome */}
         <div className="userId text-center">
           <h3>
-            Welcome, {userState.firstName}
+            Welcome, {userState.firstName + " " + userState.lastName}
           </h3>
-          <h5 id="user-number" data-useremail={userState.email}>
+          <h5 id="user-number">
+            Username: {userState.username}
+          </h5>
+          <h5 id="user-number">
             Email: {userState.email}
           </h5>
         </div>
 
-        <h3 id="update-err-msg"></h3>
+        <h3 className="text-center" style={{ color: "red" }}>{errorState}</h3>
 
         <form id="user-form">
           {/* First & Last Name */}
           <div className="form-row p-2">
-            <div className="form-group col-md-6">
-              <label for="inputFirst">First Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="inputFirst"
-                value={userState.firstName}
-                placeholder="John"
-              ></input>
-            </div>
+            <FormInput
+              id="inputFirst"
+              colSize="6"
+              placeholder="John"
+              label="First Name"
+              name="firstName"
+              value={newInfoState.firstName}
+              handler={handleInputChange}
+            />
 
-            <div className="form-group col-md-6">
-              <label for="inputLast">Last Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="inputLast"
-                value={userState.lastName}
-                placeholder="Doe"
-              ></input>
-            </div>
+            <FormInput
+              id="inputLast"
+              colSize="6"
+              placeholder="Doe"
+              label="Last Name"
+              name="lastName"
+              value={newInfoState.lastName}
+              handler={handleInputChange}
+            />
           </div>
 
           {/* Email & Password */}
           <div className="form-row p-2">
-            <div className="form-group col-md-6">
-              <label for="inputPassword">Email</label>
-              <input
-                type="text"
-                class="form-control"
-                id="inputEmail"
-                value={userState.email}
-              ></input>
-            </div>
-            <div className="form-group col-md-6">
-              <label for="inputPassword">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="inputPassword"
-                value={userState.password}
-              ></input>
-            </div>
+            <FormInput
+              id="inputUsername"
+              colSize="6"
+              placeholder="Username"
+              label="Username"
+              name="username"
+              value={newInfoState.username}
+              handler={handleInputChange}
+            />
+
+            <FormInput
+              id="inputEmail"
+              colSize="6"
+              placeholder="example@email.com"
+              label="Email"
+              name="email"
+              value={newInfoState.email}
+              handler={handleInputChange}
+            />
           </div>
 
           {/* Buttons */}
@@ -105,8 +155,8 @@ function Profile() {
             <button
               type="submit"
               id="update-user"
-              data-id="{{userInfo.id}}"
               className="btn btn-primary mr-3"
+              onClick={handleSubmit}
             >
               Update
             </button>
@@ -116,14 +166,6 @@ function Profile() {
               className="btn btn-primary mr-3"
             >
               Delete
-            </button>
-            <button
-              type="submit"
-              id="view-user"
-              data-id="{{userInfo.id}}"
-              className="btn btn-primary"
-            >
-              Refresh
             </button>
           </div>
         </form>

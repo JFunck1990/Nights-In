@@ -64,52 +64,67 @@ function Register() {
             </header>
 
             <form id= "create-form">
-              <FormInput
-                id="inputFirst"
-                placeholder="John"
-                label="First Name"
-                name="firstName"
-                value={infoState.firstName}
-                handler={handleInputChange}
-              />
+              <div className="form-row">
+                <FormInput
+                  id="inputFirst"
+                  colSize="12"
+                  placeholder="John"
+                  label="First Name"
+                  name="firstName"
+                  value={infoState.firstName}
+                  handler={handleInputChange}
+                />
+              </div>
 
-              <FormInput
-                id="inputLast"
-                placeholder="Doe"
-                label="Last Name"
-                name="lastName"
-                value={infoState.lastName}
-                handler={handleInputChange}
-              />
+              <div className="form-row">
+                <FormInput
+                  id="inputLast"
+                  colSize="12"
+                  placeholder="Doe"
+                  label="Last Name"
+                  name="lastName"
+                  value={infoState.lastName}
+                  handler={handleInputChange}
+                />
+              </div>
 
-              <FormInput
-                id="inputUsername"
-                placeholder="Username"
-                label="Username"
-                name="username"
-                value={infoState.username}
-                handler={handleInputChange}
-              />
+              <div className="form-row">
+                <FormInput
+                  id="inputUsername"
+                  colSize="12"
+                  placeholder="Username"
+                  label="Username"
+                  name="username"
+                  value={infoState.username}
+                  handler={handleInputChange}
+                />
+              </div>
 
-              <FormInput
-                id="inputEmail"
-                type="email"
-                placeholder="example@email.com"
-                label="Email"
-                name="email"
-                value={infoState.email}
-                handler={handleInputChange}
-              />
+              <div className="form-row">
+                <FormInput
+                  id="inputEmail"
+                  type="email"
+                  colSize="12"
+                  placeholder="example@email.com"
+                  label="Email"
+                  name="email"
+                  value={infoState.email}
+                  handler={handleInputChange}
+                />
+              </div>
 
-              <FormInput
-                id="inputPassword"
-                type="password"
-                placeholder="password123"
-                label="Password"
-                name="password"
-                value={infoState.password}
-                handler={handleInputChange}
-              />
+              <div className="form-row">
+                <FormInput
+                  id="inputPassword"
+                  type="password"
+                  colSize="12"
+                  placeholder="password123"
+                  label="Password"
+                  name="password"
+                  value={infoState.password}
+                  handler={handleInputChange}
+                />
+              </div>
 
               <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
             </form>

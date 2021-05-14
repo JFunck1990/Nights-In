@@ -73,25 +73,31 @@ function Login({ setLoggedInState }) {
             </header>
 
             <form id="create-form">
-              <FormInput
-                id="inputEmail"
-                type="email"
-                placeholder="example@email.com"
-                label="Email"
-                name="email"
-                value={infoState.email}
-                handler={handleInputChange}
-              />
+              <div className="form-row">
+                <FormInput
+                  id="inputEmail"
+                  type="email"
+                  colSize="12"
+                  placeholder="example@email.com"
+                  label="Email"
+                  name="email"
+                  value={infoState.email}
+                  handler={handleInputChange}
+                />
+              </div>
 
-              <FormInput
-                id="inputPassword"
-                type="password"
-                placeholder="password123"
-                label="Password"
-                name="password"
-                value={infoState.password}
-                handler={handleInputChange}
-              />
+              <div className="form-row">
+                <FormInput
+                  id="inputPassword"
+                  type="password"
+                  colSize="12"
+                  placeholder="password123"
+                  label="Password"
+                  name="password"
+                  value={infoState.password}
+                  handler={handleInputChange}
+                />
+              </div>
 
               <button
                 type="submit"

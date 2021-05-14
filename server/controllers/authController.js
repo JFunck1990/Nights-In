@@ -26,12 +26,9 @@ module.exports = (passport, db) => {
       db.User.findOne({
         where: { id: req.query.id }
       }).then((user) => {
-        // if (!user) {
-        //   return res.json(false);
-        // }
-        // if (!user.validPassword(pwd)) {
-        //   return res.json(false);
-        // }
+        if (!user) {
+          return res.json(false);
+        }
         return res.json(user);
       });
     },
@@ -67,17 +64,23 @@ module.exports = (passport, db) => {
       });
     },
     updateUser: (req, res) => {
-      // console.log('req.body:', req.body);
+      // res.json({
+      //   body: req.body,
+      //   params: req.params
+      // });
+
+      // if (!user.validPassword(pwd)) {
+      //   return res.json(false);
+      // }
+
       db.User.update({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
+        email: req.body.email
       }, {
         where: { id: req.params.id }
       }).then(result => {
-        // console.log(result);
         res.json(result);
       });
     },

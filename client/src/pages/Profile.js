@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import LoggedInContext from "../utils/LoggedInContext";
 import API from "../utils/API";
 import FormInput from "../components/FormInput";
+import ModalComp from "../components/ModalComp";
 
 function Profile() {
   const userInfo = useContext(LoggedInContext);
@@ -17,7 +18,14 @@ function Profile() {
     firstName: "",
     lastName: "",
     username: "",
-    email: ""
+    email: "",
+    currentPassword: "",
+    newPassword: ""
+  });
+
+  const [modalState, setModalState] = useState({
+    show: false,
+    type: ""
   });
 
   const [errorState, setErrorState] = useState("");
@@ -35,7 +43,7 @@ function Profile() {
       });
   };
 
-  const handleSubmit = (event) => {
+  const handleUpdate = (event) => {
     event.preventDefault();
 
     if (newInfoState.firstName.length === 0
@@ -55,14 +63,10 @@ function Profile() {
     else {
       setErrorState("");
 
-      API.updateUser({
-        id: userInfo.id,
-        firstName: newInfoState.firstName,
-        lastName: newInfoState.lastName,
-        username: newInfoState.username,
-        email: newInfoState.email
-      })
-        .then(() => handleProfile());
+      setModalState({
+        show: true,
+        type: "update"
+      });
     }
   };
 
@@ -72,16 +76,44 @@ function Profile() {
     setNewInfoState({ ...newInfoState, [name]: value });
   };
 
+  const handleSubmit = () => {
+    if (modalState.type === "update") {
+      API.updateUser({
+        id: userInfo.id,
+        firstName: newInfoState.firstName,
+        lastName: newInfoState.lastName,
+        username: newInfoState.username,
+        email: newInfoState.email,
+        currentPassword: newInfoState.currentPassword,
+        newPassword: newInfoState.newPassword
+      })
+        .then(() => handleProfile());
+    }
+    else if (modalState.type === "delete") {
+      console.log("delete")
+    }
+    else {
+      console.log("error")
+    }
+  }
+
   useEffect(() => {
     handleProfile();
   }, []);
 
   useEffect(() => {
-    setNewInfoState(userState);
+    setNewInfoState({
+      firstName: userState.firstName,
+      lastName: userState.lastName,
+      username: userState.username,
+      email: userState.email,
+      currentPassword: "",
+      newPassword: ""
+    });
   }, [userState]);
 
   return (
-    <div class="container pt-5">
+    <div className="container pt-5">
       {/* Card Header */}
       <div className="card border border-dark">
         <div className="card-header text-center bg-warning">
@@ -156,7 +188,7 @@ function Profile() {
               type="submit"
               id="update-user"
               className="btn btn-primary mr-3"
-              onClick={handleSubmit}
+              onClick={handleUpdate}
             >
               Update
             </button>
@@ -170,70 +202,19 @@ function Profile() {
           </div>
         </form>
 
-        <div
-          className="modal"
-          id="delete-user-modal"
-          tabIndex="-1"
-          role="dialog"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">
-                  Re-Enter Credentials to delete user
-                </h5>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-
-              <div className="modal-body">
-                <h3>Sign In:</h3>
-                <form>
-                  <div className="form-group">
-                    <label for="userEmail">Email:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="userEmail"
-                    ></input>
-                  </div>
-                  <div className="form-group">
-                    <label for="userPassword">Password:</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="userPassword"
-                    ></input>
-                  </div>
-                </form>
-              </div>
-
-              <div className="modal-footer">
-                <button
-                  id="confirm-delete"
-                  type="button"
-                  data-id="{{userInfo.id}}"
-                  className="btn btn-primary"
-                >
-                  Confirm Delete
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Nah I'll stay
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ModalComp
+          show={modalState.show}
+          handleClose={() => {
+            console.log(newInfoState);
+            setModalState({ show: false, type: "" })
+          }}
+          stateValue={newInfoState.currentPassword}
+          handleInputChange={handleInputChange}
+          handleSubmit={() => {
+            handleSubmit();
+            setModalState({ show: false, type: "" })
+          }}
+        />
       </div>
     </div>
   );

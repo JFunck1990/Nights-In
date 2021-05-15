@@ -54,14 +54,16 @@ function Register() {
   };
 
   return (
-    <Container>
+    <div className="register">
       <Row>
         <Col size="md-12">
-          <div id="register-form">
             <header className="create-user-wrap header-wrap" align="center">
               <h1>Create Your Account</h1>
               <h3 id="err-msg">{errorState}</h3>
             </header>
+
+          <div id="register-form">
+            
 
             <form id= "create-form">
               <div className="form-row">
@@ -126,12 +128,12 @@ function Register() {
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+              <button type="submit" className="btn btn-dark" onClick={handleSubmit}>Submit</button>
             </form>
           </div>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
 

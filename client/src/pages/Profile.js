@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import LoggedInContext from "../utils/LoggedInContext";
 import API from "../utils/API";
 import FormInput from "../components/FormInput";
 import ModalComp from "../components/ModalComp";
 
-function Profile() {
+function Profile({ setLoggedInState }) {
+  const history = useHistory();
   const userInfo = useContext(LoggedInContext);
 
   const [userState, setUserState] = useState({
@@ -99,10 +101,20 @@ function Profile() {
         });
     }
     else if (modalState.type === "delete") {
-      console.log("delete")
-    }
-    else {
-      console.log("error")
+      API.deleteUser({
+        id: userInfo.id,
+        password: modalState.currentPassword
+      })
+        .then((response) => {
+          if (response.data) {
+            setErrorState("");
+            setLoggedInState({ loggedIn: false, id: -1, username: "" });
+            history.push("/");
+          }
+          else {
+            setErrorState("*That password was incorrect*");
+          }
+        });
     }
   }
 
@@ -213,6 +225,17 @@ function Profile() {
               type="submit"
               id="delete-user"
               className="btn btn-primary mr-3"
+              onClick={(event) => {
+                event.preventDefault();
+
+                setErrorState("");
+
+                setModalState({
+                  show: true,
+                  type: "delete",
+                  currentPassword: ""
+                });
+              }}
             >
               Delete
             </button>

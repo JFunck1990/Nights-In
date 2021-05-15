@@ -109,14 +109,19 @@ module.exports = (passport, db) => {
         return res.json(true);
       });
     },
-    deleteUser: (req, res) => {
-      db.User.destroy({
-        where: { id: req.params.id }
-      }).then(() => {
-        res.json(true);
-      }).catch(() => {
-        res.json(false);
-      });
+    deleteUser: ({ params }, res) => {
+      db.User.findOne({ where: { id: params.id } })
+        .then(data => {
+          if (data.validPassword(params.password)) {
+            db.User.destroy({
+              where: { id: params.id }
+            })
+              .then(() => res.json(true));
+          }
+          else {
+            res.json(false);
+          }
+        });
     }
   };
 };

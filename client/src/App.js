@@ -73,7 +73,7 @@ function App() {
               </Route>
 
               <Route path={"/profile"}>
-                <Profile />
+                <Profile setLoggedInState={setLoggedInState} />
               </Route>
 
               <Route path={"/trivia"}>

@@ -63,6 +63,9 @@ const API = {
       newPassword: data.newPassword
     });
   },
+  deleteUser: function(data) {
+    return axios.delete(`/api/user/${data.id}/${data.password}`);
+  },
   login: function(data) {
     return axios.post("/api/login", data);
   },

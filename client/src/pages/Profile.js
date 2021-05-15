@@ -33,7 +33,6 @@ function Profile() {
   const handleProfile = () => {
     API.getUser(userInfo.id)
       .then(({ data }) => {
-        console.log(data);
         setUserState({
           firstName: data.firstName,
           lastName: data.lastName,
@@ -56,7 +55,8 @@ function Profile() {
     else if (newInfoState.firstName === userState.firstName
       && newInfoState.lastName === userState.lastName
       && newInfoState.username === userState.username
-      && newInfoState.email === userState.email)
+      && newInfoState.email === userState.email
+      && newInfoState.newPassword === "")
     {
       setErrorState("*Change at least one field*");
     }
@@ -65,7 +65,8 @@ function Profile() {
 
       setModalState({
         show: true,
-        type: "update"
+        type: "update",
+        currentPassword: ""
       });
     }
   };
@@ -148,7 +149,6 @@ function Profile() {
             <FormInput
               id="inputFirst"
               colSize="6"
-              placeholder="John"
               label="First Name"
               name="firstName"
               value={newInfoState.firstName}
@@ -158,7 +158,6 @@ function Profile() {
             <FormInput
               id="inputLast"
               colSize="6"
-              placeholder="Doe"
               label="Last Name"
               name="lastName"
               value={newInfoState.lastName}
@@ -166,12 +165,11 @@ function Profile() {
             />
           </div>
 
-          {/* Email & Password */}
+          {/* Username & Email */}
           <div className="form-row p-2">
             <FormInput
               id="inputUsername"
               colSize="6"
-              placeholder="Username"
               label="Username"
               name="username"
               value={newInfoState.username}
@@ -181,10 +179,22 @@ function Profile() {
             <FormInput
               id="inputEmail"
               colSize="6"
-              placeholder="example@email.com"
               label="Email"
               name="email"
               value={newInfoState.email}
+              handler={handleInputChange}
+            />
+          </div>
+
+          <hr/>
+
+          <div className="form-row p-2">
+            <FormInput
+              id="inputPassword"
+              colSize="12"
+              label="New Password (optional)"
+              name="newPassword"
+              value={newInfoState.newPassword}
               handler={handleInputChange}
             />
           </div>
@@ -211,10 +221,7 @@ function Profile() {
 
         <ModalComp
           modalState={modalState}
-          handleClose={() => {
-            console.log(modalState);
-            setModalState({ show: false, type: "", currentPassword: "" })
-          }}
+          handleClose={() => setModalState({ show: false, type: "", currentPassword: "" })}
           handleInputChange={(event) => setModalState({ ...modalState, currentPassword: event.target.value })}
           handleSubmit={() => {
             handleSubmit();

@@ -61,7 +61,8 @@
     "passport-local": "^1.0.0",
     "react-bootstrap": "^1.5.2",
     "react-icons": "^4.2.0",
-    "sequelize": "^6.5.1"
+    "sequelize": "^6.5.1",
+    "socket.io": "^4.1.1"
   },
   "devDependencies": {
     "concurrently": "^6.0.2",

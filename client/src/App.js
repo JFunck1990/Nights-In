@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import LoggedInContext from "./utils/LoggedInContext";
 import TriviaContext from "./utils/TriviaContext";
 import MobileMenu from "./components/MobileMenu";
@@ -15,6 +15,7 @@ import Invite from "./pages/Invite";
 import background from "./images/black-brick.png";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
+import ChatBox from "./components/ChatBox";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -62,9 +63,14 @@ function App() {
             <Navbar toggle={toggle} setLoggedInState={setLoggedInState} />
             <Switch>
               <Route exact path={"/"}>
-                <Dashboard />
+                <Redirect to="/dashboard" />
               </Route>
-              <Route exact path={"/login"}>
+
+              <Route exact path={"/dashboard"} component={Dashboard} />
+
+              <Route path={"/dashboard/:roomId"} component={Dashboard} />
+
+              <Route path={"/login"}>
                 <Login setLoggedInState={setLoggedInState} />
               </Route>
 

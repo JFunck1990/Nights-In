@@ -55,7 +55,7 @@ function Trivia() {
 
     if (nextQuestion) {
       const incorrect = nextQuestion.incorrect_answers;
-      const answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
+      let answers = [decode(incorrect[0]), decode(incorrect[1]), decode(incorrect[2])];
 
       setQuestionState({
         question: decodeHTMLEntities(nextQuestion.question),
@@ -116,7 +116,6 @@ function Trivia() {
     API.getQuestions(triviaInfo)
       .then((res) => {
         setAllQuestions(res.data.results);
-        console.log(res.data.results);
       });
   }, []);
 
@@ -125,20 +124,27 @@ function Trivia() {
   }, [allQuestions, pageState]);
 
   useEffect(() => {
-    let choices = [questionState.correct];
+    if (triviaInfo.type === "multiple") {
+      let choices = [questionState.correct];
 
-    for (let index = 0; index < 3; index++) {
-      const random = Math.floor(Math.random() * 2);
+      for (let index = 0; index < 3; index++) {
+        const random = Math.floor(Math.random() * 2);
 
-      if (random === 0) {
-        choices.unshift(questionState.incorrect[index]);
-      } else {
-        choices.push(questionState.incorrect[index]);
+        if (random === 0) {
+          choices.unshift(questionState.incorrect[index]);
+        } else {
+          choices.push(questionState.incorrect[index]);
+        }
       }
-    }
 
-    setChoicesState(choices);
+      setChoicesState(choices);
+    }
+    else {
+      setChoicesState(["True", "False"]);
+    }
   }, [questionState]);
+
+  useEffect(() => {console.log(questionState.correct)}, [choicesState])
 
   return (
     <div className="container pt-5">
@@ -172,19 +178,26 @@ function Trivia() {
             <Answer choice={choicesState[1]} />
           </div>
 
-          <div
-            className="col-lg-12 text-center pt-1 pb-1"
-            onClick={handleFormSubmit}
-          >
-            <Answer choice={choicesState[2]} />
-          </div>
+          { triviaInfo.type === "multiple" ?
+            <>
+              <div
+                className="col-lg-12 text-center pt-1 pb-1"
+                onClick={handleFormSubmit}
+              >
+                <Answer choice={choicesState[2]} />
+              </div>
 
-          <div
-            className="col-lg-12 text-center pt-1 pb-1"
-            onClick={handleFormSubmit}
-          >
-            <Answer choice={choicesState[3]} />
-          </div>
+              <div
+                className="col-lg-12 text-center pt-1 pb-1"
+                onClick={handleFormSubmit}
+              >
+                <Answer choice={choicesState[3]} />
+              </div>
+            </>
+          :
+            null
+          }
+
           <div>
             <h1>{pageState.answer}</h1>
           </div>

@@ -9,6 +9,13 @@ const helmet = require("helmet");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+const http = require("http").Server(app);
+const socketIO = require("socket.io")(http, {
+  cors: {
+    origin: "*"
+  }
+});
+
 const db = require("./server/models");
 const scoreSeeds = require("./server/db/scoreSeeds");
 
@@ -62,6 +69,32 @@ if (app.get("env") === "test") {
   syncOptions.force = true;
 }
 
+const NEW_CHAT_MESSAGE_EVENT = "newChatMessage" /*process.env.NEW_CHAT_MESSAGE_EVENT*/
+
+socketIO.on("connection", function(socket) {
+  console.log("==================================");
+  console.log("A user connected");
+  console.log("==================================");
+
+  // Join a conversation
+  const { roomId } = socket.handshake.query;
+  socket.join(roomId);
+
+   // Listen for new messages
+   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
+    console.log("Recieved message on server");
+    socketIO.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
+  });
+
+  // Leave the room if the user closes the socket
+  socket.on("disconnect", () => {
+    socket.leave(roomId);
+    console.log("==================================");
+    console.log("A user disconnected");
+    console.log("==================================");
+  });
+});
+
 db.sequelize.sync(syncOptions).then(() => {
   if (app.get("env") !== "test" && syncOptions.force) {
     require("./server/db/scoreSeeds")(db);
@@ -73,7 +106,7 @@ db.sequelize.sync(syncOptions).then(() => {
     }
   });
 
-  app.listen(PORT, () => {
+  http.listen(PORT, () => {
     console.log(`App listening on port: ${PORT}`);
   });
 });

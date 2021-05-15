@@ -199,7 +199,7 @@ function TriviaSetup() {
               name="numberQuestions"
               actions={["5", "10", "15", "20", "25", "30"]}
             />
-            <input className="inputs" value={displayState.numberQuestions} />
+            <input className="inputs" value={displayState.numberQuestions} onChange={() => undefined} />
           </div>
           <div className="col-lg-1 col-md-0"></div>
 
@@ -215,7 +215,7 @@ function TriviaSetup() {
                           "Mythology", "Sports", "Geography", "History", "Politics", "Art", "Celebrities",
                           "Animals", "Vehicles", "Comics", "Gadgets", "Anime & Manga", "Cartoons & Animations"]}
               />
-              <input className="inputs" value={displayState.category} />
+              <input className="inputs" value={displayState.category} onChange={() => undefined} />
           </div>
         </div>
         
@@ -229,7 +229,7 @@ function TriviaSetup() {
               name="difficulty"
               actions={["Easy", "Medium", "Hard"]}
             />
-            <input className="inputs" value={displayState.difficulty} />
+            <input className="inputs" value={displayState.difficulty} onChange={() => undefined} />
           </div>
 
           <div className="col-lg-1 col-md-0"></div>
@@ -242,7 +242,7 @@ function TriviaSetup() {
               name="type"
               actions={["Multiple Choice", "True-False"]}
             />
-            <input className="inputs" value={displayState.type} />
+            <input className="inputs" value={displayState.type} onChange={() => undefined} />
           </div>
          
 

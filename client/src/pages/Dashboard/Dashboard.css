@@ -13,13 +13,13 @@
 
 .orange-border {
   background-color: #ffc107;
-  margin: 10px;
   box-shadow: 5px 5px 10px 10px #ffc107;
   border-color: #ffc107;
   box-shadow: 0 0 10px#ffc107;
   text-align: center;
   border-radius: 10px;
   padding: 10px;
+  margin: 0px;
 }
 
 .eventlist{
@@ -39,5 +39,4 @@
 
 .invitelist{
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
 }

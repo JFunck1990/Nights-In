@@ -1,10 +1,9 @@
-import React, {useState, useContext } from "react";
-import { Link } from "react-router-dom";
-import API from "../../utils/API";
+import React, { useContext } from "react";
 import LoggedInContext from "../../utils/LoggedInContext";
 import "./Dashboard.css";
 import LogInBox from "../../components/LogInBox";
 import ChatBox from "../../components/ChatBox";
+import RoomSelect from "../../components/RoomSelect";
 
 function Dashboard(props) {
   const userInfo = useContext(LoggedInContext);
@@ -18,14 +17,11 @@ function Dashboard(props) {
         </div>
       </div>
       {userInfo.loggedIn ? (
-        // <ChatBox roomId={props.match.params.roomId} />
-        props.match.params.roomId ? 
-          (<ChatBox roomId={props.match.params.roomId} />)
-        :
-          (<>
-            <div style={{ color: "white" }}>Logged in but not in a room</div>
-            <Link to="/dashboard/abc" style={{ backgroundColor: "white" }}>Enter room: abc</Link>
-          </>)
+        <div className="row">
+          <RoomSelect rooms={["Public", "Friends", "Joe"]} />
+          <div className="col-lg-1" />
+          <ChatBox roomId={props.match.params.roomId} />
+        </div>
       ) : (
         <LogInBox />
       )}

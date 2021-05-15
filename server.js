@@ -81,9 +81,8 @@ socketIO.on("connection", function(socket) {
   socket.join(roomId);
 
    // Listen for new messages
-   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
-    console.log("Recieved message on server");
-    socketIO.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
+   socket.on("newChatMessage", (data) => {
+    socketIO.in(roomId).emit("newChatMessage", data);
   });
 
   // Leave the room if the user closes the socket

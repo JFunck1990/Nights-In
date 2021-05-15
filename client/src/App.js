@@ -62,11 +62,9 @@ function App() {
             <MobileMenu isOpen={isOpen} toggle={toggle} />
             <Navbar toggle={toggle} setLoggedInState={setLoggedInState} />
             <Switch>
-              <Route exact path={"/"}>
-                <Redirect to="/dashboard" />
+              <Route exact path={["/", "/dashboard"]}>
+                <Redirect to="/dashboard/public" />
               </Route>
-
-              <Route exact path={"/dashboard"} component={Dashboard} />
 
               <Route path={"/dashboard/:roomId"} component={Dashboard} />
 

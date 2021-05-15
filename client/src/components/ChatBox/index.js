@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useChat from "../../utils/useChat";
 
 const ChatBox = ({ roomId }) => {
@@ -10,42 +10,41 @@ const ChatBox = ({ roomId }) => {
   };
 
   const handleSendMessage = () => {
-    console.log("Sending message from chat box");
     sendMessage(newMessage);
     setNewMessage("");
   };
 
-  return (
-    <div className="row">
-      <div className="col-lg-1" />
+  useEffect(() => {
+    console.log(messages);
+  }, [messages]);
 
-      <div className="col-lg-5 orange-border">
-        <div className="chat-room-container">
-          <h1 className="room-name">Room: {roomId}</h1>
-          <div className="messages-container">
-            <ol className="messages-list">
-              {messages.map((message, i) => (
-                <li
-                  key={i}
-                  className={`message-item ${
-                    message.ownedByCurrentUser ? "my-message" : "received-message"
-                  }`}
-                >
-                  {message.body}
-                </li>
-              ))}
-            </ol>
-          </div>
-          <textarea
-            value={newMessage}
-            onChange={handleNewMessageChange}
-            placeholder="Write message..."
-            className="new-message-input-field"
-          />
-          <button onClick={handleSendMessage} className="send-message-button">
-            Send
-          </button>
+  return (
+    <div className="col-lg-6 orange-border">
+      <div className="chat-room-container">
+        <h1 className="room-name">Chat: {roomId}</h1>
+        <div className="messages-container">
+          <ol className="messages-list">
+            {messages.map((message, i) => (
+              <li
+                key={i}
+                className={`message-item ${
+                  message.ownedByCurrentUser ? "my-message" : "received-message"
+                }`}
+              >
+                {message.body}
+              </li>
+            ))}
+          </ol>
         </div>
+        <textarea
+          value={newMessage}
+          onChange={handleNewMessageChange}
+          placeholder="Write message..."
+          className="new-message-input-field"
+        />
+        <button onClick={handleSendMessage} className="send-message-button">
+          Send
+        </button>
       </div>
     </div>
   );

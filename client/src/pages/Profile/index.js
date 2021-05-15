@@ -131,6 +131,10 @@ function Profile({ setLoggedInState }) {
       email: userState.email,
       newPassword: ""
     });
+
+    if (userState.username !== userInfo.username) {
+      setLoggedInState({ ...userInfo, username: userState.username });
+    }
   }, [userState]);
 
   return (

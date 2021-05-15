@@ -59,7 +59,8 @@ const API = {
       lastName: data.lastName,
       username: data.username,
       email: data.email,
-      password: data.password
+      currentPassword: data.currentPassword,
+      newPassword: data.newPassword
     });
   },
   login: function(data) {

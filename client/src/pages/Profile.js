@@ -87,7 +87,15 @@ function Profile() {
         currentPassword: modalState.currentPassword,
         newPassword: newInfoState.newPassword
       })
-        .then(() => handleProfile());
+        .then((response) => {
+          if (response.data) {
+            setErrorState("");
+            handleProfile();
+          }
+          else {
+            setErrorState("*That password was incorrect*");
+          }
+        });
     }
     else if (modalState.type === "delete") {
       console.log("delete")

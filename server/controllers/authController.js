@@ -63,26 +63,35 @@ module.exports = (passport, db) => {
         res.redirect('/');
       });
     },
-    updateUser: (req, res) => {
-      // res.json({
-      //   body: req.body,
-      //   params: req.params
-      // });
+    updateUser: ({ body, params }, res) => {
+      db.User.findOne({ where: { id: params.id } })
+        .then(data => {
+          if (data.validPassword(body.currentPassword)) {
+            let password;
 
-      // if (!user.validPassword(pwd)) {
-      //   return res.json(false);
-      // }
+            if (body.newPassword) {
+              password = body.newPassword;
+            }
+            else {
+              password = body.currentPassword;
+            }
 
-      db.User.update({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        username: req.body.username,
-        email: req.body.email
-      }, {
-        where: { id: req.params.id }
-      }).then(result => {
-        res.json(result);
-      });
+            db.User.update({
+              firstName: body.firstName,
+              lastName: body.lastName,
+              username: body.username,
+              email: body.email,
+              password: password
+            }, {
+              where: { id: params.id }
+            }).then(() => {
+              res.json(true);
+            });
+          }
+          else {
+            res.json(false);
+          }
+        });
     },
     confirmAuth: (req, res) => {
       const email = req.body.email;

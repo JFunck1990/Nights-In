@@ -63,16 +63,18 @@ function Login({ setLoggedInState }) {
   };
 
   return (
-    <Container className="login">
+    <div className="login">
       <Row>
         <Col size="md-12">
-          <div id="register-form">
-            <header className="create-user-wrap header-wrap" align="center">
-              <h1>Login To Your Account</h1>
+          <header className="create-user-wrap header-wrap" align="center">
+              <h1 className="loginheader">Login To Your Account</h1>
               <h3 id="err-msg">{errorState}</h3>
-            </header>
+          </header>
+          
+          <div id="register-form">
+            
 
-            <form id="create-form">
+            <div id="create-form">
               <div className="form-row">
                 <FormInput
                   id="inputEmail"
@@ -101,16 +103,16 @@ function Login({ setLoggedInState }) {
 
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-dark"
                 onClick={handleSubmit}
               >
                 Submit
               </button>
-            </form>
+            </div>
           </div>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
 

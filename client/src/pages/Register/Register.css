@@ -1,9 +1,100 @@
-#register-form {
-  background-color: #e9ecef;
-  padding: 10px;
-  border-radius: .3rem;
+#err-msg {
+  color: black;
 }
 
-#err-msg {
-  color: red;
+.container {
+  margin-top: 50px;
+}
+
+.register{
+  background-color: #ffc107;
+  box-shadow: 5px 5px 10px 10px #ffc107;
+  border-color: #ffc107;
+  box-shadow: 0 0 10px#ffc107;
+  border-radius: 10px;
+  height: 600px;
+  margin-top: 50px;
+  padding-top: 10px;
+  width: 1000px !important;
+  margin-left: 15%;
+
+}
+
+#register-form{
+  background-color: white;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 1300px){
+  .register{
+    width: 900px !important;
+  }
+}
+
+@media screen and (max-width: 1200px){
+  .register{
+    width: 800px !important;
+  }
+}
+
+@media screen and (max-width: 1060px){
+  .register{
+    width: 700px !important;
+  }
+}
+
+@media screen and (max-width: 950px){
+  .register{
+    width: 600px !important;
+  }
+}
+
+@media screen and (max-width: 767px){
+  .register{
+    width: 500px !important;
+    height: 600px;
+  }
+
+  .loginheader{
+    font-size: 35px !important;
+  }
+
+  #err-msg{
+    font-size: 25px !important;
+  }
+
+}
+
+@media screen and (max-width: 680px){
+  .register{
+    width: 400px !important;
+  }
+
+  .loginheader{
+    font-size: 30px !important;
+  }
+
+  #err-msg{
+    font-size: 20px !important;
+  }
+
+}
+
+
+@media screen and (max-width: 510px){
+  .register{
+    margin-left: 10%;
+  }
+
+  .loginheader{
+    font-size: 30px !important;
+  }
+
+  #err-msg{
+    font-size: 20px !important;
+  }
+
 }

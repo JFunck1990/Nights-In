@@ -199,14 +199,9 @@ function Trivia() {
           }
 
           <div>
-            <h1>{pageState.answer}</h1>
+            <h1 className="text-center p-2">{pageState.answer}</h1>
           </div>
 
-          <div className="col-lg-12 text-center">
-            <button className="btn btn-success" onClick={handleNewQuestion}>
-              Next Question
-            </button>
-          </div>
         </div>
       </div>
     </div>

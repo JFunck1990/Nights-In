@@ -19,13 +19,13 @@ function Profile() {
     lastName: "",
     username: "",
     email: "",
-    currentPassword: "",
     newPassword: ""
   });
 
   const [modalState, setModalState] = useState({
     show: false,
-    type: ""
+    type: "",
+    currentPassword: ""
   });
 
   const [errorState, setErrorState] = useState("");
@@ -84,7 +84,7 @@ function Profile() {
         lastName: newInfoState.lastName,
         username: newInfoState.username,
         email: newInfoState.email,
-        currentPassword: newInfoState.currentPassword,
+        currentPassword: modalState.currentPassword,
         newPassword: newInfoState.newPassword
       })
         .then(() => handleProfile());
@@ -107,7 +107,6 @@ function Profile() {
       lastName: userState.lastName,
       username: userState.username,
       email: userState.email,
-      currentPassword: "",
       newPassword: ""
     });
   }, [userState]);
@@ -203,16 +202,15 @@ function Profile() {
         </form>
 
         <ModalComp
-          show={modalState.show}
+          modalState={modalState}
           handleClose={() => {
-            console.log(newInfoState);
-            setModalState({ show: false, type: "" })
+            console.log(modalState);
+            setModalState({ show: false, type: "", currentPassword: "" })
           }}
-          stateValue={newInfoState.currentPassword}
-          handleInputChange={handleInputChange}
+          handleInputChange={(event) => setModalState({ ...modalState, currentPassword: event.target.value })}
           handleSubmit={() => {
             handleSubmit();
-            setModalState({ show: false, type: "" })
+            setModalState({ show: false, type: "", currentPassword: "" })
           }}
         />
       </div>

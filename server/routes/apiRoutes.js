@@ -11,7 +11,7 @@ module.exports = (passport, db) => {
   router.post('/login', AuthController.login);
   router.get('/logout', AuthController.logout);
   router.put('/user/:id', ensureAuthenticated, AuthController.updateUser);
-  router.delete('/user/:id', ensureAuthenticated, AuthController.deleteUser);
+  router.delete('/user/:id/:password', ensureAuthenticated, AuthController.deleteUser);
   router.post('/user/confirm', AuthController.confirmAuth);
 
   // App

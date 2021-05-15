@@ -5,77 +5,37 @@
     border-color: #ffc107;
     box-shadow: 0 0 10px#ffc107;
     border-radius: 10px;
-    height: 420px;
     margin-top: 50px;
     text-align: center;
     padding-top: 10px;
+    padding-bottom: 42px;
     width: 900px !important;
 }
 
 .insidecontain{
     align-content: center;
     padding-top: 30px;
-    height: 340px;
-    color: white;
     background-color: white;
-    width: 840px;
-    margin-left: 15px;
+    width: 95%;
+    margin-left: 2%;
     border-radius: 10px;
 }
 
-@media screen and (max-width: 991px){
-    .profilecontain{
-        height: 450px;
-    }
-    .insidecontain{
-       width: 660px !important;
-       height: 360px;
-    }
-}
-
-@media screen and (max-width: 882px) {
-    .insidecontain {
-      width: 650px;
-    }
-}
-
-
-
 @media screen and (max-width: 767px) {
-    .profilecontain{
-        height: 580px;
-    }
     .insidecontain {
-      width: 480px !important;
       align-items: center;
       align-content: center;
-      height: 500px;
     }
-   
 }
-
 
 @media screen and (max-width: 576px){
     .profilecontain{
         width: 550px !important;
     }
-
-
 }
 
 @media screen and (max-width: 552px){
     .profilecontain{
         width: 500px !important;
     }
-    .insidecontain{
-       width: 430px !important;
-    }
- 
-
 }
-
-.userId{
-    color: black;
-}
-
-

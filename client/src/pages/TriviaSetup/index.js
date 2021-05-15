@@ -14,7 +14,14 @@ function TriviaSetup() {
     numberQuestions: 5,
     category: 9,
     difficulty: "easy",
-    type: "multiple"
+    type: "multiple",
+  });
+
+  const [displayState, setDisplayState] = useState({
+    numberQuestions: 5,
+    category: "General Knowledge",
+    difficulty: "Easy",
+    type: "Multiple Choice"
   });
 
   const handleSubmit = () => {
@@ -25,153 +32,155 @@ function TriviaSetup() {
   function handleInputChange(event) {
     const name = event.target.name;
     let value = event.target.value;
-    let cat = event.target.cat;
-    let ty = event.target.ty;
+    let displayValue = "";
     
     if (name === "difficulty") {
+      displayValue = value;
       value = value.toLowerCase();
     }
     else if (name === "numberQuestions") {
+      displayValue = value;
       value = parseInt(value);
     }
     else if (name === "type") {
       if (value === "Multiple Choice") {
         value = "multiple";
-        ty = "Multiple Choice";
+        displayValue = "Multiple Choice";
         
       }
       else {
         value = "boolean";
-        ty = "True-False";
+        displayValue = "True-False";
       }
     }
     else if (name === "category") {
       switch (value) {
         case "General Knowledge":
           value = 9;
-          cat = "General Knowledge";
+          displayValue = "General Knowledge";
           break;
         
         case "Books":
           value = 10;
-          cat = "Books";
+          displayValue = "Books";
           break;
 
         case "Film":
           value = 11;
-          cat = "Film";
+          displayValue = "Film";
           break;
 
         case "Music":
           value = 12;
-          cat = "Music";
+          displayValue = "Music";
           break;
 
         case "Musicals & Theatre":
           value = 13;
-          cat = "Musicals & Theatre";
+          displayValue = "Musicals & Theatre";
           break;
 
         case "Television":
           value = 14;
-          cat = "Television";
+          displayValue = "Television";
           break;
 
         case "Video Games":
           value = 15;
-          cat = "Video Games";
+          displayValue = "Video Games";
           break;
 
         case "Board Games":
           value = 16;
-          cat = "Board Games";
+          displayValue = "Board Games";
           break;
 
         case "Science & Nature":
           value = 17;
-          cat = "Science & Nature";
+          displayValue = "Science & Nature";
           break;
 
         case "Computer Science":
           value = 18;
-          cat = "Computer Science";
+          displayValue = "Computer Science";
           break;
 
         case "Mathematics":
           value = 19;
-          cat = "Mathematics";
+          displayValue = "Mathematics";
           break;
 
         case "Mythology":
           value = 20;
-          cat = "Mythology";
+          displayValue = "Mythology";
           break;
 
         case "Sports":
           value = 21;
-          cat = "Sports";
+          displayValue = "Sports";
           break;
 
         case "Geography":
           value = 22;
-          cat = "Geography";
+          displayValue = "Geography";
           break;
 
         case "History":
           value = 23;
-          cat = "History";
+          displayValue = "History";
           break;
 
         case "Politics":
           value = 24;
-          cat = "Politics";
+          displayValue = "Politics";
           break;
 
         case "Art":
           value = 25;
-          cat = "Art";
+          displayValue = "Art";
           break;
 
         case "Celebrities":
           value = 26;
-          cat = "Celebrities";
+          displayValue = "Celebrities";
           break;
 
         case "Animals":
           value = 27;
-          cat = "Animals";
+          displayValue = "Animals";
           break;
 
         case "Vehicles":
           value = 28;
-          cat = "Vehicles";
+          displayValue = "Vehicles";
           break;
 
         case "Comics":
           value = 29;
-          cat = "Comics"
+          displayValue = "Comics"
           break;
 
         case "Gadgets":
           value = 30;
-          cat = "Gadgets";
+          displayValue = "Gadgets";
           break;
 
         case "Anime & Manga":
           value = 31;
-          cat = "Anime & Manga";
+          displayValue = "Anime & Manga";
           break;
 
         case "Cartoons & Animations":
           value = 32;
-          cat = "Cartoons & Animations";
+          displayValue = "Cartoons & Animations";
           break;
         
         default:
       }
     }
 
-    setSetupState({ ...setupState, [name]: value, category: cat, type: ty });
+    setSetupState({ ...setupState, [name]: value });
+    setDisplayState({ ...displayState, [name]: displayValue });
   }
 
   return (
@@ -190,7 +199,7 @@ function TriviaSetup() {
               name="numberQuestions"
               actions={["5", "10", "15", "20", "25", "30"]}
             />
-            <input className="inputs" defaultValue={"5"}value={setupState.numberQuestions} />
+            <input className="inputs" value={displayState.numberQuestions} />
           </div>
           <div className="col-lg-1 col-md-0"></div>
 
@@ -206,7 +215,7 @@ function TriviaSetup() {
                           "Mythology", "Sports", "Geography", "History", "Politics", "Art", "Celebrities",
                           "Animals", "Vehicles", "Comics", "Gadgets", "Anime & Manga", "Cartoons & Animations"]}
               />
-              <input className="inputs" defaultValue={"General Knowledge"} value={setupState.category} />
+              <input className="inputs" value={displayState.category} />
           </div>
         </div>
         
@@ -220,7 +229,7 @@ function TriviaSetup() {
               name="difficulty"
               actions={["Easy", "Medium", "Hard"]}
             />
-            <input className="inputs" defaultValue={"Easy"} value={setupState.difficulty} />
+            <input className="inputs" value={displayState.difficulty} />
           </div>
 
           <div className="col-lg-1 col-md-0"></div>
@@ -233,7 +242,7 @@ function TriviaSetup() {
               name="type"
               actions={["Multiple Choice", "True-False"]}
             />
-            <input className="inputs" defaultValue={"Multiple Choice"} value={setupState.type} />
+            <input className="inputs" value={displayState.type} />
           </div>
          
 

@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import LoggedInContext from "../../utils/LoggedInContext";
 import API from "../../utils/API";
 import FormInput from "../../components/FormInput";
+import ModalComp from "../../components/ModalComp";
 import './Profile.css';
 
-function Profile() {
+function Profile({ setLoggedInState }) {
+  const history = useHistory();
   const userInfo = useContext(LoggedInContext);
 
   const [userState, setUserState] = useState({
@@ -18,7 +21,14 @@ function Profile() {
     firstName: "",
     lastName: "",
     username: "",
-    email: ""
+    email: "",
+    newPassword: ""
+  });
+
+  const [modalState, setModalState] = useState({
+    show: false,
+    type: "",
+    currentPassword: ""
   });
 
   const [errorState, setErrorState] = useState("");
@@ -26,7 +36,6 @@ function Profile() {
   const handleProfile = () => {
     API.getUser(userInfo.id)
       .then(({ data }) => {
-        console.log(data);
         setUserState({
           firstName: data.firstName,
           lastName: data.lastName,
@@ -36,7 +45,7 @@ function Profile() {
       });
   };
 
-  const handleSubmit = (event) => {
+  const handleUpdate = (event) => {
     event.preventDefault();
 
     if (newInfoState.firstName.length === 0
@@ -49,21 +58,19 @@ function Profile() {
     else if (newInfoState.firstName === userState.firstName
       && newInfoState.lastName === userState.lastName
       && newInfoState.username === userState.username
-      && newInfoState.email === userState.email)
+      && newInfoState.email === userState.email
+      && newInfoState.newPassword === "")
     {
       setErrorState("*Change at least one field*");
     }
     else {
       setErrorState("");
 
-      API.updateUser({
-        id: userInfo.id,
-        firstName: newInfoState.firstName,
-        lastName: newInfoState.lastName,
-        username: newInfoState.username,
-        email: newInfoState.email
-      })
-        .then(() => handleProfile());
+      setModalState({
+        show: true,
+        type: "update",
+        currentPassword: ""
+      });
     }
   };
 
@@ -73,12 +80,57 @@ function Profile() {
     setNewInfoState({ ...newInfoState, [name]: value });
   };
 
+  const handleSubmit = () => {
+    if (modalState.type === "update") {
+      API.updateUser({
+        id: userInfo.id,
+        firstName: newInfoState.firstName,
+        lastName: newInfoState.lastName,
+        username: newInfoState.username,
+        email: newInfoState.email,
+        currentPassword: modalState.currentPassword,
+        newPassword: newInfoState.newPassword
+      })
+        .then((response) => {
+          if (response.data) {
+            setErrorState("");
+            handleProfile();
+          }
+          else {
+            setErrorState("*That password was incorrect*");
+          }
+        });
+    }
+    else if (modalState.type === "delete") {
+      API.deleteUser({
+        id: userInfo.id,
+        password: modalState.currentPassword
+      })
+        .then((response) => {
+          if (response.data) {
+            setErrorState("");
+            setLoggedInState({ loggedIn: false, id: -1, username: "" });
+            history.push("/");
+          }
+          else {
+            setErrorState("*That password was incorrect*");
+          }
+        });
+    }
+  }
+
   useEffect(() => {
     handleProfile();
   }, []);
 
   useEffect(() => {
-    setNewInfoState(userState);
+    setNewInfoState({
+      firstName: userState.firstName,
+      lastName: userState.lastName,
+      username: userState.username,
+      email: userState.email,
+      newPassword: ""
+    });
   }, [userState]);
 
   return (
@@ -95,12 +147,12 @@ function Profile() {
           <h3>
             Welcome, {userState.firstName + " " + userState.lastName}
           </h3>
-          {/* <h5 id="user-number">
+          <h5 id="user-number">
             Username: {userState.username}
           </h5>
           <h5 id="user-number">
             Email: {userState.email}
-          </h5> */}
+          </h5>
         </div>
 
         <h3 className="text-center" style={{ color: "red" }}>{errorState}</h3>
@@ -111,7 +163,6 @@ function Profile() {
             <FormInput
               id="inputFirst"
               colSize="6"
-              placeholder="John"
               label="First Name"
               name="firstName"
               value={newInfoState.firstName}
@@ -121,7 +172,6 @@ function Profile() {
             <FormInput
               id="inputLast"
               colSize="6"
-              placeholder="Doe"
               label="Last Name"
               name="lastName"
               value={newInfoState.lastName}
@@ -129,12 +179,11 @@ function Profile() {
             />
           </div>
 
-          {/* Email & Password */}
+          {/* Username & Email */}
           <div className="form-row p-2">
             <FormInput
               id="inputUsername"
               colSize="6"
-              placeholder="Username"
               label="Username"
               name="username"
               value={newInfoState.username}
@@ -144,10 +193,22 @@ function Profile() {
             <FormInput
               id="inputEmail"
               colSize="6"
-              placeholder="example@email.com"
               label="Email"
               name="email"
               value={newInfoState.email}
+              handler={handleInputChange}
+            />
+          </div>
+
+          <hr/>
+
+          <div className="form-row p-2">
+            <FormInput
+              id="inputPassword"
+              colSize="12"
+              label="New Password (optional)"
+              name="newPassword"
+              value={newInfoState.newPassword}
               handler={handleInputChange}
             />
           </div>
@@ -158,7 +219,7 @@ function Profile() {
               type="submit"
               id="update-user"
               className="btn btn-dark mr-3"
-              onClick={handleSubmit}
+              onClick={handleUpdate}
             >
               Update
             </button>
@@ -166,76 +227,32 @@ function Profile() {
               type="submit"
               id="delete-user"
               className="btn btn-dark mr-3"
+              onClick={(event) => {
+                event.preventDefault();
+
+                setErrorState("");
+
+                setModalState({
+                  show: true,
+                  type: "delete",
+                  currentPassword: ""
+                });
+              }}
             >
               Delete
             </button>
           </div>
         </form>
 
-        <div
-          className="modal"
-          id="delete-user-modal"
-          tabIndex="-1"
-          role="dialog"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">
-                  Re-Enter Credentials to delete user
-                </h5>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-
-              <div className="modal-body">
-                <h3>Sign In:</h3>
-                <form>
-                  <div className="form-group">
-                    <label for="userEmail">Email:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="userEmail"
-                    ></input>
-                  </div>
-                  <div className="form-group">
-                    <label for="userPassword">Password:</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="userPassword"
-                    ></input>
-                  </div>
-                </form>
-              </div>
-
-              <div className="modal-footer">
-                <button
-                  id="confirm-delete"
-                  type="button"
-                  data-id="{{userInfo.id}}"
-                  className="btn btn-primary"
-                >
-                  Confirm Delete
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Nah I'll stay
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <ModalComp
+          modalState={modalState}
+          handleClose={() => setModalState({ show: false, type: "", currentPassword: "" })}
+          handleInputChange={(event) => setModalState({ ...modalState, currentPassword: event.target.value })}
+          handleSubmit={() => {
+            handleSubmit();
+            setModalState({ show: false, type: "", currentPassword: "" })
+          }}
+        />
       </div>
     </div>
   );

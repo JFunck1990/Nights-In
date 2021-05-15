@@ -59,8 +59,12 @@ const API = {
       lastName: data.lastName,
       username: data.username,
       email: data.email,
-      password: data.password
+      currentPassword: data.currentPassword,
+      newPassword: data.newPassword
     });
+  },
+  deleteUser: function(data) {
+    return axios.delete(`/api/user/${data.id}/${data.password}`);
   },
   login: function(data) {
     return axios.post("/api/login", data);

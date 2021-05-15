@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import LoggedInContext from "../utils/LoggedInContext";
-import API from "../utils/API";
-import FormInput from "../components/FormInput";
-import ModalComp from "../components/ModalComp";
+import LoggedInContext from "../../utils/LoggedInContext";
+import API from "../../utils/API";
+import FormInput from "../../components/FormInput";
+import ModalComp from "../../components/ModalComp";
+import './Profile.css';
 
 function Profile({ setLoggedInState }) {
   const history = useHistory();
@@ -133,12 +134,13 @@ function Profile({ setLoggedInState }) {
   }, [userState]);
 
   return (
-    <div className="container pt-5">
+    <div class="container profilecontain">
+        <h2>Update Profile</h2>
+
       {/* Card Header */}
-      <div className="card border border-dark">
-        <div className="card-header text-center bg-warning">
-          <h2>Update Profile</h2>
-        </div>
+      <div className="insidecontain">
+        {/* <div className="card-header text-center bg-warning"> */}
+        {/* </div> */}
 
         {/* Welcome */}
         <div className="userId text-center">
@@ -216,7 +218,7 @@ function Profile({ setLoggedInState }) {
             <button
               type="submit"
               id="update-user"
-              className="btn btn-primary mr-3"
+              className="btn btn-dark mr-3"
               onClick={handleUpdate}
             >
               Update
@@ -224,7 +226,7 @@ function Profile({ setLoggedInState }) {
             <button
               type="submit"
               id="delete-user"
-              className="btn btn-primary mr-3"
+              className="btn btn-dark mr-3"
               onClick={(event) => {
                 event.preventDefault();
 

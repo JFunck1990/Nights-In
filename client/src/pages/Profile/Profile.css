@@ -1,0 +1,41 @@
+
+.profilecontain{
+    background-color: #ffc107;
+    box-shadow: 5px 5px 10px 10px #ffc107;
+    border-color: #ffc107;
+    box-shadow: 0 0 10px#ffc107;
+    border-radius: 10px;
+    margin-top: 50px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 42px;
+    width: 900px !important;
+}
+
+.insidecontain{
+    align-content: center;
+    padding-top: 30px;
+    background-color: white;
+    width: 95%;
+    margin-left: 2%;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .insidecontain {
+      align-items: center;
+      align-content: center;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .profilecontain{
+        width: 550px !important;
+    }
+}
+
+@media screen and (max-width: 552px){
+    .profilecontain{
+        width: 500px !important;
+    }
+}

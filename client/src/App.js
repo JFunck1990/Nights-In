@@ -36,9 +36,9 @@ function App() {
         numberQuestions: newData.numberQuestions,
         category: newData.category,
         difficulty: newData.difficulty,
-        type: newData.type
+        type: newData.type,
       });
-    }
+    },
   });
 
   const toggle = () => {
@@ -49,7 +49,7 @@ function App() {
     <div
       style={{
         backgroundImage: `url(${background})`,
-        height: "1100px",
+        height: "1200px",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",

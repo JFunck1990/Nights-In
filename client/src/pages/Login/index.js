@@ -5,7 +5,7 @@ import { Container, Row, Col } from "../../components/Grid";
 import FormInput from "../../components/FormInput";
 import { useHistory } from "react-router-dom";
 
-function Login({ setLoggedInState }) {
+function Login({ assignLoginData }) {
   const history = useHistory();
 
   const [infoState, setInfoState] = useState({
@@ -41,11 +41,7 @@ function Login({ setLoggedInState }) {
       API.login(infoState)
         .then(({ data }) => {
           if (data.loggedIn) {
-            setLoggedInState({
-              loggedIn: true,
-              id: data.id,
-              username: data.username,
-            });
+            assignLoginData(data);
             history.push("/");
           } else {
             setErrorState("*The password or email was incorrect*");

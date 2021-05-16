@@ -45,7 +45,8 @@ module.exports = (passport, db) => {
             return res.status(200).json({
               loggedIn: true,
               id: user.dataValues.id,
-              username: user.dataValues.username
+              username: user.dataValues.username,
+              chatRooms: user.dataValues.chatRooms
             });
           });
         } else {

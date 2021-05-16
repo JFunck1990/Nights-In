@@ -17,7 +17,8 @@ module.exports = (passport, db) => {
   // App
   router.get('/invite', AppController.sendInvite);
   router.get("/scores", AppController.getScores);
-  router.post("/scores", AppController.postScore)
+  router.post("/scores", AppController.postScore);
+  router.put("/chat-rooms/:id", AppController.updateChatRooms);
   // router.get("/trivia/name", AppController.getName);
   // router.get("/invite", AppController.)
   return router;

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import useChat from "../../utils/useChat";
 
 const ChatBox = ({ roomId }) => {
@@ -13,10 +13,6 @@ const ChatBox = ({ roomId }) => {
     sendMessage(newMessage);
     setNewMessage("");
   };
-
-  useEffect(() => {
-    console.log(messages);
-  }, [messages]);
 
   return (
     <div className="col-lg-6 orange-border">

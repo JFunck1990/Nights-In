@@ -71,6 +71,9 @@ const API = {
   },
   logout: function() {
     return axios.get("/api/logout");
+  },
+  updateChatRooms: function({ id, chatRooms }) {
+    return axios.put(`/api/chat-rooms/${id}`, { chatRooms: chatRooms });
   }
 };
 

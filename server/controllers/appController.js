@@ -62,6 +62,11 @@ module.exports = function (db) {
           }
         });
     },
+    updateChatRooms: ({ body, params }, res) => {
+      db.User.update({ chatRooms: body.chatRooms }, { where: { id: params.id } })
+        .then(() => res.json(true))
+        .catch(() => res.json(false));
+    },
     getTriviaByScore: (req, res) => {
       db.Trivia.findAll({ where: { score: req.params.score } })
         .then((dbTrivia) => {

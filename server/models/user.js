@@ -28,6 +28,10 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    chatRooms: {
+      type: DataTypes.STRING,
+      defaultValue: "Public"
+    },
     isAdmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false

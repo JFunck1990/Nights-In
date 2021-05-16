@@ -24,7 +24,24 @@ function App() {
     loggedIn: false,
     id: -1,
     username: "",
+    chatRooms: "",
+    changeContext: () => undefined
   });
+
+  const assignLoginData = (data) => {
+    setLoggedInState({
+      loggedIn: true,
+      id: data.id,
+      username: data.username,
+      chatRooms: data.chatRooms,
+      changeContext: (name, value, state) => {
+        setLoggedInState({
+          ...state,
+          [name]: value
+        });
+      }
+    });
+  };
 
   const [triviaState, setTriviaState] = useState({
     numberQuestions: 5,
@@ -62,16 +79,14 @@ function App() {
             <MobileMenu isOpen={isOpen} toggle={toggle} />
             <Navbar toggle={toggle} setLoggedInState={setLoggedInState} />
             <Switch>
-              <Route exact path={"/"}>
-                <Redirect to="/dashboard" />
+              <Route exact path={["/", "/dashboard"]}>
+                <Redirect to="/dashboard/Public" />
               </Route>
-
-              <Route exact path={"/dashboard"} component={Dashboard} />
 
               <Route path={"/dashboard/:roomId"} component={Dashboard} />
 
               <Route path={"/login"}>
-                <Login setLoggedInState={setLoggedInState} />
+                <Login assignLoginData={assignLoginData} />
               </Route>
 
               <Route path={"/register"}>

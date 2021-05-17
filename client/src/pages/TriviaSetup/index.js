@@ -191,7 +191,7 @@ function TriviaSetup() {
       <div className="insidecontainer">
         <div className="row">
           <div className="col-lg-2 col-md-0"></div>
-          <div className="col-lg-3 ">
+          <div className="col-lg-3">
             <DropdownInput 
               className="dropdown"
               title="Number of Questions"

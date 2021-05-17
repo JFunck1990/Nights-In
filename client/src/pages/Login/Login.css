@@ -15,9 +15,6 @@
   height: 350px;
   margin-top: 50px;
   padding-top: 10px;
-  width: 900px !important;
-  margin-left: 15%;
-
 }
 
 #register-form{
@@ -26,68 +23,6 @@
   margin-right: 20px;
 }
 
-@media screen and (max-width: 1200px){
-  .login{
-    width: 800px !important;
-  }
-}
-
-@media screen and (max-width: 1060px){
-  .login{
-    width: 700px !important;
-  }
-}
-
-@media screen and (max-width: 950px){
-  .login{
-    width: 600px !important;
-  }
-}
-
-@media screen and (max-width: 767px){
-  .login{
-    width: 500px !important;
-    height: 350px;
-  }
-
-  .loginheader{
-    font-size: 35px !important;
-  }
-
-  #err-msg{
-    font-size: 25px !important;
-  }
-
-}
-
-@media screen and (max-width: 680px){
-  .login{
-    width: 400px !important;
-  }
-
-  .loginheader{
-    font-size: 30px !important;
-  }
-
-  #err-msg{
-    font-size: 20px !important;
-  }
-
-}
-
-
-
-@media screen and (max-width: 510px){
-  .login{
-    margin-left: 10%;
-  }
-
-  .loginheader{
-    font-size: 30px !important;
-  }
-
-  #err-msg{
-    font-size: 20px !important;
-  }
-
+.main{
+  align-items: center;
 }

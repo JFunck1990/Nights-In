@@ -54,6 +54,13 @@ function Register() {
   };
 
   return (
+    <div className="container">
+    <div className="row">
+      <div className="col-lg-1 col-sm-1">
+      </div>
+      <div className="col-lg-10 col-md-12 col-sm-10 col-xs-12">
+
+     
     <div className="register">
       <Row>
         <Col size="md-12">
@@ -134,6 +141,9 @@ function Register() {
         </Col>
       </Row>
     </div>
+  </div>
+</div>
+</div>
   );
 }
 

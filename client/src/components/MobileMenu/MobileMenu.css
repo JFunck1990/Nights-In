@@ -54,7 +54,7 @@
 }
 
 a:hover{
-    color: yellow;
+    color: #ffc107 !important;
     transition: 0.2s ease-in-out;
 }
 

@@ -69,7 +69,7 @@ function Login({ assignLoginData }) {
             <Row>
               <Col size="md-12">
                 <header className="create-user-wrap header-wrap" align="center">
-                    <h1 className="loginheader">Login To Your Account</h1>
+                    <h1 style={{fontStyle: "italic"}} className="loginheader">Login To Your Account</h1>
                     <h3 id="err-msg">{errorState}</h3>
                 </header>
                 

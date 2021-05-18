@@ -186,7 +186,7 @@ function TriviaSetup() {
   return (
     <div className="container triviacontainer">
       {/* <div className="card-header text-center triviacontainer"> */}
-        <h2>Setup your game!</h2>
+        <h2 style={{fontStyle: "italic"}}>Setup your game!</h2>
       {/* </div> */}
       <div className="insidecontainer">
         <div className="row">

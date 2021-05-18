@@ -18,11 +18,17 @@ function MobileMenu({ isOpen, toggle }) {
           <a className="pages" href="/" onClick={toggle}>
             Home
           </a>
+          <a className="pages" href="/trivia-setup" onClick={toggle}>
+            Trivia
+          </a>
           <a className="pages" href="/scores" onClick={toggle}>
             Scores
           </a>
           <a className="pages" href="/profile" onClick={toggle}>
             Profile
+          </a>
+          <a className="pages" href="/invite" onClick={toggle}>
+            Invite
           </a>
           <a className="pages" href="/logout" onClick={toggle}>
             Logout

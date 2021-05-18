@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import LoggedInContext from "../../utils/LoggedInContext";
 import API from "../../utils/API";
 import "./Dashboard.css";
-import LogInBox from "../../components/LogInBox";
 import ChatBox from "../../components/ChatBox";
 import RoomSelect from "../../components/RoomSelect";
 
@@ -27,23 +26,19 @@ function Dashboard(props) {
           <h1 className="brand-header">Nights-In</h1>
         </div>
       </div>
-      {userInfo.loggedIn ? (
-        <div className="row">
-          <RoomSelect
-            rooms={roomsState}
-            setRooms={(newRoom) => {
-              userInfo.changeContext("chatRooms", userInfo.chatRooms + newRoom, userInfo);
-            }}
-          />
-          <div className="col-lg-1" />
-          <ChatBox
-            roomId={props.match.params.roomId}
-            username={userInfo.username}
-          />
-        </div>
-      ) : (
-        <LogInBox />
-      )}
+      <div className="row">
+        <RoomSelect
+          rooms={roomsState}
+          setRooms={(newRoom) => {
+            userInfo.changeContext("chatRooms", userInfo.chatRooms + newRoom, userInfo);
+          }}
+        />
+        <div className="col-lg-1" />
+        <ChatBox
+          roomId={props.match.params.roomId}
+          username={userInfo.username}
+        />
+      </div>
     </div>
   );
 }

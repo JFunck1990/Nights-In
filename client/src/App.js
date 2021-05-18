@@ -15,7 +15,7 @@ import Invite from "./pages/Invite";
 import background from "./images/black-brick.png";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
-import ChatBox from "./components/ChatBox";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -79,7 +79,9 @@ function App() {
             <MobileMenu isOpen={isOpen} toggle={toggle} />
             <Navbar toggle={toggle} setLoggedInState={setLoggedInState} />
             <Switch>
-              <Route exact path={["/", "/dashboard"]}>
+              <Route path={"/"} component={HomePage} />
+
+              <Route exact path={["/dashboard"]}>
                 <Redirect to="/dashboard/Public" />
               </Route>
 

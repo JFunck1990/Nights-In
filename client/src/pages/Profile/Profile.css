@@ -26,6 +26,12 @@
       align-items: center;
       align-content: center;
     }
+    .profilecontain{
+        text-align:left;
+    }
+    .profileheader{
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 576px){
@@ -36,6 +42,12 @@
 
 @media screen and (max-width: 552px){
     .profilecontain{
-        width: 500px !important;
+        width: 400px !important;
+    }
+}
+
+@media screen and (max-width: 400px){
+    .profilecontain{
+        width: 300px !important;
     }
 }

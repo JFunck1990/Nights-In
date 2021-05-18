@@ -97,6 +97,38 @@
 
 }
 
+@media screen and (max-width: 510px){
+    .triviacontainer{
+        width: 400px !important;
+    }
+    .insidecontainer{
+       width: 300px !important;
+    }
+    .inputs{
+        margin-left: 3%;
+    }
+    .dropdown-toggle{
+        margin-left: 12%;
+    }
+
+}
+
+@media screen and (max-width: 510px){
+    .triviacontainer{
+        width: 300px !important;
+    }
+    .insidecontainer{
+       width: 200px !important;
+    }
+    .inputs{
+        margin-left: 0%;
+        width: 180px !important;
+    }
+    .dropdown-toggle{
+        margin-left: -20%;
+        width: 180px !important;
+    }
+}
 
 .dropdown{
     margin-top: 15px;;

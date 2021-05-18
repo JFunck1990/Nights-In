@@ -54,11 +54,18 @@ function Register() {
   };
 
   return (
+    <div className="container">
+    <div className="row">
+      <div className="col-lg-1 col-sm-1">
+      </div>
+      <div className="col-lg-10 col-md-12 col-sm-10 col-xs-12">
+
+     
     <div className="register">
       <Row>
         <Col size="md-12">
             <header className="create-user-wrap header-wrap" align="center">
-              <h1>Create Your Account</h1>
+              <h1 style={{fontStyle: "italic"}} >Create Your Account</h1>
               <h3 id="err-msg">{errorState}</h3>
             </header>
 
@@ -134,6 +141,9 @@ function Register() {
         </Col>
       </Row>
     </div>
+  </div>
+</div>
+</div>
   );
 }
 

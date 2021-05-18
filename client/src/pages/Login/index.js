@@ -59,56 +59,68 @@ function Login({ assignLoginData }) {
   };
 
   return (
-    <div className="login">
-      <Row>
-        <Col size="md-12">
-          <header className="create-user-wrap header-wrap" align="center">
-              <h1 className="loginheader">Login To Your Account</h1>
-              <h3 id="err-msg">{errorState}</h3>
-          </header>
-          
-          <div id="register-form">
-            
 
-            <div id="create-form">
-              <div className="form-row">
-                <FormInput
-                  id="inputEmail"
-                  type="email"
-                  colSize="12"
-                  placeholder="example@email.com"
-                  label="Email"
-                  name="email"
-                  value={infoState.email}
-                  handler={handleInputChange}
-                />
-              </div>
+    <div className="container">
+      <div className="row">
+        <div className="col-xl-2 col-lg-1 col-sm-1">
+        </div>
+        <div className="col-lg-8 col-md-12 col-sm-10 col-xs-12">
+        <div className="login">
+            <Row>
+              <Col size="md-12">
+                <header className="create-user-wrap header-wrap" align="center">
+                    <h1 style={{fontStyle: "italic"}} className="loginheader">Login To Your Account</h1>
+                    <h3 id="err-msg">{errorState}</h3>
+                </header>
+                
+                <div id="register-form">
+                  
+                  <div id="create-form">
+                    <div className="form-row">
+                      <FormInput
+                        id="inputEmail"
+                        type="email"
+                        colSize="12"
+                        placeholder="example@email.com"
+                        label="Email"
+                        name="email"
+                        value={infoState.email}
+                        handler={handleInputChange}
+                      />
+                    </div>
 
-              <div className="form-row">
-                <FormInput
-                  id="inputPassword"
-                  type="password"
-                  colSize="12"
-                  placeholder="password123"
-                  label="Password"
-                  name="password"
-                  value={infoState.password}
-                  handler={handleInputChange}
-                />
-              </div>
+                    <div className="form-row">
+                      <FormInput
+                        id="inputPassword"
+                        type="password"
+                        colSize="12"
+                        placeholder="password123"
+                        label="Password"
+                        name="password"
+                        value={infoState.password}
+                        handler={handleInputChange}
+                      />
+                    </div>
 
-              <button
-                type="submit"
-                className="btn btn-dark"
-                onClick={handleSubmit}
-              >
-                Submit
-              </button>
-            </div>
-          </div>
-        </Col>
-      </Row>
+                    <button
+                      type="submit"
+                      className="btn btn-dark"
+                      onClick={handleSubmit}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+
+        </div>
+      </div>
     </div>
+  </div>
+
+
+      
   );
 }
 

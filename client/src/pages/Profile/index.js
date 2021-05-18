@@ -139,7 +139,7 @@ function Profile({ setLoggedInState }) {
 
   return (
     <div class="container profilecontain">
-        <h2>Update Profile</h2>
+        <h2 style={{fontStyle: "italic"}} className="profileheader">Update Profile</h2>
 
       {/* Card Header */}
       <div className="insidecontain">

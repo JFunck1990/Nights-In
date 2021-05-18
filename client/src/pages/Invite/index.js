@@ -35,7 +35,7 @@ function Invite() {
     <div className="container margintop">
       <div className="card border border-dark radius">
         <div className="card-header text-center bg-header" id="radiushead">
-          <p className="headerFont">INVITE YOUR FRIENDS!</p>
+          <h2 className="headerFont">INVITE YOUR FRIENDS!</h2>
         </div>
 
         <div className="form-row mt-3 formMargin">

@@ -37,14 +37,24 @@ nav,
   margin-left: 50%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 912px) {
   #barlist,
   .barlink {
     display: none !important;
   }
+  .bars{
+    margin-left: 65%;
+  }
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (max-width: 700px) {
+  .bars{
+    margin-left: 50%;
+  }
+}
+
+
+@media screen and (min-width: 913px) {
   .bars {
     display: none !important;
   }
@@ -52,7 +62,7 @@ nav,
 
 @media screen and (max-width: 520px) {
   .bars {
-    margin-left: 20%;
+    margin-left: 10%;
   }
   #navicon {
     margin-left: 10%;

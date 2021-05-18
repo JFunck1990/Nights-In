@@ -15,8 +15,6 @@
   height: 600px;
   margin-top: 50px;
   padding-top: 10px;
-  width: 1000px !important;
-  margin-left: 15%;
 
 }
 
@@ -28,73 +26,7 @@
   border-radius: 8px;
 }
 
-@media screen and (max-width: 1300px){
-  .register{
-    width: 900px !important;
-  }
-}
-
-@media screen and (max-width: 1200px){
-  .register{
-    width: 800px !important;
-  }
-}
-
-@media screen and (max-width: 1060px){
-  .register{
-    width: 700px !important;
-  }
-}
-
-@media screen and (max-width: 950px){
-  .register{
-    width: 600px !important;
-  }
-}
-
-@media screen and (max-width: 767px){
-  .register{
-    width: 500px !important;
-    height: 600px;
-  }
-
-  .loginheader{
-    font-size: 35px !important;
-  }
-
-  #err-msg{
-    font-size: 25px !important;
-  }
-
-}
-
-@media screen and (max-width: 680px){
-  .register{
-    width: 400px !important;
-  }
-
-  .loginheader{
-    font-size: 30px !important;
-  }
-
   #err-msg{
     font-size: 20px !important;
   }
 
-}
-
-
-@media screen and (max-width: 510px){
-  .register{
-    margin-left: 10%;
-  }
-
-  .loginheader{
-    font-size: 30px !important;
-  }
-
-  #err-msg{
-    font-size: 20px !important;
-  }
-
-}

@@ -1,0 +1,38 @@
+.room-select-header {
+    font-style: italic;
+}
+
+.rooms-container {
+    height: 268px;
+    max-height: 268px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /* width: 96%; */
+    font-size: large;
+    background-color: white;
+    border-radius: 5px;
+    /* margin-left: 10px; */
+}
+
+.rooms-container::-webkit-scrollbar {
+    width: 0;
+}
+
+.rooms-list {
+    text-align: left;
+}
+
+@media screen and (max-width: 992px) {
+    .room-select-container {
+      height: 350px;
+    }
+  
+    .rooms-container {
+      max-height: 140px;
+    }
+
+    .room-select-inputs {
+        margin-right: 10px !important;
+        margin-left: 10px !important;
+      }
+  }

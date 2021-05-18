@@ -69,7 +69,7 @@ function App() {
         backgroundImage: `url(${background})`,
         height: "1200px",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: "repeat",
         backgroundSize: "cover",
       }}
     >
@@ -120,7 +120,7 @@ function App() {
           </TriviaContext.Provider>
         </LoggedInContext.Provider>
       </Router>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

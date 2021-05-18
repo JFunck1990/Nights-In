@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "./style.css";
 
-const ChatBox = ({ rooms, setRooms }) => {
+const RoomSelect = ({ rooms, setRooms }) => {
   const [newRoom, setNewRoom] = useState("");
   const [errorState, setErrorState] = useState("");
 
@@ -13,50 +14,49 @@ const ChatBox = ({ rooms, setRooms }) => {
       setErrorState("*Room name cannot contain \"|\"*");
     }
     else {
+      setNewRoom("");
       setErrorState("");
       setRooms("|" + newRoom);
     }
   }
 
   return (
-    <div className="col-lg-5 orange-border">
-      <div className="room-select-container">
-        <h1 className="room-select-header">Your Chat Rooms</h1>
+    <div className="room-select-container col-lg-5 orange-border">
+      <h1 className="room-select-header">Your Chat Rooms</h1>
 
-        <div className="row">
-          <div className="rooms-container">
-            <ol className="rooms-list">
-              {rooms.map((room, i) => (
-                <li key={i}>
-                  <Link to={`/dashboard/${room}`}>{room}</Link>
-                </li>
-              ))}
-            </ol>
-          </div>
+      <div>
+        <div className="rooms-container">
+          <ul className="rooms-list">
+            {rooms.map((room, i) => (
+              <li key={i}>
+                <Link to={`/dashboard/${room}`}>{room}</Link>
+              </li>
+            ))}
+          </ul>
         </div>
-        
-        <label>Add a new room</label>
-
-        <div className="row">
-          <div className="col-lg-1" />
-          <input
-            value={newRoom}
-            onChange={(event) => setNewRoom(event.target.value)}
-            placeholder="New room name"
-            className="form-control col-lg-7"
-          />
-          <button
-            className="btn btn-primary col-lg-3"
-            onClick={handleSubmit}
-          >
-          Submit
-          </button>
-        </div>
-
-        <span>{errorState}</span>
       </div>
+      
+      <label>Add a new room</label>
+
+      <div className="row room-select-inputs">
+        <div className="col-lg-1" />
+        <input
+          value={newRoom}
+          onChange={(event) => setNewRoom(event.target.value)}
+          placeholder="New room name"
+          className="form-control col-lg-7"
+        />
+        <button
+          className="btn btn-dark col-lg-3"
+          onClick={handleSubmit}
+        >
+        Submit
+        </button>
+      </div>
+
+      <span>{errorState}</span>
     </div>
   );
 };
 
-export default ChatBox;
+export default RoomSelect;

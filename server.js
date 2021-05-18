@@ -6,7 +6,6 @@ const morgan = require("morgan");
 const passport = require("passport");
 const moment = require("moment");
 const helmet = require("helmet");
-const path = require('path');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -31,8 +30,9 @@ if (app.get("env") !== "test") {
 require("./server/config/passport")(db, app, passport); // pass passport for configuration
 
 if (process.env.NODE_ENV === 'production') {
+	const path = require('path');
 	// console.log('YOU ARE IN THE PRODUCTION ENV');
-	app.use('/static', express.static('client/build/static'));
+	app.use('/static', express.static(path.join(__dirname, './client/build/static')));
 	app.get('/', (req, res) => {
 		res.sendFile(path.join(__dirname, './client/build/'))
 	});

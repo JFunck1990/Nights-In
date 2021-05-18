@@ -32,7 +32,7 @@ require("./server/config/passport")(db, app, passport); // pass passport for con
 if (process.env.NODE_ENV === 'production') {
 	const path = require('path');
 	// console.log('YOU ARE IN THE PRODUCTION ENV');
-	app.use('/static', express.static(path.join(__dirname, './client/build/static')));
+	app.use('/static', express.static('client/build/static'));
 	app.get('/', (req, res) => {
 		res.sendFile(path.join(__dirname, './client/build/'))
 	});

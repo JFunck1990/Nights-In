@@ -1,0 +1,64 @@
+.chat-room-container {
+  height: 437.8px;
+}
+
+.text-left-align {
+    text-align: left;
+}
+
+.text-center-align {
+    text-align: center;
+}
+
+.room-name {
+    font-style: italic;
+    text-align: center;
+}
+
+.messages-container {
+  height: 70%;
+  max-height: 270px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-size: large;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.messages-container::-webkit-scrollbar {
+  width: 0;
+}
+
+.messages-list {
+  list-style-type: none;
+}
+
+.username {
+  color: teal;
+  float: left;
+}
+
+.message-body {
+  padding-left: 5px;
+}
+
+.error-msg {
+    text-align: center;
+}
+
+@media screen and (max-width: 992px) {
+  .chat-room-container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    height: 500px;
+  }
+
+  .messages-container {
+    max-height: 290px;
+  }
+
+  .chat-room-inputs {
+    margin-right: 10px !important;
+    margin-left: 10px !important;
+  }
+}

@@ -69,8 +69,6 @@ if (app.get("env") === "test") {
   syncOptions.force = true;
 }
 
-const NEW_CHAT_MESSAGE_EVENT = "newChatMessage" /*process.env.NEW_CHAT_MESSAGE_EVENT*/
-
 socketIO.on("connection", function(socket) {
   console.log("==================================");
   console.log("A user connected");

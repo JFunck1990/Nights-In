@@ -15,7 +15,6 @@ import Invite from "./pages/Invite";
 import background from "./images/black-brick.png";
 import Login from "./pages/Login";
 import Footer from "./components/Footer";
-import ChatBox from "./components/ChatBox";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,7 +68,7 @@ function App() {
         backgroundImage: `url(${background})`,
         height: "1200px",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: "repeat",
         backgroundSize: "cover",
       }}
     >
@@ -120,7 +119,7 @@ function App() {
           </TriviaContext.Provider>
         </LoggedInContext.Provider>
       </Router>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

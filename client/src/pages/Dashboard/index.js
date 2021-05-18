@@ -36,7 +36,10 @@ function Dashboard(props) {
             }}
           />
           <div className="col-lg-1" />
-          <ChatBox roomId={props.match.params.roomId} />
+          <ChatBox
+            roomId={props.match.params.roomId}
+            username={userInfo.username}
+          />
         </div>
       ) : (
         <LogInBox />

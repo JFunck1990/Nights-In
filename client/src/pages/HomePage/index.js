@@ -1,5 +1,4 @@
 import React from "react";
-import "./Dashboard.css";
 import LogInBox from "../../components/LogInBox";
 
 function Dashboard(props) {
